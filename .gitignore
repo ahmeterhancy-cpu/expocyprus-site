@@ -34,8 +34,8 @@ id_ed25519
 # ─── Asset görselleri ───────────────────────────────────────────
 # WebP versiyonları repo'da (~7 MB toplam, 95% küçültme)
 # Orijinal PNG/JPG'ler local'de var, repo'ya girmez
+# Video'lar repo'da kalır (~4 MB hero-video.mp4)
 /public/assets/images/*.png
-/public/assets/images/*.mp4
 /public/assets/images/hotels/*.png
 /public/assets/images/hotels/*.jpg
 /public/assets/images/stand-models/*.png
