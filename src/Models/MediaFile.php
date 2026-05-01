@@ -23,6 +23,7 @@ class MediaFile extends BaseModel
 
         if (!is_dir($destDir)) mkdir($destDir, 0755, true);
         if (!move_uploaded_file($file['tmp_name'], $destPath)) return false;
+        @chmod($destPath, 0644); // Apache okuyabilsin (cPanel umask 077 olabilir)
 
         $publicUrl = '/uploads/' . $folder . '/' . $filename;
         $id = self::create([
