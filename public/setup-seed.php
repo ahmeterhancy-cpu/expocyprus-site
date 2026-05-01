@@ -136,6 +136,76 @@ try {
 } catch (\Throwable $e) {
     echo "  ! migrate.php hata: " . $e->getMessage() . "\n";
 }
+
+// 1b) hotels tablosu (manuel CREATE — model'de ensureTable yok)
+try {
+    \App\Core\DB::execute("CREATE TABLE IF NOT EXISTS `hotels` (
+        `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        `slug` VARCHAR(200) NOT NULL UNIQUE,
+        `name` VARCHAR(250) NOT NULL,
+        `region` VARCHAR(50) NOT NULL,
+        `location` VARCHAR(300),
+        `stars` TINYINT UNSIGNED NOT NULL DEFAULT 5,
+        `summary_tr` TEXT, `summary_en` TEXT,
+        `description_tr` LONGTEXT, `description_en` LONGTEXT,
+        `features_json` JSON,
+        `image_main` VARCHAR(300),
+        `gallery_json` JSON,
+        `website_url` VARCHAR(300),
+        `phone` VARCHAR(50),
+        `rooms` SMALLINT UNSIGNED,
+        `meeting_rooms` TINYINT UNSIGNED,
+        `event_types_json` JSON,
+        `sort_order` TINYINT UNSIGNED NOT NULL DEFAULT 0,
+        `status` ENUM('active','inactive') NOT NULL DEFAULT 'active',
+        `meta_title_tr` VARCHAR(80), `meta_title_en` VARCHAR(80),
+        `meta_desc_tr` VARCHAR(180), `meta_desc_en` VARCHAR(180),
+        `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        INDEX `idx_region` (`region`),
+        INDEX `idx_status_sort` (`status`,`sort_order`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci");
+    echo "  ✓ hotels tablosu hazır\n";
+} catch (\Throwable $e) {
+    echo "  ! hotels tablo hata: " . $e->getMessage() . "\n";
+}
+
+// 1c) catalog_items eksik kolonları ekle
+$ciCols = [
+    'model_no'      => "VARCHAR(20) NULL AFTER `slug`",
+    'name_tr'       => "VARCHAR(200) NULL AFTER `model_no`",
+    'name_en'       => "VARCHAR(200) NULL AFTER `name_tr`",
+    'size_category' => "VARCHAR(30) NULL AFTER `name_en`",
+    'dimensions'    => "VARCHAR(30) NULL AFTER `size_category`",
+    'price'         => "DECIMAL(10,2) NULL AFTER `dimensions`",
+    'currency'      => "VARCHAR(5) NULL DEFAULT 'EUR' AFTER `price`",
+    'features_json' => "JSON NULL AFTER `currency`",
+    'description_en'=> "TEXT NULL AFTER `description`",
+];
+try {
+    $existing = \App\Core\DB::query("SHOW COLUMNS FROM `catalog_items`");
+    $existingNames = array_column($existing, 'Field');
+    $added = 0;
+    foreach ($ciCols as $col => $def) {
+        if (!in_array($col, $existingNames, true)) {
+            \App\Core\DB::execute("ALTER TABLE `catalog_items` ADD COLUMN `$col` $def");
+            $added++;
+        }
+    }
+    // Indexler
+    $indexes = \App\Core\DB::query("SHOW INDEX FROM `catalog_items`");
+    $idxNames = array_column($indexes, 'Key_name');
+    if (!in_array('idx_size_category', $idxNames, true)) {
+        try { \App\Core\DB::execute("ALTER TABLE `catalog_items` ADD INDEX `idx_size_category` (`size_category`)"); } catch (\Throwable $e) {}
+    }
+    if (!in_array('idx_model_no', $idxNames, true)) {
+        try { \App\Core\DB::execute("ALTER TABLE `catalog_items` ADD INDEX `idx_model_no` (`model_no`)"); } catch (\Throwable $e) {}
+    }
+    echo "  ✓ catalog_items: $added kolon eklendi\n";
+} catch (\Throwable $e) {
+    echo "  ! catalog_items ALTER hata: " . $e->getMessage() . "\n";
+}
+
 echo "\n";
 
 echo "─── 2) Ana seed (admin/settings/services/fairs) ──────────────\n";
