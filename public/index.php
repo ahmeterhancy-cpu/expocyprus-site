@@ -16,9 +16,13 @@ define('START_TIME', microtime(true));
 $basePath = dirname(__DIR__);
 if (!file_exists($basePath . '/vendor/autoload.php')) {
     // 2. Try cPanel split: public_html → ~/expocyprus.com (sibling)
+    // public_html'in parent'ı home dizini, oradaki sibling klasörler
+    $homeDir = $basePath; // /home/USER (çünkü public_html → /home/USER/public_html)
     $candidates = [
+        $homeDir . '/expocyprus.com',
+        $homeDir . '/expocyprus-site',
+        $homeDir . '/expocyprus',
         dirname($basePath) . '/expocyprus.com',
-        dirname($basePath) . '/expocyprus-site',
         getenv('APP_SRC') ?: '',
     ];
     foreach ($candidates as $cand) {

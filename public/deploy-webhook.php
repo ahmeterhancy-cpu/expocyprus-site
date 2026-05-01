@@ -26,7 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 // Find base path (same logic as index.php)
 $basePath = dirname(__DIR__);
 if (!file_exists($basePath . '/vendor/autoload.php')) {
-    foreach ([dirname($basePath) . '/expocyprus.com', dirname($basePath) . '/expocyprus-site'] as $cand) {
+    $homeDir = $basePath; // public_html'in parent'ı = /home/USER
+    foreach ([$homeDir . '/expocyprus.com', $homeDir . '/expocyprus-site', dirname($basePath) . '/expocyprus.com'] as $cand) {
         if (file_exists($cand . '/vendor/autoload.php')) { $basePath = $cand; break; }
     }
 }
