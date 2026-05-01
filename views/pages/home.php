@@ -129,10 +129,12 @@ $structured = [
                 ['icon'=>'📢','t'=>'PR & Tanıtım','s'=>'Etkinlik öncesi-sırası-sonrası iletişim yönetimi. Basın bülteninden sosyal medyaya, tek elden.','slug'=>'pr-tanitim'],
             ]; foreach ($placeholders as $p): ?>
             <article class="service-card">
-                <div class="service-card-icon"><span style="font-size:2rem"><?= $p['icon'] ?></span></div>
-                <h3 class="service-card-title"><?= $p['t'] ?></h3>
-                <p class="service-card-text"><?= $p['s'] ?></p>
-                <a href="<?= url('hizmetler/' . $p['slug']) ?>" class="service-card-link">Detaylı Bilgi <span aria-hidden="true">→</span></a>
+                <div class="service-card-body">
+                    <div class="service-card-icon"><span style="font-size:2rem"><?= $p['icon'] ?></span></div>
+                    <h3 class="service-card-title"><?= $p['t'] ?></h3>
+                    <p class="service-card-text"><?= $p['s'] ?></p>
+                    <a href="<?= url('hizmetler/' . $p['slug']) ?>" class="service-card-link">Detaylı Bilgi <span aria-hidden="true">→</span></a>
+                </div>
             </article>
             <?php endforeach; endif; ?>
         </div>
