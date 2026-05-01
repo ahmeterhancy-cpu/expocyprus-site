@@ -14,8 +14,11 @@
 declare(strict_types=1);
 
 // ═══ Configuration ═══
-$BASE_PATH = '/home/expo5555/expocyprus.com';
-$PUB_PATH  = '/home/expo5555/public_html';
+// Otomatik detect: install.php /home/USER/public_html/public/install.php konumunda
+// BASE_PATH = source root (/home/USER/public_html)
+// PUB_PATH  = web root  (/home/USER/public_html) — aynı dizin (single-dir layout)
+$BASE_PATH = realpath(dirname(__DIR__));   // public/'in parent'ı
+$PUB_PATH  = $BASE_PATH;                    // aynı (single-dir cPanel deployment)
 
 // ═══ Helpers ═══
 function out(string $msg, string $type = 'info'): void {

@@ -1,4 +1,47 @@
-Options -Indexes
+# ═══════════════════════════════════════════════════════════════
+# Root .htaccess — cPanel single-dir deployment
+# Tüm proje public_html altındaysa bu dosya source'u korur,
+# istekleri public/ klasörüne yönlendirir.
+# ═══════════════════════════════════════════════════════════════
+
+Options -MultiViews -Indexes
 RewriteEngine On
-RewriteRule ^$ public/ [L]
-RewriteRule (.*) public/$1 [L]
+
+# ─── Source dosyalarına ERİŞİM ENGELLİ ──────────────────────
+# .env, vendor/, src/, views/, config/, database/, storage/, lang/
+RewriteRule ^\.env - [F,L]
+RewriteRule ^\.git - [F,L]
+RewriteRule ^\.gitignore - [F,L]
+RewriteRule ^\.cpanel - [F,L]
+RewriteRule ^\.deploy - [F,L]
+RewriteRule ^composer\.(json|lock)$ - [F,L]
+RewriteRule ^README\.md - [F,L]
+RewriteRule ^DEPLOYMENT\.md - [F,L]
+RewriteRule ^src/ - [F,L]
+RewriteRule ^vendor/ - [F,L]
+RewriteRule ^views/ - [F,L]
+RewriteRule ^config/ - [F,L]
+RewriteRule ^database/ - [F,L]
+RewriteRule ^storage/ - [F,L]
+RewriteRule ^lang/ - [F,L]
+RewriteRule ^deploy/ - [F,L]
+
+# ─── Public klasöründe gerçek dosya/dizin varsa direkt servis et ─
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{DOCUMENT_ROOT}/public/$1 -f [OR]
+RewriteCond %{DOCUMENT_ROOT}/public/$1 -d
+RewriteRule ^(.*)$ public/$1 [L]
+
+# ─── Kalan istekleri public/index.php'ye yönlendir ─────────
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ public/index.php [L]
+
+# ─── Güvenlik başlıkları ────────────────────────────────────
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>

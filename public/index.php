@@ -12,12 +12,12 @@ declare(strict_types=1);
 define('PUBLIC_PATH', __DIR__);
 define('START_TIME', microtime(true));
 
-// 1. Try local dev: project/public → project/
+// Auto-detect BASE_PATH:
+// 1. Local dev / single-dir cPanel: project/public/index.php → project/ has vendor/
 $basePath = dirname(__DIR__);
 if (!file_exists($basePath . '/vendor/autoload.php')) {
-    // 2. Try cPanel split: public_html → ~/expocyprus.com (sibling)
-    // public_html'in parent'ı home dizini, oradaki sibling klasörler
-    $homeDir = $basePath; // /home/USER (çünkü public_html → /home/USER/public_html)
+    // 2. Split cPanel — sibling source dir
+    $homeDir = $basePath;
     $candidates = [
         $homeDir . '/expocyprus.com',
         $homeDir . '/expocyprus-site',
