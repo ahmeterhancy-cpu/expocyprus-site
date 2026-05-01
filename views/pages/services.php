@@ -38,37 +38,37 @@ $serviceMeta = [
         'tagline_tr' => 'Konseptten kapanışa.',
         'tagline_en' => 'From concept to close.',
         'accent'     => '#E30613',
-        'image'      => '/assets/images/service-fair-org.png',
+        'image'      => '/assets/images/service-fair-org.webp',
     ],
     'kongre-organizasyonu' => [
         'tagline_tr' => 'Bilim sahnede.',
         'tagline_en' => 'Science on stage.',
         'accent'     => '#0066CC',
-        'image'      => '/assets/images/service-fair-org.png',
+        'image'      => '/assets/images/service-fair-org.webp',
     ],
     'stand-tasarim-kurulum' => [
         'tagline_tr' => 'Markanız. Sahnede.',
         'tagline_en' => 'Your brand. On stage.',
         'accent'     => '#FF6B35',
-        'image'      => '/assets/images/service-stand-design.png',
+        'image'      => '/assets/images/service-stand-design.webp',
     ],
     'fuar-katilim-danismanligi' => [
         'tagline_tr' => 'Fuara değil, dönüşüme git.',
         'tagline_en' => 'Don\'t attend. Convert.',
         'accent'     => '#00875A',
-        'image'      => '/assets/images/service-consulting.png',
+        'image'      => '/assets/images/service-consulting.webp',
     ],
     'hostes-stand-gorevlisi' => [
         'tagline_tr' => 'Standınızın yüzü.',
         'tagline_en' => 'The face of your stand.',
         'accent'     => '#9333EA',
-        'image'      => '/assets/images/service-logistics.png',
+        'image'      => '/assets/images/service-logistics.webp',
     ],
     'pr-tanitim' => [
         'tagline_tr' => 'Görünür ol. Hatırlan.',
         'tagline_en' => 'Be seen. Be remembered.',
         'accent'     => '#EC4899',
-        'image'      => '/assets/images/service-digital.png',
+        'image'      => '/assets/images/service-digital.webp',
     ],
 ];
 ?>
@@ -77,7 +77,7 @@ $serviceMeta = [
      CINEMATIC HERO
 ═══════════════════════════════════════════════════════════════ -->
 <section class="sl-hero">
-    <div class="sl-hero-bg" style="background-image: url('/assets/images/hero-hall.png');"></div>
+    <div class="sl-hero-bg" style="background-image: url('/assets/images/hero-hall.webp');"></div>
     <div class="sl-hero-overlay"></div>
     <div class="sl-hero-content">
         <nav class="sl-breadcrumb" aria-label="Breadcrumb">
@@ -147,7 +147,7 @@ $serviceMeta = [
                 $sm      = $serviceMeta[$slug] ?? null;
                 $tagline = lang() === 'en' ? ($sm['tagline_en'] ?? '') : ($sm['tagline_tr'] ?? '');
                 $accent  = $sm['accent'] ?? '#E30613';
-                $image   = $sm['image']  ?? ($s['image'] ?? '/assets/images/hero-hall.png');
+                $image   = $sm['image']  ?? ($s['image'] ?? '/assets/images/hero-hall.webp');
                 // Make first card span 2 columns for visual rhythm (Apple-style mosaic)
                 $featured = ($i === 0);
             ?>

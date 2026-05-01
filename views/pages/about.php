@@ -34,7 +34,7 @@ $structured = [
 ═══════════════════════════════════════════════════════════════ -->
 <section class="ab-hero" data-scene>
     <div class="ab-hero-bg" data-parallax-bg>
-        <div class="ab-hero-img" style="background-image: url('/assets/images/about-team.png');"></div>
+        <div class="ab-hero-img" style="background-image: url('/assets/images/about-team.webp');"></div>
     </div>
     <div class="ab-hero-overlay"></div>
     <div class="ab-hero-content" data-tilt>
@@ -79,7 +79,7 @@ $structured = [
             </div>
             <div class="ab-story-visual" data-reveal>
                 <div class="ab-3d-card" data-tilt-card>
-                    <img src="/assets/images/hero-hall.png" alt="">
+                    <img src="/assets/images/hero-hall.webp" alt="">
                 </div>
             </div>
         </div>

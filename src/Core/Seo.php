@@ -54,7 +54,7 @@ class Seo
     public static function defaultImage(): string
     {
         $base = rtrim(env('APP_URL', ''), '/');
-        return $base . '/assets/images/og-default.jpg';
+        return $base . '/assets/images/og-default.webp';
     }
 
     public function meta(): string
@@ -121,7 +121,7 @@ class Seo
             'name'     => 'Expo Cyprus',
             'alternateName' => 'UNIFEX Fuarcılık Organizasyon Ltd.',
             'url'      => $base,
-            'logo'     => $base . '/assets/images/logo/unifex-logo.png',
+            'logo'     => $base . '/assets/images/logo/unifex-logo.webp',
             'foundingDate' => '2004',
             'address'  => [
                 '@type'    => 'PostalAddress',

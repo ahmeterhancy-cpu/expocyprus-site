@@ -647,7 +647,7 @@ document.addEventListener('DOMContentLoaded', calcTvTotal);
 /* ─── HERO ───────────────────────────────────────────── */
 .quote-hero {
     background-color: var(--black);
-    background-image: url('/assets/images/service-stand-design.png');
+    background-image: url('/assets/images/service-stand-design.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

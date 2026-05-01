@@ -22,7 +22,7 @@ $currentRegion = $region ?? '';
 <!-- ═══════════════════════════════════════════════════════════════
      HOTELS HERO
 ═══════════════════════════════════════════════════════════════ -->
-<section class="hotels-hero" style="background-image:url('/assets/images/hotels-hero.png');">
+<section class="hotels-hero" style="background-image:url('/assets/images/hotels-hero.webp');">
     <div class="container">
         <nav class="breadcrumb" aria-label="Breadcrumb">
             <a href="<?= url() ?>"><?= lang() === 'en' ? 'Home' : 'Anasayfa' ?></a>

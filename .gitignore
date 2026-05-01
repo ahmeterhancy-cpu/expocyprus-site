@@ -31,18 +31,28 @@ id_ed25519
 !/public/uploads/.htaccess
 !/public/uploads/*/.gitkeep
 
-# ─── Büyük asset görselleri — repo'yu şişirir, sunucuda saklanır ───
-# AI ile üretilmiş 9-12 MB'lık PNG'ler. cPanel'e ayrı yüklenir.
+# ─── Asset görselleri ───────────────────────────────────────────
+# WebP versiyonları repo'da (~7 MB toplam, 95% küçültme)
+# Orijinal PNG/JPG'ler local'de var, repo'ya girmez
 /public/assets/images/*.png
 /public/assets/images/*.mp4
-/public/assets/images/hotels/*
-/public/assets/images/stand-models/*
-/public/assets/images/furniture/*
-# küçük SVG'ler ve gerekli ikonlar repo'da kalsın
+/public/assets/images/hotels/*.png
+/public/assets/images/hotels/*.jpg
+/public/assets/images/stand-models/*.png
+/public/assets/images/stand-models/*.jpg
+/public/assets/images/furniture/*.png
+/public/assets/images/furniture/*.jpg
+
+# WebP'lere izin ver
+!/public/assets/images/*.webp
+!/public/assets/images/hotels/*.webp
+!/public/assets/images/stand-models/*.webp
+!/public/assets/images/furniture/*.webp
+
+# küçük SVG ve ikonlar repo'da kalsın
 !/public/assets/images/*.svg
 !/public/assets/images/icons/
 !/public/assets/img/
-# Manifest tutması için bir asset dizin index'i
 !/public/assets/images/.gitkeep
 
 # ─── IDE / editor / AI tools ────────────

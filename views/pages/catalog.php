@@ -192,7 +192,7 @@ foreach (($data ?? []) as $row) {
 /* ─── HERO ───────────────────────────────────────────── */
 .catalog-hero {
     background-color: var(--black);
-    background-image: linear-gradient(135deg, rgba(10,10,10,.8), rgba(10,10,10,.5)), url('/assets/images/stand-models/AD-01.png');
+    background-image: linear-gradient(135deg, rgba(10,10,10,.8), rgba(10,10,10,.5)), url('/assets/images/stand-models/AD-01.webp');
     background-size: cover;
     background-position: center;
     color: var(--white);

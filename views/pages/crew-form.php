@@ -23,7 +23,7 @@ $workTypes   = \App\Models\CrewApplication::WORK_TYPES;
 ?>
 
 <section class="crew-hero">
-    <div class="crew-hero-bg" style="background-image: url('/assets/images/about-team.png');"></div>
+    <div class="crew-hero-bg" style="background-image: url('/assets/images/about-team.webp');"></div>
     <div class="crew-hero-overlay"></div>
     <div class="crew-hero-content">
         <nav class="breadcrumb" aria-label="Breadcrumb" style="color:rgba(255,255,255,.7);font-size:.85rem;display:flex;gap:.5rem;justify-content:center;margin-bottom:1rem;">

@@ -245,7 +245,7 @@ document.addEventListener('DOMContentLoaded', calcTvTotal);
 /* Reuse styles from quote.php */
 .page-material-request .quote-hero {
     background-color: var(--black);
-    background-image: url('/assets/images/service-stand-design.png');
+    background-image: url('/assets/images/service-stand-design.webp');
     background-size: cover;
     background-position: center;
     color: var(--white);

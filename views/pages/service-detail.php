@@ -18,8 +18,8 @@ $meta = [
         'subline_tr' => 'Tek bir partner. Tüm operasyon. 22 yılın özgüveniyle.',
         'subline_en' => 'One partner. The full operation. With 22 years of confidence.',
         'accent'     => '#E30613',
-        'hero'       => '/assets/images/service-fair-org.png',
-        'showcase'   => '/assets/images/hero-hall.png',
+        'hero'       => '/assets/images/service-fair-org.webp',
+        'showcase'   => '/assets/images/hero-hall.webp',
         'stats' => [
             ['num' => '22+', 'tr' => 'Yıllık Tecrübe',     'en' => 'Years Experience'],
             ['num' => '4',   'tr' => 'Kendi Fuarımız',     'en' => 'Own Fairs'],
@@ -35,8 +35,8 @@ $meta = [
         'subline_tr' => 'Akademik, tıbbi, kurumsal — her ölçekte kongre operasyonu.',
         'subline_en' => 'Academic, medical, corporate — congress operations at every scale.',
         'accent'     => '#0066CC',
-        'hero'       => '/assets/images/service-fair-org.png',
-        'showcase'   => '/assets/images/hotels-conference.png',
+        'hero'       => '/assets/images/service-fair-org.webp',
+        'showcase'   => '/assets/images/hotels-conference.webp',
         'stats' => [
             ['num' => '10+',  'tr' => 'Uluslararası Kongre', 'en' => 'Int\'l Congresses'],
             ['num' => '1500', 'tr' => 'Maks. Katılımcı',    'en' => 'Max Attendees'],
@@ -52,7 +52,7 @@ $meta = [
         'subline_tr' => '3D tasarımdan saha kurulumuna — kendi atölyemizde, kendi ekibimizle.',
         'subline_en' => 'From 3D design to on-site build — in our workshop, with our team.',
         'accent'     => '#FF6B35',
-        'hero'       => '/assets/images/service-stand-design.png',
+        'hero'       => '/assets/images/service-stand-design.webp',
         'showcase'   => '/assets/images/stand-models',
         'stats' => [
             ['num' => '100+', 'tr' => 'Stand Kurulumu',  'en' => 'Stands Built'],
@@ -69,8 +69,8 @@ $meta = [
         'subline_tr' => 'Stratejiden ROI raporuna — fuarı yatırıma çeviriyoruz.',
         'subline_en' => 'From strategy to ROI report — turning the fair into a real investment.',
         'accent'     => '#00875A',
-        'hero'       => '/assets/images/service-consulting.png',
-        'showcase'   => '/assets/images/service-cyprus.png',
+        'hero'       => '/assets/images/service-consulting.webp',
+        'showcase'   => '/assets/images/service-cyprus.webp',
         'stats' => [
             ['num' => '+35%','tr' => 'Daha Fazla Lead',   'en' => 'More Leads'],
             ['num' => '3×',  'tr' => 'Dönüşüm Artışı',    'en' => 'Conversion Lift'],
@@ -86,8 +86,8 @@ $meta = [
         'subline_tr' => 'Eğitimli, çok dilli, sektör tecrübeli profesyonel saha kadrosu.',
         'subline_en' => 'Trained, multilingual, sector-experienced professional field staff.',
         'accent'     => '#9333EA',
-        'hero'       => '/assets/images/service-logistics.png',
-        'showcase'   => '/assets/images/about-team.png',
+        'hero'       => '/assets/images/service-logistics.webp',
+        'showcase'   => '/assets/images/about-team.webp',
         'stats' => [
             ['num' => '5',    'tr' => 'Dil Seçeneği',       'en' => 'Language Options'],
             ['num' => '2',    'tr' => 'Aşamalı Eğitim',     'en' => 'Stage Training'],
@@ -103,8 +103,8 @@ $meta = [
         'subline_tr' => 'Etkinlik öncesi, sırasında ve sonrası — 360° iletişim yönetimi.',
         'subline_en' => 'Before, during and after — 360° communications management.',
         'accent'     => '#EC4899',
-        'hero'       => '/assets/images/service-digital.png',
-        'showcase'   => '/assets/images/service-cyprus.png',
+        'hero'       => '/assets/images/service-digital.webp',
+        'showcase'   => '/assets/images/service-cyprus.webp',
         'stats' => [
             ['num' => '5',    'tr' => 'Hizmet Kategorisi',   'en' => 'Service Categories'],
             ['num' => '1M+',  'tr' => 'Reach Hedefi',       'en' => 'Reach Target'],
@@ -121,8 +121,8 @@ $m = $meta[$slug] ?? [
     'subline_tr' => $summary,
     'subline_en' => $summary,
     'accent'     => '#E30613',
-    'hero'       => $service['image'] ?? '/assets/images/hero-hall.png',
-    'showcase'   => '/assets/images/hero-hall.png',
+    'hero'       => $service['image'] ?? '/assets/images/hero-hall.webp',
+    'showcase'   => '/assets/images/hero-hall.webp',
     'stats'      => [],
 ];
 
@@ -294,7 +294,7 @@ $otherServices = [
             foreach ($otherServices as $os):
                 if ($os['slug'] === $slug) continue;
                 $osMeta = $meta[$os['slug']] ?? null;
-                $osImg  = $osMeta['hero'] ?? '/assets/images/hero-hall.png';
+                $osImg  = $osMeta['hero'] ?? '/assets/images/hero-hall.webp';
                 $osAcc  = $osMeta['accent'] ?? '#E30613';
             ?>
             <a href="<?= url('hizmetler/' . $os['slug']) ?>" class="sd-other-card" style="--accent: <?= e($osAcc) ?>;">

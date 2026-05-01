@@ -27,7 +27,7 @@ $structured = [
             'addressCountry' => 'CY',
         ],
         'priceRange' => '€€',
-        'image' => rtrim(env('APP_URL',''),'/') . '/assets/images/hero-hall.png',
+        'image' => rtrim(env('APP_URL',''),'/') . '/assets/images/hero-hall.webp',
         'aggregateRating' => [
             '@type' => 'AggregateRating',
             'ratingValue' => '4.9',

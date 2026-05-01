@@ -21,7 +21,7 @@ $fairMeta = [
         'tagline_tr' => 'Tüm sektörler. Tek çatı.',
         'tagline_en' => 'Every sector. One roof.',
         'accent'     => '#E30613',
-        'image'      => '/assets/images/hero-hall.png',
+        'image'      => '/assets/images/hero-hall.webp',
         'icon'       => '🛍️',
         'stats'      => [
             ['n' => '15K+',  'l' => 'Ziyaretçi'],
@@ -33,7 +33,7 @@ $fairMeta = [
         'tagline_tr' => 'Doğanın peşinde.',
         'tagline_en' => 'Hunt for the wild.',
         'accent'     => '#0F766E',
-        'image'      => '/assets/images/service-cyprus.png',
+        'image'      => '/assets/images/service-cyprus.webp',
         'icon'       => '🎯',
         'stats'      => [
             ['n' => '8K+',   'l' => 'Ziyaretçi'],
@@ -45,7 +45,7 @@ $fairMeta = [
         'tagline_tr' => 'Toprak. Hasat. Gelecek.',
         'tagline_en' => 'Soil. Harvest. Future.',
         'accent'     => '#059669',
-        'image'      => '/assets/images/service-fair-org.png',
+        'image'      => '/assets/images/service-fair-org.webp',
         'icon'       => '🌾',
         'stats'      => [
             ['n' => '12K+',  'l' => 'Ziyaretçi'],
@@ -57,7 +57,7 @@ $fairMeta = [
         'tagline_tr' => 'Hayatın en özel günü.',
         'tagline_en' => 'The most special day.',
         'accent'     => '#EC4899',
-        'image'      => '/assets/images/about-team.png',
+        'image'      => '/assets/images/about-team.webp',
         'icon'       => '💍',
         'stats'      => [
             ['n' => '6K+',   'l' => 'Ziyaretçi'],
@@ -116,7 +116,7 @@ $displayFairs = !empty($fairs) ? $fairs : [
                 $meta = $fairMeta[$slug] ?? null;
                 $tagline = $meta ? (lang() === 'en' ? $meta['tagline_en'] : $meta['tagline_tr']) : '';
                 $accent  = $meta['accent']  ?? '#E30613';
-                $image   = $meta['image']   ?? ($f['image_hero'] ?? '/assets/images/hero-hall.png');
+                $image   = $meta['image']   ?? ($f['image_hero'] ?? '/assets/images/hero-hall.webp');
                 $icon    = $meta['icon']    ?? '◆';
                 $stats   = $meta['stats']   ?? [];
             ?>

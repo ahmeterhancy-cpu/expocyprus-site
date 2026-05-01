@@ -60,7 +60,7 @@ class BlockSeeder
                 'title_en' => 'The fair standard of Cyprus.',
                 'subtitle_tr' => '22 yıllık tecrübe. 4 sektörel fuar. 100+ stand kurulumu. Tek çatı altında.',
                 'subtitle_en' => '22 years. 4 sector fairs. 100+ stand installations. Under one roof.',
-                'image' => '/assets/images/hero-hall.png',
+                'image' => '/assets/images/hero-hall.webp',
                 'cta_text_tr' => 'Stand Teklifi Al', 'cta_text_en' => 'Get Stand Quote',
                 'cta_url' => '/teklif-al', 'accent' => '#E30613',
             ]],
@@ -93,7 +93,7 @@ class BlockSeeder
                 'feat4_desc_en' => 'From strategy to ROI — turning fair into investment.',
             ]],
             ['type' => 'showcase', 'data' => [
-                'image' => '/assets/images/hero-hall.png',
+                'image' => '/assets/images/hero-hall.webp',
                 'title_tr' => 'Detayla işlenmiş. Disiplinle teslim edilmiş.',
                 'title_en' => 'Crafted with detail. Delivered with discipline.',
             ]],
@@ -119,7 +119,7 @@ class BlockSeeder
                 'title_en' => '22 years. Cyprus exhibition industry.',
                 'subtitle_tr' => 'Bir avuç profesyonelin tutkuyla başlattığı yolculuk, bugün adanın en güvenilir fuar organizatörü.',
                 'subtitle_en' => 'What started as a passion project is today the island\'s most trusted fair organiser.',
-                'image' => '/assets/images/about-team.png',
+                'image' => '/assets/images/about-team.webp',
                 'accent' => '#E30613',
             ]],
             ['type' => 'heading', 'data' => [
@@ -129,7 +129,7 @@ class BlockSeeder
                 'align' => 'left', 'size' => 'lg',
             ]],
             ['type' => 'image_text', 'data' => [
-                'image' => '/assets/images/hero-hall.png',
+                'image' => '/assets/images/hero-hall.webp',
                 'title_tr' => 'Kıbrıs\'ın fuar altyapısını biz inşa ettik.',
                 'title_en' => 'We built Cyprus\'s exhibition infrastructure.',
                 'body_tr' => '<p>Tek bir inançla yola çıktık: Kıbrıs, dünya standartlarında fuar altyapısını hak ediyor. Bir avuç profesyonelin tutkuyla başlattığı bu yolculuk, bugün adanın en güvenilir fuar ve kongre organizatörüne dönüştü.</p><p>Bugün <strong>4 periyodik ticaret fuarı</strong> düzenliyor, yıllık <strong>100+ stand kurulumu</strong> yapıyor ve <strong>10+ uluslararası kongre</strong> gerçekleştiriyoruz.</p>',
@@ -181,7 +181,7 @@ class BlockSeeder
                 'title_en' => 'Two decades of milestones.',
                 'subtitle_tr' => '2004\'te bir vizyon. Bugün KKTC\'nin fuar standardı.',
                 'subtitle_en' => 'A vision in 2004. Today, the fair standard of Cyprus.',
-                'image' => '/assets/images/about-team.png',
+                'image' => '/assets/images/about-team.webp',
                 'accent' => '#E30613',
             ]],
             ['type' => 'features', 'data' => [
@@ -228,7 +228,7 @@ class BlockSeeder
                 'eyebrow_tr' => 'MİSYON & VİZYON', 'eyebrow_en' => 'MISSION & VISION',
                 'title_tr' => 'Aldığımız her kararın pusulası.',
                 'title_en' => 'The compass for every decision.',
-                'image' => '/assets/images/hero-hall.png',
+                'image' => '/assets/images/hero-hall.webp',
                 'accent' => '#E30613',
             ]],
             ['type' => 'features', 'data' => [
@@ -271,7 +271,7 @@ class BlockSeeder
                 'title_en' => 'Professional staff. Cyprus expertise.',
                 'subtitle_tr' => 'Deneyim, tutku ve detaya verilen önem.',
                 'subtitle_en' => 'Experience, passion, attention to detail.',
-                'image' => '/assets/images/about-team.png',
+                'image' => '/assets/images/about-team.webp',
             ]],
             ['type' => 'text', 'data' => [
                 'body_tr' => '<p>Expo Cyprus\'un arkasındaki kadro, yıllarca süren saha tecrübesi ve farklı disiplinlerden gelen uzmanlık alanlarıyla bir araya geldi. Fuar yönetimi, stand tasarımı, operasyon ve PR uzmanları aynı çatı altında.</p>',
@@ -297,7 +297,7 @@ class BlockSeeder
                 'title_en' => 'Six services. One responsibility.',
                 'subtitle_tr' => 'Fuar organizasyonundan PR\'a — her şey ekibimiz tarafından tasarlanır, üretilir ve teslim edilir.',
                 'subtitle_en' => 'Everything from fair organisation to PR — designed, built and delivered by our team.',
-                'image' => '/assets/images/hero-hall.png',
+                'image' => '/assets/images/hero-hall.webp',
             ]],
             ['type' => 'features', 'data' => [
                 'columns' => '3',
@@ -327,7 +327,7 @@ class BlockSeeder
                 'title_en' => 'Four Fairs. One Leader. Cyprus.',
                 'subtitle_tr' => 'Binlerce ziyaretçiyi yüzlerce katılımcıyla buluşturan yıllık ticaret fuarları.',
                 'subtitle_en' => 'Annual trade fairs that bring thousands of visitors with hundreds of exhibitors.',
-                'image' => '/assets/images/hero-hall.png',
+                'image' => '/assets/images/hero-hall.webp',
             ]],
             ['type' => 'features', 'data' => [
                 'columns' => '2',
@@ -363,7 +363,7 @@ class BlockSeeder
                 'title_en' => 'Get in touch.',
                 'subtitle_tr' => '24 saat içinde yanıt veriyoruz. Projenizi bize anlatın.',
                 'subtitle_en' => 'We respond within 24 hours. Tell us about your project.',
-                'image' => '/assets/images/hero-hall.png',
+                'image' => '/assets/images/hero-hall.webp',
             ]],
             ['type' => 'features', 'data' => [
                 'columns' => '3',
@@ -390,7 +390,7 @@ class BlockSeeder
                 'title_en' => 'Frequently asked questions.',
                 'subtitle_tr' => 'İletişime geçmeden önce sormak istediğiniz her şey.',
                 'subtitle_en' => 'Everything you wanted to ask before getting in touch.',
-                'image' => '/assets/images/hero-hall.png',
+                'image' => '/assets/images/hero-hall.webp',
             ]],
             ['type' => 'text', 'data' => [
                 'body_tr' => '<h2>Fuar katılımı için ne kadar erken planlama yapmalıyım?</h2><p>En az 3-6 ay önce. Stand tasarımı, kurulum ve pazarlama için sağlıklı süre.</p><h2>Stand maliyeti nasıl hesaplanır?</h2><p>m² × tasarım tipi × ek hizmetler. Modüler 350-500 €/m², özel yapım 600-1200 €/m² aralığında.</p><h2>Yurt dışından katılım yapanlara hangi destekler veriyorsunuz?</h2><p>Konaklama, transfer, yerel iletişim ve KKTC giriş prosedürleri için tam destek.</p><h2>Hostes / sahne ekibi sağlıyor musunuz?</h2><p>Evet, eğitimli kadromuz var: stand görevlisi, dil bilen hostes, MC, sahne yönetimi.</p>',
@@ -415,7 +415,7 @@ class BlockSeeder
                 'title_en' => '100+ installations. 22 years of trust.',
                 'subtitle_tr' => 'Uzun vadeli müşterilerimizden bir seçki.',
                 'subtitle_en' => 'A selection from our long-term clients.',
-                'image' => '/assets/images/hero-hall.png',
+                'image' => '/assets/images/hero-hall.webp',
             ]],
         ];
     }
