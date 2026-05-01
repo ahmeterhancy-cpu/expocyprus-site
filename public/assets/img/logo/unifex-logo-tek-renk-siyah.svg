@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1400 500"
+     preserveAspectRatio="xMidYMid meet"
+     role="img"
+     aria-label="UNIFEX – Tek renk siyah versiyon">
+  <title>UNIFEX Logo (Tek Renk Siyah)</title>
+  <desc>Faks, fotokopi, brode/işleme, mührün gerektiği tek renk durumlarda kullanılır.</desc>
+
+  <defs>
+    <clipPath id="uLeftBW">
+      <rect x="0" y="0" width="175" height="360"/>
+    </clipPath>
+    <clipPath id="uRightBW">
+      <rect x="175" y="0" width="180" height="360"/>
+    </clipPath>
+  </defs>
+
+  <g transform="translate(80,70)">
+    <path fill="#0A0A0A" clip-path="url(#uLeftBW)"
+          d="M 0,0 L 90,0 L 90,210 C 90,250 120,275 175,275
+             C 230,275 260,250 260,210 L 260,0 L 350,0 L 350,220
+             C 350,300 270,350 175,350 C 80,350 0,300 0,220 Z"/>
+    <path fill="#0A0A0A" clip-path="url(#uRightBW)"
+          d="M 0,0 L 90,0 L 90,210 C 90,250 120,275 175,275
+             C 230,275 260,250 260,210 L 260,0 L 350,0 L 350,220
+             C 350,300 270,350 175,350 C 80,350 0,300 0,220 Z"/>
+    <g fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round">
+      <path d="M 100,100 Q 175,120 250,100"/>
+      <path d="M 95,165 Q 175,195 255,165"/>
+      <path d="M 100,225 Q 175,255 250,225"/>
+    </g>
+  </g>
+
+  <line x1="510" y1="60" x2="510" y2="430" stroke="#0A0A0A" stroke-width="2"/>
+
+  <g font-family="'Arial Black','Helvetica Neue',Impact,sans-serif"
+     font-weight="900" font-size="180" letter-spacing="-3" fill="#0A0A0A">
+    <text x="540" y="310">UNIFEX</text>
+    <rect x="813" y="328" width="55" height="10" fill="#0A0A0A"/>
+  </g>
+
+  <g font-family="'Helvetica Neue',Helvetica,Arial,sans-serif"
+     font-size="36" font-weight="400" letter-spacing="3" fill="#0A0A0A">
+    <text x="540" y="400">Expo</text>
+    <circle cx="667" cy="389" r="5" fill="#0A0A0A"/>
+    <text x="690" y="400">Congress</text>
+    <circle cx="908" cy="389" r="5" fill="#0A0A0A"/>
+    <text x="930" y="400">Events</text>
+    <circle cx="1093" cy="389" r="5" fill="#0A0A0A"/>
+    <text x="1115" y="400">Stands</text>
+  </g>
+</svg>

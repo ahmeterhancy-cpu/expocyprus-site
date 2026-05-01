@@ -1,0 +1,77 @@
+# ─── Environment & secrets ───────────────
+.env
+.env.*.local
+!.env.example
+
+# ─── Composer ────────────────────────────
+/vendor/
+composer.phar
+
+# ─── Storage / cache / sessions ──────────
+/storage/sessions/*
+!/storage/sessions/.gitkeep
+/storage/cache/*
+!/storage/cache/.gitkeep
+/storage/logs/*
+!/storage/logs/.gitkeep
+
+# ─── User uploads — site içerikleri (CMS / blog / katalog) ───────
+# Üretimde sunucuda saklanır, repo'ya GİRMEZ
+/public/uploads/*
+!/public/uploads/.gitkeep
+!/public/uploads/*/.gitkeep
+
+# ─── Büyük asset görselleri — repo'yu şişirir, sunucuda saklanır ───
+# AI ile üretilmiş 9-12 MB'lık PNG'ler. cPanel'e ayrı yüklenir.
+/public/assets/images/*.png
+/public/assets/images/*.mp4
+/public/assets/images/hotels/*
+/public/assets/images/stand-models/*
+/public/assets/images/furniture/*
+# küçük SVG'ler ve gerekli ikonlar repo'da kalsın
+!/public/assets/images/*.svg
+!/public/assets/images/icons/
+!/public/assets/img/
+# Manifest tutması için bir asset dizin index'i
+!/public/assets/images/.gitkeep
+
+# ─── IDE / editor / AI tools ────────────
+.vscode/
+.idea/
+.claude/
+.cursor/
+.aider*
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ─── OS ──────────────────────────────────
+ehthumbs.db
+$RECYCLE.BIN/
+
+# ─── Node (frontend asset build, ileride lazım olursa) ───
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# ─── Backup / temp ───────────────────────
+*.bak
+*.backup
+*.tmp
+*.log
+*.sql.gz
+*.tar.gz
+
+# ─── PHPStan / Code quality ──────────────
+.phpunit.result.cache
+.phpunit.cache/
+.php-cs-fixer.cache
+
+# ─── Local DB dumps (sürüm kontrolü dışında) ──
+/database/dumps/
+/database/*.dump
