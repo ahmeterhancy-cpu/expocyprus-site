@@ -10,15 +10,10 @@ class HomeController
 {
     public function index(Request $req, array $params = []): void
     {
-        try {
-            $services = Service::allActive();
-            $fairs    = Fair::allActive();
-            $posts    = BlogPost::published(lang(), 3);
-            $catalog  = CatalogItem::filtered([], 1, 6);
-        } catch (\Throwable $e) {
-            $services = $fairs = $posts = [];
-            $catalog  = ['data' => []];
-        }
+        try { $services = Service::allActive(); }   catch (\Throwable $e) { $services = []; }
+        try { $fairs    = Fair::allActive(); }      catch (\Throwable $e) { $fairs    = []; }
+        try { $posts    = BlogPost::published(lang(), 3); } catch (\Throwable $e) { $posts = []; }
+        try { $catalog  = CatalogItem::filtered([], 1, 6); } catch (\Throwable $e) { $catalog = ['data' => []]; }
 
         View::render('home', compact('services', 'fairs', 'posts', 'catalog'), 'main');
     }
