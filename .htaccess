@@ -27,10 +27,11 @@ RewriteRule ^lang/ - [F,L]
 RewriteRule ^deploy/ - [F,L]
 
 # ─── Public klasöründe gerçek dosya/dizin varsa direkt servis et ─
+# NOT: RewriteCond içinde $1 back-reference güvenilir değil; %{REQUEST_URI} kullan.
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{DOCUMENT_ROOT}/public/$1 -f [OR]
-RewriteCond %{DOCUMENT_ROOT}/public/$1 -d
+RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -f [OR]
+RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -d
 RewriteRule ^(.*)$ public/$1 [L]
 
 # ─── Kalan istekleri public/index.php'ye yönlendir ─────────
