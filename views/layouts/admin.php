@@ -60,7 +60,7 @@
             <!-- Brand -->
             <div class="sidebar-brand">
                 <a href="/admin" class="navbar-brand">
-                    <img src="/assets/img/logo/unifex-logo-beyaz.svg" alt="Expo Cyprus Admin" class="navbar-brand-image">
+                    <img src="/assets/img/logo/unifex-logo-yatay-beyaz.svg" alt="Expo Cyprus Admin" class="navbar-brand-image">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
                     <span class="navbar-toggler-icon"></span>
