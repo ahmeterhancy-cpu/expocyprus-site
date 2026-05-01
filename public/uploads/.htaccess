@@ -1,0 +1,20 @@
+# Uploads klasörü güvenliği
+# PHP / executables çalıştırılamaz — sadece statik dosya servis'i
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    # PHP dosyalarını engelle
+    RewriteRule ^.*\.(php|phtml|phar|pl|py|sh|cgi)$ - [F,L]
+</IfModule>
+
+<FilesMatch "\.(php|phtml|phar|pl|py|sh|cgi)$">
+    Require all denied
+</FilesMatch>
+
+# Directory listing kapalı
+Options -Indexes
+
+# MIME türlerini override et (yanlış extension için bile)
+<FilesMatch "\.(jpg|jpeg|png|gif|webp|svg|pdf|doc|docx|xls|xlsx|zip)$">
+    Require all granted
+</FilesMatch>
