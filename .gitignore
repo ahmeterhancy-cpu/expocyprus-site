@@ -4,7 +4,8 @@
 !.env.example
 
 # ─── Composer ────────────────────────────
-/vendor/
+# vendor/ üretim ortamı için repo'da tutulur (cPanel'da composer çalıştıramıyoruz)
+# /vendor/
 composer.phar
 
 # ─── Storage / cache / sessions ──────────
