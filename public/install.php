@@ -156,6 +156,8 @@ elseif ($step === 'copy') {
 
         // install.php'yi (kendini) atla
         if ($rel === 'install.php') { $skipped++; continue; }
+        // Single-dir layout'ta public/.htaccess root .htaccess'i ezmesin
+        if ($BASE_PATH === $PUB_PATH && $rel === '.htaccess') { $skipped++; continue; }
 
         $dest = $PUB_PATH . '/' . $rel;
         if ($item->isDir()) {
