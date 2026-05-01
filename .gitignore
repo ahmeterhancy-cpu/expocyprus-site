@@ -41,13 +41,15 @@ id_ed25519
 /public/assets/images/stand-models/*.png
 /public/assets/images/stand-models/*.jpg
 /public/assets/images/furniture/*.png
-/public/assets/images/furniture/*.jpg
 
 # WebP'lere izin ver
 !/public/assets/images/*.webp
 !/public/assets/images/hotels/*.webp
 !/public/assets/images/stand-models/*.webp
 !/public/assets/images/furniture/*.webp
+
+# Furniture JPG'ler repo'da (teklif-al sayfası, ~19 MB)
+!/public/assets/images/furniture/*.jpg
 
 # küçük SVG ve ikonlar repo'da kalsın
 !/public/assets/images/*.svg
