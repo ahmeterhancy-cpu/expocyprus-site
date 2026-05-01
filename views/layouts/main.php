@@ -1,4 +1,11 @@
-<!DOCTYPE html>
+<?php
+// HTML her zaman taze gelsin (CMS değişiklikleri anında yansısın).
+// Asset'ler (CSS/JS/img) ayrı cache header'larıyla yönetiliyor — etkilenmez.
+if (!headers_sent()) {
+    header('Cache-Control: no-cache, must-revalidate, max-age=0');
+    header('Pragma: no-cache');
+}
+?><!DOCTYPE html>
 <html lang="<?= lang() ?>" dir="ltr">
 <head>
     <meta charset="UTF-8">
