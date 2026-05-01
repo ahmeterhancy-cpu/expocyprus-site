@@ -19,7 +19,7 @@
             --unifex-red:   #E30613;
             --unifex-black: #0A0A0A;
         }
-        .navbar-brand-image { height: 32px; filter: brightness(0) invert(1); }
+        .navbar-brand-image { height: 32px; }
         .sidebar-brand      { padding: 1.25rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); }
         .nav-link.active, .nav-link:hover { color: var(--unifex-red) !important; }
         .btn-primary  { background: var(--unifex-red); border-color: var(--unifex-red); }
