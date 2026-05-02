@@ -127,9 +127,15 @@
                         <span class="nav-link-title text-muted px-3 pb-1 small text-uppercase fw-bold" style="font-size:.7rem;letter-spacing:.08em">İÇERİK YÖNETİMİ</span>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link <?= str_contains($_SERVER['REQUEST_URI'] ?? '', '/admin/pagebuilder') ? 'active' : '' ?>" href="/admin/pagebuilder">
+                            <span class="nav-link-icon"><i class="ti ti-layout-grid"></i></span>
+                            <span class="nav-link-title">Sayfalar (PageBuilder)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link <?= (str_contains($_SERVER['REQUEST_URI'] ?? '', '/admin/cms') && !str_contains($_SERVER['REQUEST_URI'] ?? '', '/admin/cms/settings')) ? 'active' : '' ?>" href="/admin/cms">
                             <span class="nav-link-icon"><i class="ti ti-edit-circle"></i></span>
-                            <span class="nav-link-title">Sayfa Düzenleyici</span>
+                            <span class="nav-link-title">CMS Sayfa İçeriği</span>
                         </a>
                     </li>
                     <li class="nav-item">

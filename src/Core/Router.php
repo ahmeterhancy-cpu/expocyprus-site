@@ -59,7 +59,25 @@ class Router
             return;
         }
 
+        // Bilinen route bulunamadı — PHPagebuilder DB'sinde bu URL için sayfa var mı?
+        if ($this->tryRenderPagebuilderPage($uri)) {
+            return;
+        }
+
         $this->send404($req);
+    }
+
+    /**
+     * PHPagebuilder DB'sinde route eşleşen sayfa varsa render et.
+     */
+    private function tryRenderPagebuilderPage(string $uri): bool
+    {
+        if (!class_exists(\App\Pagebuilder\PageBuilderApp::class)) return false;
+        try {
+            return \App\Pagebuilder\PageBuilderApp::tryRenderPublicPage($uri);
+        } catch (\Throwable $e) {
+            return false;
+        }
     }
 
     private function normalize(string $uri): string
