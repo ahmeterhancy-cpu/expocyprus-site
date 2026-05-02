@@ -230,17 +230,19 @@ $headerActions = '
 
 .bld-block-preview {
     pointer-events: none;
-    transform-origin: top center;
-    transform: scale(.55);
-    width: calc(100% / .55);
-    height: calc(900px * .55);
+    width: 100%;
+    aspect-ratio: 16 / 9;
     overflow: hidden;
     background: #fff;
+    position: relative;
 }
 .bld-block-preview iframe {
-    width: 100%; height: 900px;
+    position: absolute; top: 0; left: 0;
+    width: 1280px; height: 720px;
     border: 0; pointer-events: none;
     background: #fff;
+    transform-origin: 0 0;
+    /* transform: scale() JS ile set ediliyor */
 }
 
 /* ── EDITOR (sağ) ── */
@@ -449,7 +451,28 @@ $headerActions = '
             // Lazy-render preview
             requestAnimationFrame(() => renderBlockPreview(idx, b));
         });
+
+        // Tüm preview'leri ölçekle (yeniden çizimden sonra)
+        requestAnimationFrame(scaleAllPreviews);
     }
+
+    /* ─── PREVIEW SCALE (responsive) ─── */
+    function scalePreview(wrap) {
+        const iframe = wrap.querySelector('iframe');
+        if (!iframe) return;
+        const w = wrap.clientWidth;
+        if (w <= 0) return;
+        const scale = w / 1280;
+        iframe.style.transform = `scale(${scale})`;
+    }
+    function scaleAllPreviews() {
+        document.querySelectorAll('.bld-block-preview').forEach(scalePreview);
+    }
+    if ('ResizeObserver' in window) {
+        const ro = new ResizeObserver(scaleAllPreviews);
+        ro.observe(canvas);
+    }
+    window.addEventListener('resize', scaleAllPreviews);
 
     /* ─── RENDER A SINGLE BLOCK PREVIEW ─── */
     async function renderBlockPreview(idx, block) {
@@ -466,6 +489,7 @@ $headerActions = '
             if (!el) return;
             const doc = `<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="/assets/css/main.css?v=10"><link rel="stylesheet" href="/assets/css/blocks.css?v=1"><style>body{margin:0;padding:0;font-family:Inter,sans-serif}</style></head><body>${json.html}</body></html>`;
             el.srcdoc = doc;
+            el.addEventListener('load', () => scalePreview(el.parentElement), { once: true });
         } catch (err) { console.error(err); }
     }
 
