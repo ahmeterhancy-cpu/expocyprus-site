@@ -518,9 +518,15 @@ $headerActions = '
             if (!json.ok) return;
             const el = document.querySelector('#bld-preview-' + idx + ' iframe');
             if (!el) return;
+            // Listener'ı srcdoc'TAN ÖNCE ekle, yoksa hızlı yüklenmede tetiklenmez
+            el.addEventListener('load', () => {
+                fitPreview(el.parentElement);
+                // Resim yüklenmesi için bir tur daha
+                setTimeout(() => fitPreview(el.parentElement), 300);
+                setTimeout(() => fitPreview(el.parentElement), 800);
+            }, { once: true });
             const doc = `<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="/assets/css/main.css?v=10"><link rel="stylesheet" href="/assets/css/blocks.css?v=1"><style>body{margin:0;padding:0;font-family:Inter,sans-serif}</style></head><body>${json.html}</body></html>`;
             el.srcdoc = doc;
-            el.addEventListener('load', () => scalePreview(el.parentElement), { once: true });
         } catch (err) { console.error(err); }
     }
 
