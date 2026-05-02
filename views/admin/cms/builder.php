@@ -135,7 +135,7 @@ $headerActions = '
 .bld-lib-meta small { font-size: .6875rem; color: var(--tblr-secondary); line-height: 1.2; }
 
 /* ── CANVAS (orta) ── */
-.bld-canvas-wrap { display: flex; flex-direction: column; min-width: 0; }
+.bld-canvas-wrap { display: flex; flex-direction: column; min-width: 0; min-height: 0; overflow: hidden; }
 .bld-canvas-head {
     padding: 1rem 1.5rem;
     background: var(--tblr-bg-surface, #fff);
