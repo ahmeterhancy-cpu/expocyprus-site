@@ -14,13 +14,19 @@ class PageBuilderController
 {
     public function index(Request $req, array $params = []): void
     {
-        $pages = DB::query("
-            SELECT p.id, p.name, p.layout, p.updated_at,
-                   tr.locale, tr.title, tr.route
-            FROM pb_pages p
-            LEFT JOIN pb_page_translations tr ON tr.page_id = p.id
-            ORDER BY p.id DESC, tr.locale ASC
-        ");
+        try {
+            $pages = DB::query("
+                SELECT p.id, p.name, p.layout, p.updated_at,
+                       tr.locale, tr.title, tr.route
+                FROM pb_pages p
+                LEFT JOIN pb_page_translations tr ON tr.page_id = p.id
+                ORDER BY p.id DESC, tr.locale ASC
+            ");
+        } catch (\Throwable $e) {
+            // pb_* tabloları yoksa setup yapılmamış
+            View::render('admin/pagebuilder/setup-required', ['error' => $e->getMessage()], 'admin');
+            return;
+        }
 
         // id'ye göre grupla
         $grouped = [];
