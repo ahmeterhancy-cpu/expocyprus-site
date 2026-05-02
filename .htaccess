@@ -26,6 +26,11 @@ RewriteRule ^storage/ - [F,L]
 RewriteRule ^lang/ - [F,L]
 RewriteRule ^deploy/ - [F,L]
 
+# ─── ÖNCELİKLİ: uploads/ ve assets/ → her zaman public/'e ─────
+# Root'ta da boş uploads/ klasörü olabilir; !-d kontrolü onu engellerdi.
+# Bu yüzden bu iki yol için koşulsuz forward yapıyoruz.
+RewriteRule ^(uploads|assets)/(.*)$ public/$1/$2 [L]
+
 # ─── Public klasöründe gerçek dosya/dizin varsa direkt servis et ─
 # NOT: RewriteCond içinde $1 back-reference güvenilir değil; %{REQUEST_URI} kullan.
 RewriteCond %{REQUEST_FILENAME} !-f
