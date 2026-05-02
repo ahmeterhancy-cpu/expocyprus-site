@@ -60,10 +60,10 @@ return [
 
     'page' => [
         'class' => PHPageBuilder\Page::class,
-        'table' => 'pb_pages',
+        // table belirtmedik — default 'pages', prefix 'pb_' ile pb_pages
         'translation' => [
             'class' => PHPageBuilder\PageTranslation::class,
-            'table' => 'pb_page_translations',
+            // table belirtmedik — default 'page_translations', prefix ile pb_page_translations
             'foreign_key' => 'page_id',
         ],
     ],

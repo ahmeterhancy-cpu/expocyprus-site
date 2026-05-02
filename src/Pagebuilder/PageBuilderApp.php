@@ -15,6 +15,8 @@ class PageBuilderApp
     public static function instance(): PHPageBuilder
     {
         if (self::$instance === null) {
+            // PHPagebuilder PHP 8.3 ile dynamic property uyarıları üretir; suppress et
+            error_reporting(error_reporting() & ~E_DEPRECATED & ~E_USER_DEPRECATED);
             $config = require BASE_PATH . '/config/pagebuilder.php';
             self::$instance = new PHPageBuilder($config);
         }
