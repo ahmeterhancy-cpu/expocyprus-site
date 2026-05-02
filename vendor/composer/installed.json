@@ -1,6 +1,56 @@
 {
     "packages": [
         {
+            "name": "hansschouten/phpagebuilder",
+            "version": "v0.31.0",
+            "version_normalized": "0.31.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/HansSchouten/PHPageBuilder.git",
+                "reference": "ec13bb04a16f6889baf84d1b5e5dc863d48148dd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/HansSchouten/PHPageBuilder/zipball/ec13bb04a16f6889baf84d1b5e5dc863d48148dd",
+                "reference": "ec13bb04a16f6889baf84d1b5e5dc863d48148dd",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "time": "2025-01-03T11:34:34+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "files": [
+                    "src/Core/helpers.php"
+                ],
+                "psr-4": {
+                    "PHPageBuilder\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Hans Schouten",
+                    "email": "hans@falcosolutions.nl"
+                }
+            ],
+            "description": "A drag and drop pagebuilder to manage pages in any PHP project.",
+            "homepage": "https://github.com/HansSchouten/PHPagebuilder",
+            "keywords": [
+                "pagebuilder"
+            ],
+            "support": {
+                "issues": "https://github.com/HansSchouten/PHPageBuilder/issues",
+                "source": "https://github.com/HansSchouten/PHPageBuilder/tree/v0.31.0"
+            },
+            "install-path": "../hansschouten/phpagebuilder"
+        },
+        {
             "name": "phpmailer/phpmailer",
             "version": "v6.12.0",
             "version_normalized": "6.12.0.0",

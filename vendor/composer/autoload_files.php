@@ -6,5 +6,6 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'a0dfc604d59f03ee36c4883906a6ff25' => $vendorDir . '/hansschouten/phpagebuilder/src/Core/helpers.php',
     '63205f935d3e50f000e1e034eb80bef5' => $baseDir . '/src/Core/helpers.php',
 );

@@ -305,6 +305,14 @@ $r->group('/admin', [AuthMiddleware::class], function($r) {
     $r->get('/cms/:key',               [CmsPagesController::class, 'edit']);
     $r->post('/cms/:key/update',       [CmsPagesController::class, 'update']);
 
+    // PHPageBuilder — Sayfa Yöneticisi (custom Tabler UI)
+    $r->get('/pagebuilder',                  [\App\Controllers\Admin\PageBuilderController::class, 'index']);
+    $r->get('/pagebuilder/new',              [\App\Controllers\Admin\PageBuilderController::class, 'createForm']);
+    $r->post('/pagebuilder/new',             [\App\Controllers\Admin\PageBuilderController::class, 'create']);
+    $r->get('/pagebuilder/:id/settings',     [\App\Controllers\Admin\PageBuilderController::class, 'editForm']);
+    $r->post('/pagebuilder/:id/settings',    [\App\Controllers\Admin\PageBuilderController::class, 'updateMeta']);
+    $r->post('/pagebuilder/:id/delete',      [\App\Controllers\Admin\PageBuilderController::class, 'destroy']);
+
     // Settings
     $r->get('/settings',               [SettingsController::class, 'index']);
     $r->post('/settings',              [SettingsController::class, 'save']);
