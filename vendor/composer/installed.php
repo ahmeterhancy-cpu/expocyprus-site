@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'expocyprus/website',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => null,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '517f9c47127e27202316e9de09c9e3d3eece5f7a',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,11 +11,20 @@
     ),
     'versions' => array(
         'expocyprus/website' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => null,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '517f9c47127e27202316e9de09c9e3d3eece5f7a',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'hansschouten/phpagebuilder' => array(
+            'pretty_version' => 'v0.31.0',
+            'version' => '0.31.0.0',
+            'reference' => 'ec13bb04a16f6889baf84d1b5e5dc863d48148dd',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../hansschouten/phpagebuilder',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
