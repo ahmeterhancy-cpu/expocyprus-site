@@ -231,10 +231,13 @@ $headerActions = '
 .bld-block-preview {
     pointer-events: none;
     width: 100%;
-    aspect-ratio: 16 / 9;
+    height: 220px; /* JS dinamik olarak günceller */
+    min-height: 120px;
+    max-height: 640px;
     overflow: hidden;
     background: #fff;
     position: relative;
+    transition: height .2s ease;
 }
 .bld-block-preview iframe {
     position: absolute; top: 0; left: 0;
@@ -297,9 +300,22 @@ $headerActions = '
 }
 .bld-edit-form textarea { resize: vertical; min-height: 70px; font-family: 'JetBrains Mono', monospace; font-size: .8125rem; }
 .bld-edit-form input[type="color"] {
-    width: 100%; height: 38px; padding: 2px;
+    width: 56px; height: 38px; padding: 2px;
     border: 1px solid var(--tblr-border-color); border-radius: 8px;
+    flex-shrink: 0;
 }
+.bld-color-input { display: flex; align-items: center; gap: .35rem; }
+.bld-color-input input[type="text"] {
+    flex: 1 0 auto; font-family: 'JetBrains Mono', monospace; font-size: .8125rem;
+}
+.bld-color-clear {
+    width: 28px; height: 28px; border: 1px solid var(--tblr-border-color);
+    border-radius: 6px; background: transparent; color: var(--tblr-secondary);
+    cursor: pointer; font-size: 1.125rem; line-height: 1;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+}
+.bld-color-clear:hover { background: rgba(227,6,19,.08); color: #E30613; border-color: #E30613; }
 .bld-edit-form .bld-checkbox { display: flex; align-items: center; gap: .5rem; }
 .bld-edit-form .bld-checkbox input { width: 18px; height: 18px; }
 .bld-edit-form .bld-checkbox label { margin: 0; text-transform: none; letter-spacing: 0; font-size: .875rem; color: var(--tblr-body-color); font-weight: 500; }
@@ -456,17 +472,32 @@ $headerActions = '
         requestAnimationFrame(scaleAllPreviews);
     }
 
-    /* ─── PREVIEW SCALE (responsive) ─── */
-    function scalePreview(wrap) {
+    /* ─── PREVIEW SCALE + DİNAMİK YÜKSEKLİK ─── */
+    function fitPreview(wrap) {
         const iframe = wrap.querySelector('iframe');
         if (!iframe) return;
         const w = wrap.clientWidth;
         if (w <= 0) return;
         const scale = w / 1280;
         iframe.style.transform = `scale(${scale})`;
+
+        // İçerik yüksekliğine göre container'ı boyutlandır
+        try {
+            const doc = iframe.contentDocument || iframe.contentWindow?.document;
+            if (doc && doc.body) {
+                const contentH = Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight);
+                if (contentH > 0) {
+                    const scaledH = Math.max(120, Math.min(640, contentH * scale));
+                    wrap.style.height = scaledH + 'px';
+                }
+            }
+        } catch (e) { /* cross-origin guard */ }
     }
+    // Geriye dönük uyumluluk
+    function scalePreview(wrap) { fitPreview(wrap); }
+
     function scaleAllPreviews() {
-        document.querySelectorAll('.bld-block-preview').forEach(scalePreview);
+        document.querySelectorAll('.bld-block-preview').forEach(fitPreview);
     }
     if ('ResizeObserver' in window) {
         const ro = new ResizeObserver(scaleAllPreviews);
@@ -565,7 +596,12 @@ $headerActions = '
                     html += `</select>`;
                     break;
                 case 'color':
-                    html += `<input type="color" data-field="${key}" value="${escapeHtml(val || '#E30613')}">`;
+                    const colorVal = val || field.default || '';
+                    html += `<div class="bld-color-input">`;
+                    html += `<input type="color" data-field="${key}" value="${escapeHtml(colorVal || '#000000')}">`;
+                    html += `<input type="text" data-field-mirror="${key}" value="${escapeHtml(colorVal)}" placeholder="boş = varsayılan" style="margin-left:.5rem;width:120px">`;
+                    html += `<button type="button" class="bld-color-clear" data-field-clear="${key}" title="Temizle">×</button>`;
+                    html += `</div>`;
                     break;
                 case 'checkbox':
                     html += `<div class="bld-checkbox"><input type="checkbox" data-field="${key}" id="cb-${key}" ${val ? 'checked' : ''}><label for="cb-${key}">Aktif</label></div>`;
@@ -593,9 +629,46 @@ $headerActions = '
                 if (input.type === 'checkbox') v = input.checked ? '1' : '';
                 else v = input.value;
                 blocks[selectedIdx].data[k] = v;
+                // Color picker'da text mirror'ı senkronize et
+                if (input.type === 'color') {
+                    const mirror = editor.querySelector(`[data-field-mirror="${k}"]`);
+                    if (mirror) mirror.value = v;
+                }
                 markDirty();
                 clearTimeout(debounce);
                 debounce = setTimeout(() => renderBlockPreview(selectedIdx, blocks[selectedIdx]), 250);
+            });
+        });
+
+        // Color text mirror — kullanıcı hex elle yazdığında color picker'ı güncelle
+        editor.querySelectorAll('[data-field-mirror]').forEach(input => {
+            input.addEventListener('input', () => {
+                const k = input.dataset.fieldMirror;
+                const v = input.value.trim();
+                blocks[selectedIdx].data[k] = v;
+                if (/^#[0-9a-f]{3,8}$/i.test(v)) {
+                    const picker = editor.querySelector(`input[type="color"][data-field="${k}"]`);
+                    if (picker) picker.value = v.length === 4
+                        ? '#' + v.slice(1).split('').map(c => c+c).join('')
+                        : v.slice(0, 7);
+                }
+                markDirty();
+                clearTimeout(debounce);
+                debounce = setTimeout(() => renderBlockPreview(selectedIdx, blocks[selectedIdx]), 250);
+            });
+        });
+
+        // Color clear butonu
+        editor.querySelectorAll('[data-field-clear]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const k = btn.dataset.fieldClear;
+                blocks[selectedIdx].data[k] = '';
+                const picker = editor.querySelector(`input[type="color"][data-field="${k}"]`);
+                const mirror = editor.querySelector(`[data-field-mirror="${k}"]`);
+                if (picker) picker.value = '#000000';
+                if (mirror) mirror.value = '';
+                markDirty();
+                renderBlockPreview(selectedIdx, blocks[selectedIdx]);
             });
         });
     }

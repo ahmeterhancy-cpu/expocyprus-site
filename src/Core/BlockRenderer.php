@@ -28,6 +28,8 @@ class BlockRenderer
                 'cta_text_en' => ['label' => 'Buton Metni (EN)','type' => 'text'],
                 'cta_url'     => ['label' => 'Buton URL',       'type' => 'text'],
                 'accent'      => ['label' => 'Vurgu Rengi',     'type' => 'color', 'default' => '#E30613'],
+                'text_color'  => ['label' => 'Yazı Rengi',      'type' => 'color'],
+                'bg_color'    => ['label' => 'Arkaplan Rengi (görsel yoksa)', 'type' => 'color'],
             ],
         ],
         'heading' => [
@@ -41,6 +43,8 @@ class BlockRenderer
                 'title_en'   => ['label' => 'Başlık (EN)',     'type' => 'text'],
                 'align'      => ['label' => 'Hizalama',        'type' => 'select', 'options' => ['left' => 'Sol', 'center' => 'Orta', 'right' => 'Sağ'], 'default' => 'left'],
                 'size'       => ['label' => 'Boyut',           'type' => 'select', 'options' => ['md' => 'Orta', 'lg' => 'Büyük', 'xl' => 'Çok Büyük'], 'default' => 'lg'],
+                'text_color' => ['label' => 'Yazı Rengi',      'type' => 'color'],
+                'bg_color'   => ['label' => 'Arkaplan Rengi',  'type' => 'color'],
             ],
         ],
         'text' => [
@@ -50,6 +54,8 @@ class BlockRenderer
             'fields' => [
                 'body_tr' => ['label' => 'İçerik (TR — HTML)', 'type' => 'richtext'],
                 'body_en' => ['label' => 'İçerik (EN — HTML)', 'type' => 'richtext'],
+                'text_color' => ['label' => 'Yazı Rengi',     'type' => 'color'],
+                'bg_color'   => ['label' => 'Arkaplan Rengi', 'type' => 'color'],
             ],
         ],
         'image' => [
@@ -62,6 +68,7 @@ class BlockRenderer
                 'caption_en'  => ['label' => 'Açıklama (EN)',    'type' => 'text'],
                 'rounded'     => ['label' => 'Yuvarlak köşe',    'type' => 'checkbox', 'default' => '1'],
                 'full_width'  => ['label' => 'Tam genişlik',     'type' => 'checkbox'],
+                'bg_color'    => ['label' => 'Arkaplan Rengi',   'type' => 'color'],
             ],
         ],
         'image_text' => [
@@ -76,6 +83,8 @@ class BlockRenderer
                 'body_en'  => ['label' => 'Metin (EN)',     'type' => 'richtext'],
                 'layout'   => ['label' => 'Düzen',          'type' => 'select', 'options' => ['left' => 'Görsel solda', 'right' => 'Görsel sağda'], 'default' => 'left'],
                 'tilt'     => ['label' => '3D Tilt efekti', 'type' => 'checkbox'],
+                'text_color' => ['label' => 'Yazı Rengi',   'type' => 'color'],
+                'bg_color'   => ['label' => 'Arkaplan Rengi','type' => 'color'],
             ],
         ],
         'stats' => [
@@ -96,6 +105,8 @@ class BlockRenderer
                 'stat4_num' => ['label' => 'Sayı 4', 'type' => 'text'],
                 'stat4_tr'  => ['label' => 'Etiket 4 (TR)', 'type' => 'text'],
                 'stat4_en'  => ['label' => 'Etiket 4 (EN)', 'type' => 'text'],
+                'text_color'=> ['label' => 'Yazı Rengi',   'type' => 'color'],
+                'bg_color'  => ['label' => 'Arkaplan Rengi','type' => 'color'],
             ],
         ],
         'features' => [
@@ -124,6 +135,8 @@ class BlockRenderer
                 'feat4_title_en' => ['label' => 'Başlık 4 (EN)', 'type' => 'text'],
                 'feat4_desc_tr'  => ['label' => 'Açıklama 4 (TR)', 'type' => 'textarea'],
                 'feat4_desc_en'  => ['label' => 'Açıklama 4 (EN)', 'type' => 'textarea'],
+                'text_color' => ['label' => 'Yazı Rengi',     'type' => 'color'],
+                'bg_color'   => ['label' => 'Arkaplan Rengi', 'type' => 'color'],
             ],
         ],
         'cta' => [
@@ -142,6 +155,8 @@ class BlockRenderer
                 'btn2_text_en' => ['label' => 'Buton 2 (EN)',    'type' => 'text'],
                 'btn2_url'     => ['label' => 'Buton 2 URL',     'type' => 'text'],
                 'theme' => ['label' => 'Tema', 'type' => 'select', 'options' => ['light' => 'Açık', 'dark' => 'Koyu', 'gradient' => 'Gradient'], 'default' => 'light'],
+                'text_color' => ['label' => 'Yazı Rengi',     'type' => 'color'],
+                'bg_color'   => ['label' => 'Arkaplan Rengi', 'type' => 'color'],
             ],
         ],
         'quote' => [
@@ -153,6 +168,8 @@ class BlockRenderer
                 'quote_en'  => ['label' => 'Alıntı (EN)',  'type' => 'textarea'],
                 'author'    => ['label' => 'Kaynak/Yazar', 'type' => 'text'],
                 'theme' => ['label' => 'Tema', 'type' => 'select', 'options' => ['light' => 'Açık', 'dark' => 'Koyu'], 'default' => 'dark'],
+                'text_color' => ['label' => 'Yazı Rengi',     'type' => 'color'],
+                'bg_color'   => ['label' => 'Arkaplan Rengi', 'type' => 'color'],
             ],
         ],
         'showcase' => [
@@ -163,6 +180,7 @@ class BlockRenderer
                 'image'    => ['label' => 'Arkaplan Görseli', 'type' => 'image'],
                 'title_tr' => ['label' => 'Üzerine Yazı (TR)','type' => 'text'],
                 'title_en' => ['label' => 'Üzerine Yazı (EN)','type' => 'text'],
+                'text_color'=> ['label' => 'Yazı Rengi',      'type' => 'color'],
             ],
         ],
         'spacer' => [
@@ -222,6 +240,19 @@ class BlockRenderer
         return htmlspecialchars($s, ENT_QUOTES, 'UTF-8');
     }
 
+    /**
+     * Tüm block'lar için ortak renk override'larını inline style olarak döndürür.
+     * Block ayarlarındaki bg_color ve text_color CSS sınıflarını ezer.
+     */
+    private static function colorStyle(array $d, string $extra = ''): string
+    {
+        $parts = [];
+        if (!empty($d['bg_color']))   $parts[] = 'background:' . self::e((string)$d['bg_color']);
+        if (!empty($d['text_color'])) $parts[] = 'color:' . self::e((string)$d['text_color']);
+        if ($extra) $parts[] = $extra;
+        return $parts ? ' style="' . implode(';', $parts) . '"' : '';
+    }
+
     /* ─── BLOCK RENDERERS ──────────────────────────── */
 
     private static function render_hero(array $d): string
@@ -235,7 +266,7 @@ class BlockRenderer
         $accent  = self::e($d['accent'] ?? '#E30613');
         $bg = $image ? "background-image:url('$image')" : '';
 
-        $h = '<section class="bb-hero" style="--accent:' . $accent . '">';
+        $h = '<section class="bb-hero"' . self::colorStyle($d, '--accent:' . $accent) . '>';
         $h .= '<div class="bb-hero-bg" style="' . $bg . '"></div>';
         $h .= '<div class="bb-hero-overlay"></div>';
         $h .= '<div class="bb-hero-content">';
@@ -254,7 +285,7 @@ class BlockRenderer
         $align   = self::e($d['align'] ?? 'left');
         $size    = self::e($d['size'] ?? 'lg');
         $h = '';
-        $h .= '<section class="bb-heading bb-align-' . $align . ' bb-size-' . $size . '"><div class="bb-container">';
+        $h .= '<section class="bb-heading bb-align-' . $align . ' bb-size-' . $size . '"' . self::colorStyle($d) . '><div class="bb-container">';
         if ($eyebrow) $h .= '<span class="bb-eyebrow">' . $eyebrow . '</span>';
         if ($title)   $h .= '<h2 class="bb-h2">' . $title . '</h2>';
         $h .= '</div></section>';
@@ -264,7 +295,7 @@ class BlockRenderer
     private static function render_text(array $d): string
     {
         $body = self::lng($d, 'body'); // HTML — not escaped
-        return '<section class="bb-text"><div class="bb-container bb-prose">' . $body . '</div></section>';
+        return '<section class="bb-text"' . self::colorStyle($d) . '><div class="bb-container bb-prose">' . $body . '</div></section>';
     }
 
     private static function render_image(array $d): string
@@ -274,7 +305,7 @@ class BlockRenderer
         $caption = self::e(self::lng($d, 'caption'));
         $rounded = !empty($d['rounded']) ? 'bb-img-rounded' : '';
         $full = !empty($d['full_width']) ? 'bb-img-full' : '';
-        $h = '<section class="bb-image-section"><div class="bb-container ' . $full . '">';
+        $h = '<section class="bb-image-section"' . self::colorStyle($d) . '><div class="bb-container ' . $full . '">';
         $h .= '<img src="' . $img . '" alt="' . $caption . '" class="bb-img ' . $rounded . '" loading="lazy">';
         if ($caption) $h .= '<p class="bb-img-caption">' . $caption . '</p>';
         $h .= '</div></section>';
@@ -288,7 +319,7 @@ class BlockRenderer
         $body = self::lng($d, 'body');
         $layout = self::e($d['layout'] ?? 'left');
         $tilt = !empty($d['tilt']) ? 'bb-tilt' : '';
-        $h = '<section class="bb-imgtext bb-imgtext-' . $layout . '"><div class="bb-container">';
+        $h = '<section class="bb-imgtext bb-imgtext-' . $layout . '"' . self::colorStyle($d) . '><div class="bb-container">';
         $h .= '<div class="bb-imgtext-grid">';
         if ($img) $h .= '<div class="bb-imgtext-img ' . $tilt . '"><img src="' . $img . '" alt="" loading="lazy"></div>';
         $h .= '<div class="bb-imgtext-body">';
@@ -315,7 +346,7 @@ class BlockRenderer
             if ($num !== '' || $lbl !== '') $stats[] = ['num' => $num, 'lbl' => $lbl];
         }
         if (empty($stats)) return '';
-        $h = '<section class="bb-stats bb-theme-' . $theme . '"><div class="bb-container"><div class="bb-stats-grid">';
+        $h = '<section class="bb-stats bb-theme-' . $theme . '"' . self::colorStyle($d) . '><div class="bb-container"><div class="bb-stats-grid">';
         foreach ($stats as $s) {
             $h .= '<div class="bb-stat"><div class="bb-stat-num">' . self::e($s['num']) . '</div><div class="bb-stat-lbl">' . self::e($s['lbl']) . '</div></div>';
         }
@@ -334,7 +365,7 @@ class BlockRenderer
             if ($title || $desc) $feats[] = ['icon' => $icon, 'title' => $title, 'desc' => $desc];
         }
         if (empty($feats)) return '';
-        $h = '<section class="bb-features"><div class="bb-container"><div class="bb-feat-grid bb-feat-cols-' . $cols . '">';
+        $h = '<section class="bb-features"' . self::colorStyle($d) . '><div class="bb-container"><div class="bb-feat-grid bb-feat-cols-' . $cols . '">';
         foreach ($feats as $f) {
             $h .= '<div class="bb-feat-card">';
             if ($f['icon']) $h .= '<div class="bb-feat-icon">' . self::e($f['icon']) . '</div>';
@@ -355,7 +386,7 @@ class BlockRenderer
         $b2 = self::e(self::lng($d, 'btn2_text'));
         $b2u = self::e($d['btn2_url'] ?? '');
         $theme = self::e($d['theme'] ?? 'light');
-        $h = '<section class="bb-cta bb-theme-' . $theme . '"><div class="bb-container">';
+        $h = '<section class="bb-cta bb-theme-' . $theme . '"' . self::colorStyle($d) . '><div class="bb-container">';
         if ($title) $h .= '<h2 class="bb-cta-title">' . $title . '</h2>';
         if ($sub)   $h .= '<p class="bb-cta-sub">' . $sub . '</p>';
         if ($b1 || $b2) {
@@ -374,7 +405,7 @@ class BlockRenderer
         $author = self::e($d['author'] ?? '');
         $theme = self::e($d['theme'] ?? 'dark');
         if (!$q) return '';
-        return '<section class="bb-quote bb-theme-' . $theme . '"><div class="bb-container"><blockquote class="bb-quote-text">' . $q . '</blockquote>'
+        return '<section class="bb-quote bb-theme-' . $theme . '"' . self::colorStyle($d) . '><div class="bb-container"><blockquote class="bb-quote-text">' . $q . '</blockquote>'
             . ($author ? '<cite class="bb-quote-author">— ' . $author . '</cite>' : '')
             . '</div></section>';
     }
@@ -384,7 +415,7 @@ class BlockRenderer
         $img = self::e($d['image'] ?? '');
         $title = self::e(self::lng($d, 'title'));
         if (!$img) return '';
-        return '<section class="bb-showcase"><div class="bb-showcase-img" style="background-image:url(\'' . $img . '\')"></div>'
+        return '<section class="bb-showcase"' . self::colorStyle($d) . '><div class="bb-showcase-img" style="background-image:url(\'' . $img . '\')"></div>'
             . '<div class="bb-showcase-overlay"></div>'
             . ($title ? '<div class="bb-container"><h3 class="bb-showcase-text">' . $title . '</h3></div>' : '')
             . '</section>';
