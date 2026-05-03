@@ -31,6 +31,10 @@ RewriteRule ^deploy/ - [F,L]
 # Bu yüzden bu iki yol için koşulsuz forward yapıyoruz.
 RewriteRule ^(uploads|assets)/(.*)$ public/$1/$2 [L]
 
+# ─── Theme public assets: /themes/X/css|js/* → themes/X/public/css|js/* ─
+# Fiziksel yol themes/expocyprus/public/css/ — URL'de public/ segmenti yok.
+RewriteRule ^themes/([^/]+)/(css|js)/(.*)$ themes/$1/public/$2/$3 [L]
+
 # ─── Public klasöründe gerçek dosya/dizin varsa direkt servis et ─
 # NOT: RewriteCond içinde $1 back-reference güvenilir değil; %{REQUEST_URI} kullan.
 RewriteCond %{REQUEST_FILENAME} !-f
