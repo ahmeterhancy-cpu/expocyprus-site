@@ -1,7 +1,15 @@
 <?php
 $pageTitle = 'Sayfa Yöneticisi';
 $pretitle  = 'PHPagebuilder — Block-tabanlı sayfalar';
-$headerActions = '<a href="/admin/pagebuilder/new" class="btn btn-primary">+ Yeni Sayfa</a>';
+$headerActions = '
+    <form action="/admin/pagebuilder/seed-all" method="POST" class="d-inline me-2"
+          onsubmit="return confirm(\'Mevcut sayfalar (Hakkımızda, Hizmetler, İletişim vb.) PHPageBuilder\\\'a aktarılacak. Çalıştırılsın mı?\\n\\nMevcut route\\\'tan sayfa varsa atlanır.\')">
+        <button type="submit" class="btn btn-outline-secondary">
+            <i class="ti ti-database-import me-1"></i>Mevcut Sayfaları İçe Aktar
+        </button>
+    </form>
+    <a href="/admin/pagebuilder/new" class="btn btn-primary">+ Yeni Sayfa</a>
+';
 ?>
 
 <div class="card">

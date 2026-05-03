@@ -312,6 +312,7 @@ $r->group('/admin', [AuthMiddleware::class], function($r) {
     $r->get('/pagebuilder/:id/settings',     [\App\Controllers\Admin\PageBuilderController::class, 'editForm']);
     $r->post('/pagebuilder/:id/settings',    [\App\Controllers\Admin\PageBuilderController::class, 'updateMeta']);
     $r->post('/pagebuilder/:id/delete',      [\App\Controllers\Admin\PageBuilderController::class, 'destroy']);
+    $r->post('/pagebuilder/seed-all',        [\App\Controllers\Admin\PageBuilderController::class, 'seedAll']);
 
     // Settings
     $r->get('/settings',               [SettingsController::class, 'index']);

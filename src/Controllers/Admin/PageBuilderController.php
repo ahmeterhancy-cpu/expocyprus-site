@@ -156,4 +156,78 @@ class PageBuilderController
         Session::flash('success', 'Sayfa silindi.');
         View::redirect('/admin/pagebuilder');
     }
+
+    /**
+     * Mevcut public route'lar için pb_pages stub'ları oluşturur.
+     * Aynı route'tan sayfa varsa atlar — idempotent.
+     */
+    public function seedAll(Request $req, array $params = []): void
+    {
+        $seedPages = [
+            ['name' => 'Hakkımızda',          'tr' => ['Hakkımızda',                    '/hakkimizda',          'Hakkımızda — Unifex Fuarcılık'], 'en' => ['About Us',           '/en/about',          'About Us — Unifex']],
+            ['name' => 'Tarihçe',             'tr' => ['Tarihçemiz',                    '/tarihce',             '22 yıllık fuar deneyimi'],       'en' => ['Our History',         '/en/history',        '22 Years of Fair Excellence']],
+            ['name' => 'Ekip',                'tr' => ['Ekibimiz',                      '/ekip',                'Ekibimiz — Unifex Fuarcılık'],   'en' => ['Our Team',            '/en/team',           'Our Team']],
+            ['name' => 'Misyon ve Vizyon',    'tr' => ['Misyon ve Vizyon',              '/misyon-vizyon',       'Misyon ve Vizyonumuz'],          'en' => ['Mission & Vision',    '/en/mission-vision', 'Our Mission & Vision']],
+            ['name' => 'Hizmetler',           'tr' => ['Hizmetlerimiz',                 '/hizmetler',           'Fuar ve Stand Çözümleri'],       'en' => ['Our Services',        '/en/services',       'Fair & Stand Solutions']],
+            ['name' => 'Fuarlarımız',         'tr' => ['Fuarlarımız',                   '/fuarlarimiz',         'Yaklaşan ve Geçmiş Fuarlar'],    'en' => ['Our Fairs',           '/en/fairs',          'Upcoming and Past Fairs']],
+            ['name' => 'Stand Kataloğu',      'tr' => ['Stand Kataloğu',                '/stand-katalogu',      'Stand Modelleri ve Paketleri'],  'en' => ['Stand Catalogue',     '/en/stand-catalog',  'Stand Models and Packages']],
+            ['name' => 'Oteller',             'tr' => ['Anlaşmalı Oteller',             '/oteller',             'Fuar Konaklama Çözümleri'],      'en' => ['Partner Hotels',      '/en/hotels',         'Fair Accommodation Solutions']],
+            ['name' => 'Referanslar',         'tr' => ['Referanslarımız',               '/referanslar',         'Çalıştığımız Markalar'],          'en' => ['References',          '/en/references',     'Brands We Work With']],
+            ['name' => 'SSS',                 'tr' => ['Sıkça Sorulan Sorular',         '/sss',                 'SSS — Sıkça Sorulan Sorular'],   'en' => ['FAQ',                 '/en/faq',            'Frequently Asked Questions']],
+            ['name' => 'İletişim',            'tr' => ['İletişim',                      '/iletisim',            'Bize Ulaşın'],                   'en' => ['Contact',             '/en/contact',        'Get in Touch']],
+            ['name' => 'Teklif Al',           'tr' => ['Stand Teklifi',                 '/teklif-al',           'Ücretsiz Stand Teklifi'],        'en' => ['Get Quote',           '/en/get-quote',      'Free Stand Quote']],
+            ['name' => 'KVKK',                'tr' => ['KVKK Aydınlatma Metni',         '/kvkk',                'KVKK Aydınlatma Metni'],         'en' => ['KVKK Notice',         '/en/kvkk',           'Personal Data Protection']],
+            ['name' => 'Gizlilik Politikası', 'tr' => ['Gizlilik Politikası',           '/gizlilik-politikasi', 'Gizlilik Politikası'],           'en' => ['Privacy Policy',      '/en/privacy-policy', 'Privacy Policy']],
+            ['name' => 'Çerez Politikası',    'tr' => ['Çerez Politikası',              '/cerez-politikasi',    'Çerez Politikası'],              'en' => ['Cookie Policy',       '/en/cookie-policy',  'Cookie Policy']],
+            ['name' => 'Kullanım Koşulları',  'tr' => ['Kullanım Koşulları',            '/kullanim-kosullari',  'Kullanım Koşulları'],            'en' => ['Terms of Use',        '/en/terms-of-use',   'Terms of Use']],
+        ];
+
+        // Mevcut route'ları çek (duplicate engelleme)
+        $existing = DB::query("SELECT route FROM pb_page_translations");
+        $existingRoutes = array_column($existing, 'route');
+
+        $created = 0;
+        $skipped = 0;
+        foreach ($seedPages as $sp) {
+            // TR ya da EN route zaten varsa atla
+            if (in_array($sp['tr'][1], $existingRoutes, true) || in_array($sp['en'][1], $existingRoutes, true)) {
+                $skipped++;
+                continue;
+            }
+
+            try {
+                $pageId = (int)DB::insert('pb_pages', [
+                    'name'   => $sp['name'],
+                    'layout' => 'master',
+                    'data'   => '[]',
+                ]);
+
+                DB::insert('pb_page_translations', [
+                    'page_id'          => $pageId,
+                    'locale'           => 'tr',
+                    'title'            => $sp['tr'][0],
+                    'meta_title'       => $sp['tr'][2],
+                    'meta_description' => $sp['tr'][2],
+                    'route'            => $sp['tr'][1],
+                ]);
+
+                DB::insert('pb_page_translations', [
+                    'page_id'          => $pageId,
+                    'locale'           => 'en',
+                    'title'            => $sp['en'][0],
+                    'meta_title'       => $sp['en'][2],
+                    'meta_description' => $sp['en'][2],
+                    'route'            => $sp['en'][1],
+                ]);
+
+                $created++;
+            } catch (\Throwable $e) {
+                // ignore: route conflict ya da DB hatası — sıradakine geç
+            }
+        }
+
+        $msg = "Seed tamamlandı: $created sayfa oluşturuldu, $skipped atlandı (zaten vardı).";
+        Session::flash('success', $msg);
+        View::redirect('/admin/pagebuilder');
+    }
 }
