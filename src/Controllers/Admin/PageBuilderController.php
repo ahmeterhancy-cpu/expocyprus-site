@@ -275,14 +275,28 @@ class PageBuilderController
 
     /**
      * Theme block slug listesinden PHPageBuilder uyumlu data JSON üretir.
-     * Demo sayfa #1'in formatına birebir uygun:
-     * { "html": "[block slug=\"X\"]\n[block slug=\"Y\"]", "css": "", "blocks": [] }
+     *
+     * KRİTİK: Block ID'leri "ID" prefix'i ile başlamalı. Aksi halde
+     * PageRenderer::renderBlock'taki tracking koşulu (strpos === 0)
+     * fail eder, getPageBlocksData() boş döner, GrapesJS canvas'ı boş kalır.
+     *
+     * Format:
+     *  { html: "[block slug=\"X\" id=\"IDxN\"]\n[block slug=\"Y\" id=\"IDyM\"]",
+     *    css: "", blocks: [] }
      */
     private static function buildPageDataFromRecipe(array $blockSlugs): array
     {
         $shortcodes = [];
-        foreach ($blockSlugs as $slug) {
-            $shortcodes[] = '[block slug="' . $slug . '"]';
+        $usedIds    = [];
+        foreach ($blockSlugs as $i => $slug) {
+            $idBase = 'ID' . str_replace('-', '', $slug);
+            $id     = $idBase;
+            $n      = 1;
+            while (in_array($id, $usedIds, true)) {
+                $id = $idBase . (++$n);
+            }
+            $usedIds[] = $id;
+            $shortcodes[] = '[block slug="' . $slug . '" id="' . $id . '"]';
         }
 
         return [
