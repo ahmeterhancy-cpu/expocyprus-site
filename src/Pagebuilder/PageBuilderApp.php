@@ -36,16 +36,25 @@ class PageBuilderApp
     }
 
     /**
-     * Authenticated PageBuilder request'i handle et (admin login zorunlu).
-     * /admin/pagebuilder/edit?route=pagebuilder&action=edit&page=N
+     * PageBuilder request'i handle et.
+     * - /pb-assets/* ve /uploads/pagebuilder/* → public asset (auth yok)
+     * - /admin/pagebuilder/edit → admin login zorunlu
      */
     public static function handleAuthenticatedRequest(): void
     {
         $pb = self::instance();
-        $auth = new AdminAuthBridge();
-        if (!$auth->isAuthenticated()) {
-            header('Location: /admin/login');
-            exit;
+        $uri = explode('?', $_SERVER['REQUEST_URI'] ?? '/', 2)[0];
+
+        // Public asset URL'leri için auth yok
+        $isPublicAsset = str_starts_with($uri, '/pb-assets/')
+                      || str_starts_with($uri, '/uploads/pagebuilder/');
+
+        if (!$isPublicAsset) {
+            $auth = new AdminAuthBridge();
+            if (!$auth->isAuthenticated()) {
+                header('Location: /admin/login');
+                exit;
+            }
         }
 
         $action = $_GET['action'] ?? null;
