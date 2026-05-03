@@ -59,14 +59,26 @@ class PageBuilderApp
 
         $action = $_GET['action'] ?? null;
 
-        if (\phpb_in_module('pagebuilder')) {
-            \phpb_set_in_editmode();
-            $pb->getPageBuilder()->handleRequest($_GET['route'] ?? null, $action);
-            return;
-        }
+        try {
+            if (\phpb_in_module('pagebuilder')) {
+                \phpb_set_in_editmode();
+                $pb->getPageBuilder()->handleRequest($_GET['route'] ?? null, $action);
+                return;
+            }
 
-        // Asset / uploads
-        $pb->handlePublicRequest();
+            // Asset / uploads
+            $pb->handlePublicRequest();
+        } catch (\Throwable $e) {
+            // Hatayı görünür yap (sessiz die yerine)
+            http_response_code(500);
+            header('Content-Type: text/html; charset=utf-8');
+            echo "<h1>PageBuilder Error</h1>";
+            echo "<pre style='background:#fee;padding:1em;border:1px solid #c00;'>";
+            echo "Message: " . htmlspecialchars($e->getMessage()) . "\n";
+            echo "File:    " . htmlspecialchars($e->getFile()) . ':' . $e->getLine() . "\n\n";
+            echo "Trace:\n" . htmlspecialchars($e->getTraceAsString());
+            echo "</pre>";
+        }
     }
 
     /**

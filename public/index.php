@@ -57,14 +57,14 @@ if (file_exists($envFile)) {
     }
 }
 
-// PHPageBuilder erken hook: edit/preview/asset URL'leri direkt PB'ye delege
+// Boot — Application yapıcısı session, lang, helpers, request başlatır
+$app = new App\Core\Application();
+
+// PHPageBuilder hook: /admin/pagebuilder/edit, /pb-assets/*, /uploads/pagebuilder/*
 $pbUri = explode('?', $_SERVER['REQUEST_URI'] ?? '/', 2)[0];
 if (App\Pagebuilder\PageBuilderApp::isPageBuilderUrl($pbUri)) {
-    \App\Core\Session::start(); // Custom session ('expocyprus_session') — admin login burada
     App\Pagebuilder\PageBuilderApp::handleAuthenticatedRequest();
     return;
 }
 
-// Boot
-$app = new App\Core\Application();
 $app->run();
