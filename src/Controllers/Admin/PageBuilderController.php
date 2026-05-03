@@ -164,33 +164,41 @@ class PageBuilderController
      */
     public function seedAll(Request $req, array $params = []): void
     {
-        // Sayfa metadata + sayfa-tipine uygun block recipe
-        // Her recipe array'i: [theme block slug'ları, sırasıyla]
+        // SADECE TEST EDİLMİŞ BLOKLAR — demo sayfa #1'in açıldığı kanıtlanan bloklar
+        // ab-hero, ab-stats, ab-features-3, ab-cta (demo'dan)
+        // ab-heading, ab-text, ab-image-text (orijinal başlangıç bloklarından)
+        //
+        // Yeni 17 blok (header, footer, contact-form, hero-form, hero-video,
+        // banner-X, video-embed, carousel, map, faq, newsletter, pricing,
+        // fair-calendar, cta-bg, services, gallery, logos, team, testimonial,
+        // button, divider, spacer) admin sol panelde görünür ama recipe'ta YOK —
+        // kullanıcı PB'da elden sürükler (henüz test edilmedi, GrapesJS init'ini
+        // kırma riski var).
         $seedPages = [
             ['name' => 'Hakkımızda',          'tr' => ['Hakkımızda',                    '/hakkimizda',          'Hakkımızda — Unifex Fuarcılık'], 'en' => ['About Us',           '/en/about',          'About Us — Unifex'],
-                'recipe' => ['ab-hero', 'ab-image-text', 'ab-stats', 'ab-features-3', 'ab-team', 'ab-cta-bg']],
+                'recipe' => ['ab-hero', 'ab-image-text', 'ab-stats', 'ab-features-3', 'ab-cta']],
             ['name' => 'Tarihçe',             'tr' => ['Tarihçemiz',                    '/tarihce',             '22 yıllık fuar deneyimi'],       'en' => ['Our History',         '/en/history',        '22 Years of Fair Excellence'],
                 'recipe' => ['ab-heading', 'ab-text', 'ab-image-text', 'ab-stats', 'ab-cta']],
             ['name' => 'Ekip',                'tr' => ['Ekibimiz',                      '/ekip',                'Ekibimiz — Unifex Fuarcılık'],   'en' => ['Our Team',            '/en/team',           'Our Team'],
-                'recipe' => ['ab-hero', 'ab-team', 'ab-cta-bg']],
+                'recipe' => ['ab-hero', 'ab-features-3', 'ab-cta']],
             ['name' => 'Misyon ve Vizyon',    'tr' => ['Misyon ve Vizyon',              '/misyon-vizyon',       'Misyon ve Vizyonumuz'],          'en' => ['Mission & Vision',    '/en/mission-vision', 'Our Mission & Vision'],
                 'recipe' => ['ab-heading', 'ab-image-text', 'ab-features-3', 'ab-cta']],
             ['name' => 'Hizmetler',           'tr' => ['Hizmetlerimiz',                 '/hizmetler',           'Fuar ve Stand Çözümleri'],       'en' => ['Our Services',        '/en/services',       'Fair & Stand Solutions'],
-                'recipe' => ['ab-hero', 'ab-services', 'ab-banner-usps', 'ab-pricing', 'ab-cta-bg']],
+                'recipe' => ['ab-hero', 'ab-features-3', 'ab-stats', 'ab-cta']],
             ['name' => 'Fuarlarımız',         'tr' => ['Fuarlarımız',                   '/fuarlarimiz',         'Yaklaşan ve Geçmiş Fuarlar'],    'en' => ['Our Fairs',           '/en/fairs',          'Upcoming and Past Fairs'],
-                'recipe' => ['ab-hero', 'ab-fair-calendar', 'ab-carousel', 'ab-newsletter', 'ab-cta-bg']],
+                'recipe' => ['ab-hero', 'ab-image-text', 'ab-features-3', 'ab-cta']],
             ['name' => 'Stand Kataloğu',      'tr' => ['Stand Kataloğu',                '/stand-katalogu',      'Stand Modelleri ve Paketleri'],  'en' => ['Stand Catalogue',     '/en/stand-catalog',  'Stand Models and Packages'],
-                'recipe' => ['ab-hero', 'ab-pricing', 'ab-gallery', 'ab-banner-usps', 'ab-cta-bg']],
+                'recipe' => ['ab-hero', 'ab-features-3', 'ab-stats', 'ab-cta']],
             ['name' => 'Oteller',             'tr' => ['Anlaşmalı Oteller',             '/oteller',             'Fuar Konaklama Çözümleri'],      'en' => ['Partner Hotels',      '/en/hotels',         'Fair Accommodation Solutions'],
-                'recipe' => ['ab-hero', 'ab-image-text', 'ab-gallery', 'ab-map', 'ab-cta']],
+                'recipe' => ['ab-hero', 'ab-image-text', 'ab-features-3', 'ab-cta']],
             ['name' => 'Referanslar',         'tr' => ['Referanslarımız',               '/referanslar',         'Çalıştığımız Markalar'],          'en' => ['References',          '/en/references',     'Brands We Work With'],
-                'recipe' => ['ab-heading', 'ab-logos', 'ab-testimonial', 'ab-gallery', 'ab-cta']],
+                'recipe' => ['ab-heading', 'ab-image-text', 'ab-features-3', 'ab-cta']],
             ['name' => 'SSS',                 'tr' => ['Sıkça Sorulan Sorular',         '/sss',                 'SSS — Sıkça Sorulan Sorular'],   'en' => ['FAQ',                 '/en/faq',            'Frequently Asked Questions'],
-                'recipe' => ['ab-heading', 'ab-faq', 'ab-cta-bg']],
+                'recipe' => ['ab-heading', 'ab-text', 'ab-cta']],
             ['name' => 'İletişim',            'tr' => ['İletişim',                      '/iletisim',            'Bize Ulaşın'],                   'en' => ['Contact',             '/en/contact',        'Get in Touch'],
-                'recipe' => ['ab-heading', 'ab-contact-form', 'ab-map']],
+                'recipe' => ['ab-heading', 'ab-text', 'ab-image-text']],
             ['name' => 'Teklif Al',           'tr' => ['Stand Teklifi',                 '/teklif-al',           'Ücretsiz Stand Teklifi'],        'en' => ['Get Quote',           '/en/get-quote',      'Free Stand Quote'],
-                'recipe' => ['ab-hero-form', 'ab-banner-usps', 'ab-pricing', 'ab-faq']],
+                'recipe' => ['ab-hero', 'ab-image-text', 'ab-features-3', 'ab-cta']],
             ['name' => 'KVKK',                'tr' => ['KVKK Aydınlatma Metni',         '/kvkk',                'KVKK Aydınlatma Metni'],         'en' => ['KVKK Notice',         '/en/kvkk',           'Personal Data Protection'],
                 'recipe' => ['ab-heading', 'ab-text']],
             ['name' => 'Gizlilik Politikası', 'tr' => ['Gizlilik Politikası',           '/gizlilik-politikasi', 'Gizlilik Politikası'],           'en' => ['Privacy Policy',      '/en/privacy-policy', 'Privacy Policy'],
