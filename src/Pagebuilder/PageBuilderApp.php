@@ -25,14 +25,14 @@ class PageBuilderApp
 
     /**
      * Mevcut URL bir PageBuilder URL'i mi?
-     * /admin/pagebuilder/edit/*, /uploads/pagebuilder/*, /vendor/hansschouten/phpagebuilder/dist/*
+     * /admin/pagebuilder/edit, /uploads/pagebuilder/*, /pb-assets/* (vendor dist alias)
      */
     public static function isPageBuilderUrl(string $uri): bool
     {
         $uri = explode('?', $uri, 2)[0];
         return str_starts_with($uri, '/admin/pagebuilder/edit')
             || str_starts_with($uri, '/uploads/pagebuilder/')
-            || str_starts_with($uri, '/vendor/hansschouten/phpagebuilder/dist/');
+            || str_starts_with($uri, '/pb-assets/');
     }
 
     /**

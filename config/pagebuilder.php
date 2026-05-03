@@ -12,7 +12,8 @@ return [
     'general' => [
         'base_url'    => getenv('APP_URL') ?: 'http://expocyprus-site.test',
         'language'    => 'tr',
-        'assets_url'  => '/vendor/hansschouten/phpagebuilder/dist',
+        // .htaccess vendor/ yolunu engelliyor; PHP üzerinden serve edilen alias kullan
+        'assets_url'  => '/pb-assets',
         'uploads_url' => '/uploads/pagebuilder',
     ],
 
