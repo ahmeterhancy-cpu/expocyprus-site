@@ -158,28 +158,47 @@ class PageBuilderController
     }
 
     /**
-     * Mevcut public route'lar için pb_pages stub'ları oluşturur.
+     * Mevcut public route'lar için pb_pages oluşturur — her sayfa
+     * uygun bir block recipe ile pre-fill edilir (boş değil).
      * Aynı route'tan sayfa varsa atlar — idempotent.
      */
     public function seedAll(Request $req, array $params = []): void
     {
+        // Sayfa metadata + sayfa-tipine uygun block recipe
+        // Her recipe array'i: [theme block slug'ları, sırasıyla]
         $seedPages = [
-            ['name' => 'Hakkımızda',          'tr' => ['Hakkımızda',                    '/hakkimizda',          'Hakkımızda — Unifex Fuarcılık'], 'en' => ['About Us',           '/en/about',          'About Us — Unifex']],
-            ['name' => 'Tarihçe',             'tr' => ['Tarihçemiz',                    '/tarihce',             '22 yıllık fuar deneyimi'],       'en' => ['Our History',         '/en/history',        '22 Years of Fair Excellence']],
-            ['name' => 'Ekip',                'tr' => ['Ekibimiz',                      '/ekip',                'Ekibimiz — Unifex Fuarcılık'],   'en' => ['Our Team',            '/en/team',           'Our Team']],
-            ['name' => 'Misyon ve Vizyon',    'tr' => ['Misyon ve Vizyon',              '/misyon-vizyon',       'Misyon ve Vizyonumuz'],          'en' => ['Mission & Vision',    '/en/mission-vision', 'Our Mission & Vision']],
-            ['name' => 'Hizmetler',           'tr' => ['Hizmetlerimiz',                 '/hizmetler',           'Fuar ve Stand Çözümleri'],       'en' => ['Our Services',        '/en/services',       'Fair & Stand Solutions']],
-            ['name' => 'Fuarlarımız',         'tr' => ['Fuarlarımız',                   '/fuarlarimiz',         'Yaklaşan ve Geçmiş Fuarlar'],    'en' => ['Our Fairs',           '/en/fairs',          'Upcoming and Past Fairs']],
-            ['name' => 'Stand Kataloğu',      'tr' => ['Stand Kataloğu',                '/stand-katalogu',      'Stand Modelleri ve Paketleri'],  'en' => ['Stand Catalogue',     '/en/stand-catalog',  'Stand Models and Packages']],
-            ['name' => 'Oteller',             'tr' => ['Anlaşmalı Oteller',             '/oteller',             'Fuar Konaklama Çözümleri'],      'en' => ['Partner Hotels',      '/en/hotels',         'Fair Accommodation Solutions']],
-            ['name' => 'Referanslar',         'tr' => ['Referanslarımız',               '/referanslar',         'Çalıştığımız Markalar'],          'en' => ['References',          '/en/references',     'Brands We Work With']],
-            ['name' => 'SSS',                 'tr' => ['Sıkça Sorulan Sorular',         '/sss',                 'SSS — Sıkça Sorulan Sorular'],   'en' => ['FAQ',                 '/en/faq',            'Frequently Asked Questions']],
-            ['name' => 'İletişim',            'tr' => ['İletişim',                      '/iletisim',            'Bize Ulaşın'],                   'en' => ['Contact',             '/en/contact',        'Get in Touch']],
-            ['name' => 'Teklif Al',           'tr' => ['Stand Teklifi',                 '/teklif-al',           'Ücretsiz Stand Teklifi'],        'en' => ['Get Quote',           '/en/get-quote',      'Free Stand Quote']],
-            ['name' => 'KVKK',                'tr' => ['KVKK Aydınlatma Metni',         '/kvkk',                'KVKK Aydınlatma Metni'],         'en' => ['KVKK Notice',         '/en/kvkk',           'Personal Data Protection']],
-            ['name' => 'Gizlilik Politikası', 'tr' => ['Gizlilik Politikası',           '/gizlilik-politikasi', 'Gizlilik Politikası'],           'en' => ['Privacy Policy',      '/en/privacy-policy', 'Privacy Policy']],
-            ['name' => 'Çerez Politikası',    'tr' => ['Çerez Politikası',              '/cerez-politikasi',    'Çerez Politikası'],              'en' => ['Cookie Policy',       '/en/cookie-policy',  'Cookie Policy']],
-            ['name' => 'Kullanım Koşulları',  'tr' => ['Kullanım Koşulları',            '/kullanim-kosullari',  'Kullanım Koşulları'],            'en' => ['Terms of Use',        '/en/terms-of-use',   'Terms of Use']],
+            ['name' => 'Hakkımızda',          'tr' => ['Hakkımızda',                    '/hakkimizda',          'Hakkımızda — Unifex Fuarcılık'], 'en' => ['About Us',           '/en/about',          'About Us — Unifex'],
+                'recipe' => ['ab-hero', 'ab-image-text', 'ab-stats', 'ab-features-3', 'ab-team', 'ab-cta-bg']],
+            ['name' => 'Tarihçe',             'tr' => ['Tarihçemiz',                    '/tarihce',             '22 yıllık fuar deneyimi'],       'en' => ['Our History',         '/en/history',        '22 Years of Fair Excellence'],
+                'recipe' => ['ab-heading', 'ab-text', 'ab-image-text', 'ab-stats', 'ab-cta']],
+            ['name' => 'Ekip',                'tr' => ['Ekibimiz',                      '/ekip',                'Ekibimiz — Unifex Fuarcılık'],   'en' => ['Our Team',            '/en/team',           'Our Team'],
+                'recipe' => ['ab-hero', 'ab-team', 'ab-cta-bg']],
+            ['name' => 'Misyon ve Vizyon',    'tr' => ['Misyon ve Vizyon',              '/misyon-vizyon',       'Misyon ve Vizyonumuz'],          'en' => ['Mission & Vision',    '/en/mission-vision', 'Our Mission & Vision'],
+                'recipe' => ['ab-heading', 'ab-image-text', 'ab-features-3', 'ab-cta']],
+            ['name' => 'Hizmetler',           'tr' => ['Hizmetlerimiz',                 '/hizmetler',           'Fuar ve Stand Çözümleri'],       'en' => ['Our Services',        '/en/services',       'Fair & Stand Solutions'],
+                'recipe' => ['ab-hero', 'ab-services', 'ab-banner-usps', 'ab-pricing', 'ab-cta-bg']],
+            ['name' => 'Fuarlarımız',         'tr' => ['Fuarlarımız',                   '/fuarlarimiz',         'Yaklaşan ve Geçmiş Fuarlar'],    'en' => ['Our Fairs',           '/en/fairs',          'Upcoming and Past Fairs'],
+                'recipe' => ['ab-hero', 'ab-fair-calendar', 'ab-carousel', 'ab-newsletter', 'ab-cta-bg']],
+            ['name' => 'Stand Kataloğu',      'tr' => ['Stand Kataloğu',                '/stand-katalogu',      'Stand Modelleri ve Paketleri'],  'en' => ['Stand Catalogue',     '/en/stand-catalog',  'Stand Models and Packages'],
+                'recipe' => ['ab-hero', 'ab-pricing', 'ab-gallery', 'ab-banner-usps', 'ab-cta-bg']],
+            ['name' => 'Oteller',             'tr' => ['Anlaşmalı Oteller',             '/oteller',             'Fuar Konaklama Çözümleri'],      'en' => ['Partner Hotels',      '/en/hotels',         'Fair Accommodation Solutions'],
+                'recipe' => ['ab-hero', 'ab-image-text', 'ab-gallery', 'ab-map', 'ab-cta']],
+            ['name' => 'Referanslar',         'tr' => ['Referanslarımız',               '/referanslar',         'Çalıştığımız Markalar'],          'en' => ['References',          '/en/references',     'Brands We Work With'],
+                'recipe' => ['ab-heading', 'ab-logos', 'ab-testimonial', 'ab-gallery', 'ab-cta']],
+            ['name' => 'SSS',                 'tr' => ['Sıkça Sorulan Sorular',         '/sss',                 'SSS — Sıkça Sorulan Sorular'],   'en' => ['FAQ',                 '/en/faq',            'Frequently Asked Questions'],
+                'recipe' => ['ab-heading', 'ab-faq', 'ab-cta-bg']],
+            ['name' => 'İletişim',            'tr' => ['İletişim',                      '/iletisim',            'Bize Ulaşın'],                   'en' => ['Contact',             '/en/contact',        'Get in Touch'],
+                'recipe' => ['ab-heading', 'ab-contact-form', 'ab-map']],
+            ['name' => 'Teklif Al',           'tr' => ['Stand Teklifi',                 '/teklif-al',           'Ücretsiz Stand Teklifi'],        'en' => ['Get Quote',           '/en/get-quote',      'Free Stand Quote'],
+                'recipe' => ['ab-hero-form', 'ab-banner-usps', 'ab-pricing', 'ab-faq']],
+            ['name' => 'KVKK',                'tr' => ['KVKK Aydınlatma Metni',         '/kvkk',                'KVKK Aydınlatma Metni'],         'en' => ['KVKK Notice',         '/en/kvkk',           'Personal Data Protection'],
+                'recipe' => ['ab-heading', 'ab-text']],
+            ['name' => 'Gizlilik Politikası', 'tr' => ['Gizlilik Politikası',           '/gizlilik-politikasi', 'Gizlilik Politikası'],           'en' => ['Privacy Policy',      '/en/privacy-policy', 'Privacy Policy'],
+                'recipe' => ['ab-heading', 'ab-text']],
+            ['name' => 'Çerez Politikası',    'tr' => ['Çerez Politikası',              '/cerez-politikasi',    'Çerez Politikası'],              'en' => ['Cookie Policy',       '/en/cookie-policy',  'Cookie Policy'],
+                'recipe' => ['ab-heading', 'ab-text']],
+            ['name' => 'Kullanım Koşulları',  'tr' => ['Kullanım Koşulları',            '/kullanim-kosullari',  'Kullanım Koşulları'],            'en' => ['Terms of Use',        '/en/terms-of-use',   'Terms of Use'],
+                'recipe' => ['ab-heading', 'ab-text']],
         ];
 
         // Mevcut route'ları çek (duplicate engelleme)
@@ -196,10 +215,13 @@ class PageBuilderController
             }
 
             try {
+                // Recipe'den PHPageBuilder data JSON'ı üret
+                $data = self::buildPageDataFromRecipe($sp['recipe']);
+
                 $pageId = (int)DB::insert('pb_pages', [
                     'name'   => $sp['name'],
                     'layout' => 'master',
-                    'data'   => '[]',
+                    'data'   => json_encode($data, JSON_UNESCAPED_UNICODE),
                 ]);
 
                 DB::insert('pb_page_translations', [
@@ -226,8 +248,36 @@ class PageBuilderController
             }
         }
 
-        $msg = "Seed tamamlandı: $created sayfa oluşturuldu, $skipped atlandı (zaten vardı).";
+        $msg = "Seed tamamlandı: $created sayfa recipe ile dolu olarak oluşturuldu, $skipped atlandı (zaten vardı).";
         Session::flash('success', $msg);
         View::redirect('/admin/pagebuilder');
+    }
+
+    /**
+     * Theme block slug listesinden PHPageBuilder uyumlu data JSON üretir.
+     * Format: { html: ["[block slug=X id=Y]..."], blocks: { tr: {...}, en: {...} } }
+     */
+    private static function buildPageDataFromRecipe(array $blockSlugs): array
+    {
+        $shortcodes = '';
+        $blocksTr   = [];
+        $blocksEn   = [];
+
+        foreach ($blockSlugs as $i => $slug) {
+            // ID prefix "ID" — PHPageBuilder editmode tracking için gerekli
+            $id = 'ID' . str_replace('-', '', $slug) . ($i + 1);
+            $shortcodes .= '[block slug="' . $slug . '" id="' . $id . '"]';
+
+            $blocksTr[$id] = ['settings' => new \stdClass(), 'blocks' => new \stdClass()];
+            $blocksEn[$id] = ['settings' => new \stdClass(), 'blocks' => new \stdClass()];
+        }
+
+        return [
+            'html'   => [$shortcodes], // array — multi-container format
+            'blocks' => [
+                'tr' => $blocksTr,
+                'en' => $blocksEn,
+            ],
+        ];
     }
 }
