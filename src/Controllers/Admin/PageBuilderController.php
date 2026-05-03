@@ -276,19 +276,30 @@ class PageBuilderController
     /**
      * Theme block slug listesinden PHPageBuilder uyumlu data JSON üretir.
      *
-     * KRİTİK: Block ID'leri "ID" prefix'i ile başlamalı. Aksi halde
-     * PageRenderer::renderBlock'taki tracking koşulu (strpos === 0)
-     * fail eder, getPageBlocksData() boş döner, GrapesJS canvas'ı boş kalır.
+     * KRİTİK BULGULAR (kaynak kod analizi):
+     * 1. PageRenderer::renderBlock'ta tracking koşulu strpos($id, 'ID') === 0
+     *    → Block ID'leri 'ID' prefix'i ile başlamalı
+     * 2. GrapesJS canvas'ı `data.components`'tan dolduruyor (data.html değil!)
+     *    → app.js: t.components(window.contentContainerComponents[e])
+     *    → data.components = [0 => [...components or HTML...]]
+     * 3. data.html sadece public-facing rendering için (parseShortcodes ile)
      *
      * Format:
-     *  { html: "[block slug=\"X\" id=\"IDxN\"]\n[block slug=\"Y\" id=\"IDyM\"]",
-     *    css: "", blocks: [] }
+     *  {
+     *    html: "[block slug=\"X\" id=\"IDx\"]...",         // public render
+     *    css: "",
+     *    blocks: [],
+     *    components: [ [<phpb-block>...HTML...</phpb-block>, ...] ]   // editor canvas
+     *  }
      */
     private static function buildPageDataFromRecipe(array $blockSlugs): array
     {
-        $shortcodes = [];
-        $usedIds    = [];
-        foreach ($blockSlugs as $i => $slug) {
+        $themeFolder  = BASE_PATH . '/themes/expocyprus/blocks';
+        $shortcodes   = [];
+        $components   = [];
+        $usedIds      = [];
+
+        foreach ($blockSlugs as $slug) {
             $idBase = 'ID' . str_replace('-', '', $slug);
             $id     = $idBase;
             $n      = 1;
@@ -296,13 +307,25 @@ class PageBuilderController
                 $id = $idBase . (++$n);
             }
             $usedIds[] = $id;
+
             $shortcodes[] = '[block slug="' . $slug . '" id="' . $id . '"]';
+
+            // Block'un view.html'ini oku, <phpb-block> ile sarmala
+            $viewPath = $themeFolder . '/' . $slug . '/view.html';
+            $blockHtml = file_exists($viewPath) ? file_get_contents($viewPath) : '';
+
+            $components[] = '<phpb-block block-slug="' . htmlspecialchars($slug, ENT_QUOTES, 'UTF-8')
+                . '" block-id="' . htmlspecialchars($id, ENT_QUOTES, 'UTF-8')
+                . '" wrapper="div" is-html="true">'
+                . $blockHtml
+                . '</phpb-block>';
         }
 
         return [
-            'html'   => implode("\n", $shortcodes),
-            'css'    => '',
-            'blocks' => [],
+            'html'       => implode("\n", $shortcodes),
+            'css'        => '',
+            'blocks'     => [],
+            'components' => [0 => $components],
         ];
     }
 }
