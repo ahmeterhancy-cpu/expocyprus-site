@@ -201,83 +201,86 @@ class PageBuilderController
                 'recipe' => ['ab-heading', 'ab-text']],
         ];
 
-        // Mevcut route'ları çek (duplicate engelleme)
-        $existing = DB::query("SELECT route FROM pb_page_translations");
-        $existingRoutes = array_column($existing, 'route');
+        // Mevcut route → page_id eşleştirmesi (UPSERT için)
+        $existing = DB::query("SELECT page_id, route FROM pb_page_translations");
+        $routeToPageId = [];
+        foreach ($existing as $row) {
+            $routeToPageId[$row['route']] = (int)$row['page_id'];
+        }
 
         $created = 0;
-        $skipped = 0;
+        $updated = 0;
         foreach ($seedPages as $sp) {
-            // TR ya da EN route zaten varsa atla
-            if (in_array($sp['tr'][1], $existingRoutes, true) || in_array($sp['en'][1], $existingRoutes, true)) {
-                $skipped++;
-                continue;
-            }
+            $dataJson = json_encode(
+                self::buildPageDataFromRecipe($sp['recipe']),
+                JSON_UNESCAPED_UNICODE
+            );
+
+            // Mevcut sayfayı tespit et (TR ya da EN route ile)
+            $existingId = $routeToPageId[$sp['tr'][1]] ?? $routeToPageId[$sp['en'][1]] ?? null;
 
             try {
-                // Recipe'den PHPageBuilder data JSON'ı üret
-                $data = self::buildPageDataFromRecipe($sp['recipe']);
+                if ($existingId) {
+                    // UPDATE — yanlış formatlı data'yı düzelt, metadata'yı koru
+                    DB::update('pb_pages',
+                        ['name' => $sp['name'], 'layout' => 'master', 'data' => $dataJson],
+                        ['id' => $existingId]
+                    );
+                    $updated++;
+                } else {
+                    // INSERT — yeni sayfa
+                    $pageId = (int)DB::insert('pb_pages', [
+                        'name'   => $sp['name'],
+                        'layout' => 'master',
+                        'data'   => $dataJson,
+                    ]);
 
-                $pageId = (int)DB::insert('pb_pages', [
-                    'name'   => $sp['name'],
-                    'layout' => 'master',
-                    'data'   => json_encode($data, JSON_UNESCAPED_UNICODE),
-                ]);
+                    DB::insert('pb_page_translations', [
+                        'page_id'          => $pageId,
+                        'locale'           => 'tr',
+                        'title'            => $sp['tr'][0],
+                        'meta_title'       => $sp['tr'][2],
+                        'meta_description' => $sp['tr'][2],
+                        'route'            => $sp['tr'][1],
+                    ]);
 
-                DB::insert('pb_page_translations', [
-                    'page_id'          => $pageId,
-                    'locale'           => 'tr',
-                    'title'            => $sp['tr'][0],
-                    'meta_title'       => $sp['tr'][2],
-                    'meta_description' => $sp['tr'][2],
-                    'route'            => $sp['tr'][1],
-                ]);
+                    DB::insert('pb_page_translations', [
+                        'page_id'          => $pageId,
+                        'locale'           => 'en',
+                        'title'            => $sp['en'][0],
+                        'meta_title'       => $sp['en'][2],
+                        'meta_description' => $sp['en'][2],
+                        'route'            => $sp['en'][1],
+                    ]);
 
-                DB::insert('pb_page_translations', [
-                    'page_id'          => $pageId,
-                    'locale'           => 'en',
-                    'title'            => $sp['en'][0],
-                    'meta_title'       => $sp['en'][2],
-                    'meta_description' => $sp['en'][2],
-                    'route'            => $sp['en'][1],
-                ]);
-
-                $created++;
+                    $created++;
+                }
             } catch (\Throwable $e) {
-                // ignore: route conflict ya da DB hatası — sıradakine geç
+                // ignore: DB hatası varsa sıradakine geç
             }
         }
 
-        $msg = "Seed tamamlandı: $created sayfa recipe ile dolu olarak oluşturuldu, $skipped atlandı (zaten vardı).";
+        $msg = "Seed tamamlandı: $created yeni sayfa oluşturuldu, $updated mevcut sayfa recipe ile güncellendi.";
         Session::flash('success', $msg);
         View::redirect('/admin/pagebuilder');
     }
 
     /**
      * Theme block slug listesinden PHPageBuilder uyumlu data JSON üretir.
-     * Format: { html: ["[block slug=X id=Y]..."], blocks: { tr: {...}, en: {...} } }
+     * Demo sayfa #1'in formatına birebir uygun:
+     * { "html": "[block slug=\"X\"]\n[block slug=\"Y\"]", "css": "", "blocks": [] }
      */
     private static function buildPageDataFromRecipe(array $blockSlugs): array
     {
-        $shortcodes = '';
-        $blocksTr   = [];
-        $blocksEn   = [];
-
-        foreach ($blockSlugs as $i => $slug) {
-            // ID prefix "ID" — PHPageBuilder editmode tracking için gerekli
-            $id = 'ID' . str_replace('-', '', $slug) . ($i + 1);
-            $shortcodes .= '[block slug="' . $slug . '" id="' . $id . '"]';
-
-            $blocksTr[$id] = ['settings' => new \stdClass(), 'blocks' => new \stdClass()];
-            $blocksEn[$id] = ['settings' => new \stdClass(), 'blocks' => new \stdClass()];
+        $shortcodes = [];
+        foreach ($blockSlugs as $slug) {
+            $shortcodes[] = '[block slug="' . $slug . '"]';
         }
 
         return [
-            'html'   => [$shortcodes], // array — multi-container format
-            'blocks' => [
-                'tr' => $blocksTr,
-                'en' => $blocksEn,
-            ],
+            'html'   => implode("\n", $shortcodes),
+            'css'    => '',
+            'blocks' => [],
         ];
     }
 }
