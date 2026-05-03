@@ -60,7 +60,7 @@ if (file_exists($envFile)) {
 // PHPageBuilder erken hook: edit/preview/asset URL'leri direkt PB'ye delege
 $pbUri = explode('?', $_SERVER['REQUEST_URI'] ?? '/', 2)[0];
 if (App\Pagebuilder\PageBuilderApp::isPageBuilderUrl($pbUri)) {
-    @session_start();
+    \App\Core\Session::start(); // Custom session ('expocyprus_session') — admin login burada
     App\Pagebuilder\PageBuilderApp::handleAuthenticatedRequest();
     return;
 }

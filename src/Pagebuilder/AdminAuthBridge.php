@@ -24,7 +24,7 @@ class AdminAuthBridge implements AuthContract
     public function isAuthenticated(): bool
     {
         if (session_status() !== PHP_SESSION_ACTIVE) {
-            @session_start();
+            \App\Core\Session::start();
         }
         return !empty($_SESSION['admin_id']) || !empty($_SESSION['admin_user']);
     }
