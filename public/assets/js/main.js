@@ -137,4 +137,57 @@
         }
     });
 
+    // ── ab-carousel (PHPagebuilder bloğu) ─────────────────────────
+    document.querySelectorAll('[data-ab-carousel]').forEach((root) => {
+        const track  = root.querySelector('.ab-carousel-track');
+        const slides = root.querySelectorAll('.ab-carousel-slide');
+        const prev   = root.querySelector('.ab-carousel-prev');
+        const next   = root.querySelector('.ab-carousel-next');
+        const dotsEl = root.querySelector('.ab-carousel-dots');
+        if (!track || slides.length === 0) return;
+
+        let index = 0;
+        const total = slides.length;
+
+        // Dots
+        if (dotsEl) {
+            dotsEl.innerHTML = '';
+            slides.forEach((_, i) => {
+                const dot = document.createElement('button');
+                dot.type = 'button';
+                dot.className = 'ab-carousel-dot' + (i === 0 ? ' active' : '');
+                dot.setAttribute('aria-label', `Slayt ${i + 1}`);
+                dot.addEventListener('click', () => go(i));
+                dotsEl.appendChild(dot);
+            });
+        }
+
+        function go(i) {
+            index = ((i % total) + total) % total;
+            track.style.transform = `translateX(-${index * 100}%)`;
+            if (dotsEl) {
+                dotsEl.querySelectorAll('.ab-carousel-dot').forEach((d, j) =>
+                    d.classList.toggle('active', j === index)
+                );
+            }
+        }
+
+        prev?.addEventListener('click', () => go(index - 1));
+        next?.addEventListener('click', () => go(index + 1));
+
+        // Auto-play (8s)
+        let timer = setInterval(() => go(index + 1), 8000);
+        root.addEventListener('mouseenter', () => clearInterval(timer));
+        root.addEventListener('mouseleave', () => { timer = setInterval(() => go(index + 1), 8000); });
+
+        // Touch swipe
+        let startX = 0, deltaX = 0;
+        track.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, { passive: true });
+        track.addEventListener('touchmove',  (e) => { deltaX = e.touches[0].clientX - startX; }, { passive: true });
+        track.addEventListener('touchend',   () => {
+            if (Math.abs(deltaX) > 50) go(deltaX < 0 ? index + 1 : index - 1);
+            deltaX = 0;
+        });
+    });
+
 })();

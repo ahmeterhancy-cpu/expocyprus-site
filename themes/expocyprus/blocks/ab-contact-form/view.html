@@ -1,0 +1,43 @@
+<section class="ab-contact-section">
+    <div class="ab-container">
+        <div class="ab-contact-grid">
+            <div class="ab-contact-info">
+                <span class="ab-section-eyebrow" phpb-content-container="true">İLETİŞİM</span>
+                <h2 class="ab-big-title" phpb-content-container="true">Projenizi konuşalım.</h2>
+                <p class="ab-contact-lead" phpb-content-container="true">24 saat içinde dönüş yapıyoruz. Detaylı bilgi için bize yazın veya arayın.</p>
+                <ul class="ab-contact-meta">
+                    <li><strong>Adres:</strong> <span phpb-content-container="true">Lefkoşa, Kuzey Kıbrıs</span></li>
+                    <li><strong>Telefon:</strong> <a href="tel:+905488303000" phpb-content-container="true">+90 548 830 3000</a></li>
+                    <li><strong>E-posta:</strong> <a href="mailto:info@expocyprus.com" phpb-content-container="true">info@expocyprus.com</a></li>
+                </ul>
+            </div>
+            <form action="/iletisim" method="POST" class="ab-form" novalidate>
+                <div class="ab-form-row">
+                    <div class="ab-form-group">
+                        <label class="ab-form-label">Ad Soyad *</label>
+                        <input type="text" name="name" class="ab-form-input" required>
+                    </div>
+                    <div class="ab-form-group">
+                        <label class="ab-form-label">E-posta *</label>
+                        <input type="email" name="email" class="ab-form-input" required>
+                    </div>
+                </div>
+                <div class="ab-form-row">
+                    <div class="ab-form-group">
+                        <label class="ab-form-label">Telefon</label>
+                        <input type="tel" name="phone" class="ab-form-input">
+                    </div>
+                    <div class="ab-form-group">
+                        <label class="ab-form-label">Şirket</label>
+                        <input type="text" name="company" class="ab-form-input">
+                    </div>
+                </div>
+                <div class="ab-form-group">
+                    <label class="ab-form-label">Mesajınız *</label>
+                    <textarea name="message" rows="5" class="ab-form-input" required></textarea>
+                </div>
+                <button type="submit" class="ab-btn ab-btn-primary" phpb-content-container="true">Mesajı Gönder</button>
+            </form>
+        </div>
+    </div>
+</section>
