@@ -30,17 +30,24 @@ if (!$eyebrow && $startDate) {
 
 // Günleri liste olarak çıkar (program kartları için)
 $days = [];
+$totalHours = 0;
 if ($startDate && $endDate) {
     $weekdaysTr = ['Pazar','Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi'];
     $weekdaysEn = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
     $weekdays = lang()==='en' ? $weekdaysEn : $weekdaysTr;
     for ($d = $startDate; $d <= $endDate; $d += 86400) {
+        $isFirst = ($d === $startDate);
+        $hours   = $isFirst ? '18:00 – 22:00' : '10:00 – 22:00';
+        // Saat hesabı: "HH:MM – HH:MM" formatından toplam saat çıkar
+        if (preg_match('/(\d{1,2}):\d{2}\s*[–-]\s*(\d{1,2}):\d{2}/', $hours, $m)) {
+            $totalHours += max(0, (int)$m[2] - (int)$m[1]);
+        }
         $days[] = [
             'day_num'  => date('j', $d),
             'month'    => date('M', $d),
             'weekday'  => $weekdays[(int)date('w', $d)],
-            'hours'    => (date('w', $d) == 5 || $d === $startDate) ? '18:00 – 22:00' : '10:00 – 22:00',
-            'is_first' => ($d === $startDate),
+            'hours'    => $hours,
+            'is_first' => $isFirst,
         ];
     }
 }
@@ -143,17 +150,19 @@ if ($startDate && $endDate) {
                 <div class="fd-stat-label"><?= lang()==='en' ? 'Days' : 'Gün' ?></div>
             </div>
             <?php endif; ?>
+            <?php if ($totalHours > 0): ?>
             <div class="fd-stat">
-                <div class="fd-stat-num">12+</div>
-                <div class="fd-stat-label"><?= lang()==='en' ? 'Hours Daily' : 'Saatlik Açılış' ?></div>
+                <div class="fd-stat-num"><?= $totalHours ?></div>
+                <div class="fd-stat-label"><?= lang()==='en' ? 'Total Hours' : 'Toplam Saat' ?></div>
+            </div>
+            <?php endif; ?>
+            <div class="fd-stat">
+                <div class="fd-stat-num">22+</div>
+                <div class="fd-stat-label"><?= lang()==='en' ? 'Years Experience' : 'Yıl Tecrübe' ?></div>
             </div>
             <div class="fd-stat">
-                <div class="fd-stat-num">50+</div>
-                <div class="fd-stat-label"><?= lang()==='en' ? 'Exhibitors' : 'Katılımcı' ?></div>
-            </div>
-            <div class="fd-stat">
-                <div class="fd-stat-num">∞</div>
-                <div class="fd-stat-label"><?= lang()==='en' ? 'Free Entry' : 'Ücretsiz' ?></div>
+                <div class="fd-stat-num"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align:-6px"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div class="fd-stat-label"><?= lang()==='en' ? 'Free Entry' : 'Ücretsiz Giriş' ?></div>
             </div>
         </div>
     </div>
