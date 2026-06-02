@@ -69,18 +69,36 @@ $fairExtras = [
         'sectors' => [
             [
                 'icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>',
-                'name_tr' => 'Av Ekipmanları',  'name_en' => 'Hunting Gear',
-                'desc_tr' => 'Tüfek, optik, kamuflaj, av aksesuarları',
-                'desc_en' => 'Rifles, optics, camouflage, hunting accessories',
+                'name_tr' => 'Av Tüfekleri & Tabancalar',  'name_en' => 'Rifles & Pistols',
+                'desc_tr' => 'Beretta, Benelli, Browning, Sako, CZ ve daha fazlası',
+                'desc_en' => 'Beretta, Benelli, Browning, Sako, CZ and more',
+            ],
+            [
+                'icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="6" y="3" width="12" height="18" rx="2"/><line x1="6" y1="9" x2="18" y2="9"/><line x1="6" y1="15" x2="18" y2="15"/></svg>',
+                'name_tr' => 'Mühimmat & Şarjör', 'name_en' => 'Ammunition & Magazines',
+                'desc_tr' => 'Saçma, kurşun, hassasiyet mühimmatı, reload ekipmanı',
+                'desc_en' => 'Shot, bullets, precision ammo, reloading gear',
             ],
             [
                 'icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><line x1="22" y1="12" x2="18" y2="12"/><line x1="6" y1="12" x2="2" y2="12"/><line x1="12" y1="6" x2="12" y2="2"/><line x1="12" y1="22" x2="12" y2="18"/></svg>',
-                'name_tr' => 'Atıcılık',  'name_en' => 'Shooting Sports',
-                'desc_tr' => 'Atış sporları malzemeleri, pro & amatör ekipman',
-                'desc_en' => 'Shooting sports equipment, pro & amateur gear',
+                'name_tr' => 'Optik',  'name_en' => 'Optics',
+                'desc_tr' => 'Dürbün, nişangah, termal kamera, lazer mesafe ölçer',
+                'desc_en' => 'Binoculars, scopes, thermal cameras, rangefinders',
             ],
             [
-                'icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M6.5 12c.94-3.46 4.94-6 8.5-6 3.56 0 6.06 2.54 7 6-.94 3.47-3.44 6-7 6s-7.56-2.53-8.5-6Z"/><path d="M18 12v.5"/><path d="M16 17.93a9.77 9.77 0 0 1 0-11.86"/><path d="M7 10.67C7 8 5.58 5.97 2.73 5.5c-1 1.5-1 5 .23 6.5-1.24 1.5-1.24 5-.23 6.5C5.58 18.03 7 16 7 13.33"/><path d="M10.46 7.26C10.2 5.88 9.17 4.24 8 3h5.8a2 2 0 0 1 1.98 1.67l.23 1.4"/><path d="m16.01 17.93-.23 1.4A2 2 0 0 1 13.8 21H9.5a5.96 5.96 0 0 0 1.49-3.98"/></svg>',
+                'icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg>',
+                'name_tr' => 'Av Giyim & Aksesuar',  'name_en' => 'Hunting Apparel',
+                'desc_tr' => 'Kamuflaj, su geçirmez, sıcak tutucu, çizme',
+                'desc_en' => 'Camouflage, waterproof, thermal wear, boots',
+            ],
+            [
+                'icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="11" cy="4" r="2"/><circle cx="18" cy="8" r="2"/><circle cx="20" cy="16" r="2"/><path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z"/></svg>',
+                'name_tr' => 'Av Köpekleri & Eğitim',  'name_en' => 'Hunting Dogs & Training',
+                'desc_tr' => 'Köpek aksesuarları, beslenme, GPS takip',
+                'desc_en' => 'Dog accessories, nutrition, GPS tracking',
+            ],
+            [
+                'icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M6.5 12c.94-3.46 4.94-6 8.5-6 3.56 0 6.06 2.54 7 6-.94 3.47-3.44 6-7 6s-7.56-2.53-8.5-6Z"/><path d="M2 12c1.5 1.5 5 1.5 7 0"/></svg>',
                 'name_tr' => 'Balıkçılık', 'name_en' => 'Fishing',
                 'desc_tr' => 'Olta, makine, kamış, dalış, tekne ekipmanı',
                 'desc_en' => 'Rods, reels, diving and boat equipment',
@@ -88,8 +106,20 @@ $fairExtras = [
             [
                 'icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg>',
                 'name_tr' => 'Doğa Sporları', 'name_en' => 'Outdoor Sports',
-                'desc_tr' => 'Dağcılık, trekking, outdoor giyim, navigasyon',
-                'desc_en' => 'Mountaineering, trekking, outdoor clothing',
+                'desc_tr' => 'Trekking, kamp, tırmanış, oltacılık ekipmanı',
+                'desc_en' => 'Trekking, camping, climbing, angling gear',
+            ],
+            [
+                'icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>',
+                'name_tr' => 'Kasalar & Güvenlik', 'name_en' => 'Safes & Security',
+                'desc_tr' => 'Silah dolapları, taşıma çantaları, güvenlik kilitleri',
+                'desc_en' => 'Gun safes, carry cases, security locks',
+            ],
+            [
+                'icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M9.5 19h-5l3-7-3-7h5"/><path d="M14.5 5h5l-3 7 3 7h-5"/><path d="M12 2v20"/></svg>',
+                'name_tr' => 'Drone & Teknoloji', 'name_en' => 'Drone & Tech',
+                'desc_tr' => 'Av için drone, kamera tuzakları, GPS',
+                'desc_en' => 'Hunting drones, camera traps, GPS',
             ],
             [
                 'icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3.5 21 14 3"/><path d="M20.5 21 10 3"/><path d="M15.5 21 12 15l-3.5 6"/><path d="M2 21h20"/></svg>',
@@ -136,6 +166,94 @@ $fairExtras = [
                     'label_tr' => 'Lead Maliyeti', 'label_en' => 'Lead Cost',
                     'desc_tr'  => 'Sektörel ihtisas + federasyon kanalı = istisnai birim ekonomi.',
                     'desc_en'  => 'Sector focus + federation channel = exceptional unit economics.',
+                ],
+            ],
+        ],
+        'visitor' => [
+            'eyebrow_tr' => 'ZİYARETÇİ PROFİLİ', 'eyebrow_en' => 'VISITOR PROFILE',
+            'title_tr'   => '%85 aktif av lisansı sahibi.',
+            'title_en'   => '85% hold active hunting licenses.',
+            'body_tr'    => 'Hedef kitle son derece odaklı: satın alma niyeti yüksek, marka bağımlılığı düşük. Standınıza yaklaşan her ziyaretçi, sektörünüze gerçekten ilgili.',
+            'body_en'    => 'A highly focused audience: high purchase intent, low brand loyalty. Every visitor approaching your stand is genuinely interested in your sector.',
+            'audience'   => [
+                ['tr' => 'Av kulüpleri üyeleri',     'en' => 'Hunting club members'],
+                ['tr' => 'Doğa sporcuları',           'en' => 'Outdoor athletes'],
+                ['tr' => 'Koleksiyonerler',          'en' => 'Collectors'],
+                ['tr' => 'Sportif atıcılar',         'en' => 'Sport shooters'],
+                ['tr' => 'Askeri & güvenlik personeli','en' => 'Military & security personnel'],
+            ],
+        ],
+        'events' => [
+            'eyebrow_tr' => 'ETKİNLİKLER', 'eyebrow_en' => 'ACTIVITIES',
+            'title_tr'   => 'Sahada yaşanan deneyimler.',
+            'title_en'   => 'Experiences lived on the field.',
+            'items'      => [
+                [
+                    'icon'    => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>',
+                    'name_tr' => 'Canlı Atış Demoları', 'name_en' => 'Live Shooting Demos',
+                    'desc_tr' => 'Yeni ürünlerin uzman atıcılarla canlı gösterimi.',
+                    'desc_en' => 'New products demonstrated live by expert shooters.',
+                ],
+                [
+                    'icon'    => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="11" cy="4" r="2"/><circle cx="18" cy="8" r="2"/><circle cx="20" cy="16" r="2"/><path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z"/></svg>',
+                    'name_tr' => 'Av Köpeği Yarışmaları', 'name_en' => 'Hunting Dog Contests',
+                    'desc_tr' => 'Pointer, retriever, spaniel kategorileri.',
+                    'desc_en' => 'Pointer, retriever, spaniel categories.',
+                ],
+                [
+                    'icon'    => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M22 17a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h3l2-2h6l2 2h3a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>',
+                    'name_tr' => 'Optik Test İstasyonları', 'name_en' => 'Optics Test Stations',
+                    'desc_tr' => 'Dürbün ve nişangah karşılaştırmaları.',
+                    'desc_en' => 'Binocular and scope comparison tests.',
+                ],
+                [
+                    'icon'    => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M17 6.1H3"/><path d="M21 12.1H3"/><path d="M15.1 18H3"/></svg>',
+                    'name_tr' => 'Atölyeler & Söyleşiler', 'name_en' => 'Workshops & Talks',
+                    'desc_tr' => 'Av güvenliği, ekosistem, etik avcılık konuları.',
+                    'desc_en' => 'Hunting safety, ecosystem, ethical hunting.',
+                ],
+                [
+                    'icon'    => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>',
+                    'name_tr' => 'Foto Yarışması', 'name_en' => 'Photo Contest',
+                    'desc_tr' => 'Doğa fotoğrafçılığı kategorilerinde ödüller.',
+                    'desc_en' => 'Awards in nature photography categories.',
+                ],
+            ],
+        ],
+        'services' => [
+            'eyebrow_tr' => 'KATILIMCILARA SUNULAN', 'eyebrow_en' => 'WHAT EXHIBITORS GET',
+            'title_tr'   => 'Stand kirası, hizmet değil; bir paket.',
+            'title_en'   => 'More than just a stand rental — a package.',
+            'intro_tr'   => "Stand kira, kurulum, teknik altyapı ve tanıtım hizmetlerini A'dan Z'ye yönetiyoruz. Katılımcılarımıza sunduklarımız:",
+            'intro_en'   => "We handle stand rental, build, technical infrastructure and promotion end-to-end. What we offer to exhibitors:",
+            'items'      => [
+                [
+                    'icon'    => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><polygon points="12 2 15 8 22 9 17 14 18 21 12 17 6 21 7 14 2 9 9 8 12 2"/></svg>',
+                    'name_tr' => 'Sektöre Özel Hedef Kitle Pazarlaması',
+                    'name_en' => 'Sector-Specific Audience Marketing',
+                    'desc_tr' => 'Av kulüpleri, lisanslı avcı veritabanı ile doğrudan iletişim.',
+                    'desc_en' => 'Direct outreach via hunting clubs and licensed hunter database.',
+                ],
+                [
+                    'icon'    => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>',
+                    'name_tr' => 'Profesyonel Atış Sahası',
+                    'name_en' => 'Professional Shooting Range',
+                    'desc_tr' => 'Atış demosu için güvenli ve profesyonel saha.',
+                    'desc_en' => 'Safe and professional range for product demos.',
+                ],
+                [
+                    'icon'    => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>',
+                    'name_tr' => 'Açık Alan Demo Sahası',
+                    'name_en' => 'Outdoor Demo Area',
+                    'desc_tr' => 'Av köpeği gösterileri ve kamp ekipmanı sahnelemeleri.',
+                    'desc_en' => 'Dog displays and camping equipment showcases.',
+                ],
+                [
+                    'icon'    => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3 12a9 9 0 1 0 9-9 9.74 9.74 0 0 0-6.74 2.74L3 8"/><polyline points="3 3 3 8 8 8"/></svg>',
+                    'name_tr' => 'Sektörel PR & Medya',
+                    'name_en' => 'Sector PR & Media',
+                    'desc_tr' => 'Basın ve medya partnerleri ile koordineli tanıtım.',
+                    'desc_en' => 'Coordinated promotion via press and media partners.',
                 ],
             ],
         ],
@@ -309,6 +427,54 @@ $extras = $fairExtras[$fair['slug'] ?? ''] ?? null;
 </section>
 <?php endif; ?>
 
+<?php if ($extras && !empty($extras['visitor'])): ?>
+<!-- ═══════════════════════════════════════════════════════════════
+     5B. VISITOR PROFILE — kim geliyor
+═══════════════════════════════════════════════════════════════ -->
+<section class="fd-visitor">
+    <div class="fd-container">
+        <div class="fd-visitor-grid">
+            <div class="fd-visitor-text">
+                <span class="fd-block-eyebrow"><?= e(lang()==='en' ? $extras['visitor']['eyebrow_en'] : $extras['visitor']['eyebrow_tr']) ?></span>
+                <h2 class="fd-block-title"><?= e(lang()==='en' ? $extras['visitor']['title_en'] : $extras['visitor']['title_tr']) ?></h2>
+                <p class="fd-visitor-body"><?= e(lang()==='en' ? $extras['visitor']['body_en'] : $extras['visitor']['body_tr']) ?></p>
+            </div>
+            <div class="fd-visitor-list">
+                <?php foreach ($extras['visitor']['audience'] as $a): ?>
+                <div class="fd-visitor-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span><?= e(lang()==='en' ? $a['en'] : $a['tr']) ?></span>
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+</section>
+<?php endif; ?>
+
+<?php if ($extras && !empty($extras['events'])): ?>
+<!-- ═══════════════════════════════════════════════════════════════
+     5C. EVENTS — sahada yaşanan deneyimler
+═══════════════════════════════════════════════════════════════ -->
+<section class="fd-events">
+    <div class="fd-container">
+        <div class="fd-block-head fd-block-head-center">
+            <span class="fd-block-eyebrow"><?= e(lang()==='en' ? $extras['events']['eyebrow_en'] : $extras['events']['eyebrow_tr']) ?></span>
+            <h2 class="fd-block-title"><?= e(lang()==='en' ? $extras['events']['title_en'] : $extras['events']['title_tr']) ?></h2>
+        </div>
+        <div class="fd-events-grid">
+            <?php foreach ($extras['events']['items'] as $ev): ?>
+            <div class="fd-event-card">
+                <div class="fd-event-icon"><?= $ev['icon'] ?></div>
+                <h3 class="fd-event-name"><?= e(lang()==='en' ? $ev['name_en'] : $ev['name_tr']) ?></h3>
+                <p class="fd-event-desc"><?= e(lang()==='en' ? $ev['desc_en'] : $ev['desc_tr']) ?></p>
+            </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+<?php endif; ?>
+
 <?php if ($extras && !empty($extras['roi'])): ?>
 <!-- ═══════════════════════════════════════════════════════════════
      6. EXHIBITOR ROI — neden katılmalısınız
@@ -326,6 +492,32 @@ $extras = $fairExtras[$fair['slug'] ?? ''] ?? null;
                 <div class="fd-roi-num"><?= e($c['value']) ?></div>
                 <div class="fd-roi-label"><?= e(lang()==='en' ? $c['label_en'] : $c['label_tr']) ?></div>
                 <p class="fd-roi-desc"><?= e(lang()==='en' ? $c['desc_en'] : $c['desc_tr']) ?></p>
+            </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+<?php endif; ?>
+
+<?php if ($extras && !empty($extras['services'])): ?>
+<!-- ═══════════════════════════════════════════════════════════════
+     6B. EXHIBITOR SERVICES — katılımcılara sunulanlar
+═══════════════════════════════════════════════════════════════ -->
+<section class="fd-services">
+    <div class="fd-container">
+        <div class="fd-block-head fd-block-head-center">
+            <span class="fd-block-eyebrow"><?= e(lang()==='en' ? $extras['services']['eyebrow_en'] : $extras['services']['eyebrow_tr']) ?></span>
+            <h2 class="fd-block-title"><?= e(lang()==='en' ? $extras['services']['title_en'] : $extras['services']['title_tr']) ?></h2>
+            <p class="fd-services-intro"><?= e(lang()==='en' ? $extras['services']['intro_en'] : $extras['services']['intro_tr']) ?></p>
+        </div>
+        <div class="fd-services-grid">
+            <?php foreach ($extras['services']['items'] as $sv): ?>
+            <div class="fd-service-card">
+                <div class="fd-service-icon"><?= $sv['icon'] ?></div>
+                <div class="fd-service-text">
+                    <h3 class="fd-service-name"><?= e(lang()==='en' ? $sv['name_en'] : $sv['name_tr']) ?></h3>
+                    <p class="fd-service-desc"><?= e(lang()==='en' ? $sv['desc_en'] : $sv['desc_tr']) ?></p>
+                </div>
             </div>
             <?php endforeach; ?>
         </div>
@@ -582,6 +774,26 @@ $extras = $fairExtras[$fair['slug'] ?? ''] ?? null;
 @media (max-width: 900px) { .fd-venue-grid { grid-template-columns: 1fr; } .fd-venue-image { aspect-ratio: 16/10; } }
 @media (max-width: 500px) { .fd-venue-stats { grid-template-columns: 1fr; } }
 
+/* ═══ 5B. VISITOR PROFILE ═══ */
+.fd-visitor { padding: clamp(4rem, 7vw, 6rem) 0; background: var(--fd-bg-alt); }
+.fd-visitor-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: clamp(2rem, 4vw, 3.5rem); align-items: center; }
+.fd-visitor-body { font-size: 1.0625rem; color: var(--fd-text-mute); line-height: 1.7; margin: 1.25rem 0 0; }
+.fd-visitor-list { display: grid; gap: .65rem; }
+.fd-visitor-item { display: flex; align-items: center; gap: .85rem; padding: 1rem 1.25rem; background: var(--fd-bg); border: 1px solid var(--fd-border); border-radius: 14px; font-size: .95rem; font-weight: 500; color: var(--fd-text); transition: transform .25s, border-color .25s, background .25s; }
+.fd-visitor-item:hover { transform: translateX(4px); border-color: var(--fd-accent); background: #fff; }
+.fd-visitor-item svg { color: var(--fd-accent); flex-shrink: 0; }
+@media (max-width: 900px) { .fd-visitor-grid { grid-template-columns: 1fr; } }
+
+/* ═══ 5C. EVENTS ═══ */
+.fd-events { padding: clamp(4rem, 8vw, 7rem) 0; background: var(--fd-bg); }
+.fd-events-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; }
+.fd-event-card { background: linear-gradient(180deg, var(--fd-bg) 0%, var(--fd-bg-alt) 100%); border: 1px solid var(--fd-border); border-radius: 20px; padding: 1.75rem 1.5rem; text-align: center; transition: transform .3s, box-shadow .3s, border-color .3s; }
+.fd-event-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,.06); border-color: var(--fd-accent); }
+.fd-event-icon { width: 64px; height: 64px; margin: 0 auto 1.25rem; border-radius: 18px; background: linear-gradient(135deg, var(--fd-accent), #ff6b35); color: #fff; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 24px -8px var(--fd-accent); }
+.fd-event-icon svg { width: 28px; height: 28px; }
+.fd-event-name { font-size: 1.0625rem; font-weight: 700; color: var(--fd-text); margin: 0 0 .5rem; letter-spacing: -.01em; }
+.fd-event-desc { font-size: .9rem; color: var(--fd-text-mute); line-height: 1.5; margin: 0; }
+
 /* ═══ 6. ROI ═══ */
 .fd-roi { padding: clamp(4rem, 8vw, 7rem) 0; background: var(--fd-bg-dark); color: #fff; position: relative; overflow: hidden; }
 .fd-roi::before { content: ''; position: absolute; top: -20%; left: -10%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(227,6,19,.18) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
@@ -595,6 +807,19 @@ $extras = $fairExtras[$fair['slug'] ?? ''] ?? null;
 .fd-roi-label { font-size: .85rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.85); margin-bottom: 1rem; }
 .fd-roi-desc { font-size: .9375rem; color: rgba(255,255,255,.7); line-height: 1.6; margin: 0; }
 @media (max-width: 900px) { .fd-roi-grid { grid-template-columns: 1fr; } }
+
+/* ═══ 6B. EXHIBITOR SERVICES ═══ */
+.fd-services { padding: clamp(4rem, 8vw, 7rem) 0; background: var(--fd-bg); }
+.fd-services-intro { color: var(--fd-text-mute); font-size: 1.0625rem; line-height: 1.6; margin: 1rem auto 0; max-width: 640px; }
+.fd-services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.25rem; }
+.fd-service-card { display: flex; gap: 1.25rem; align-items: flex-start; background: var(--fd-bg-alt); border: 1px solid var(--fd-border); border-radius: 20px; padding: 1.75rem; transition: transform .25s, box-shadow .25s, border-color .25s; }
+.fd-service-card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(0,0,0,.06); border-color: var(--fd-accent); }
+.fd-service-icon { flex-shrink: 0; width: 52px; height: 52px; border-radius: 14px; background: rgba(227,6,19,.08); color: var(--fd-accent); display: flex; align-items: center; justify-content: center; transition: background .3s, color .3s; }
+.fd-service-icon svg { width: 26px; height: 26px; }
+.fd-service-card:hover .fd-service-icon { background: var(--fd-accent); color: #fff; }
+.fd-service-text { flex: 1; min-width: 0; }
+.fd-service-name { font-size: 1.0625rem; font-weight: 700; color: var(--fd-text); margin: 0 0 .35rem; letter-spacing: -.01em; line-height: 1.3; }
+.fd-service-desc { font-size: .9rem; color: var(--fd-text-mute); line-height: 1.55; margin: 0; }
 
 /* ═══ 7. PROGRAM ═══ */
 .fd-program { padding: clamp(4rem, 7vw, 6rem) 0; background: var(--fd-bg); }
