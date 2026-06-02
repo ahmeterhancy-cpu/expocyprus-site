@@ -144,61 +144,174 @@ $structured = [
 <!-- ═══════════════════════════════════════════════════════════════
      SECTION 3 — FUARLARIMIZ (4 Kart)
 ═══════════════════════════════════════════════════════════════ -->
-<section class="section section-fairs bg-light" id="fuarlarimiz">
+<?php
+// Sadece Av/Atıcılık fuarını öne çıkar (homepage feature)
+$featured = null;
+foreach ($fairs as $f) {
+    if (($f['slug'] ?? '') === 'av-avcilik-atis-doga-sporlari-fuari') {
+        $featured = $f;
+        break;
+    }
+}
+// DB'den çekemediyse hardcoded fallback
+if (!$featured) {
+    $featured = [
+        'slug'        => 'av-avcilik-atis-doga-sporlari-fuari',
+        'name_tr'     => 'KKTC Av, Atıcılık, Balıkçılık, Doğa Sporları ve Kamp Malzemeleri Fuarı',
+        'name_en'     => 'TRNC Hunting, Shooting, Fishing, Outdoor Sports and Camping Equipment Fair',
+        'summary_tr'  => 'Doğanın Tutkusunu Keşfet! 2–4 Ekim 2026 tarihleri arasında Eski Ercan Havalimanı\'nda Kıbrıs\'ın en kapsamlı doğa fuarı. Açık havada doğanın tutkusunu yaşamak isteyenler ve sektör profesyonelleri için kaçırılmayacak bir buluşma.',
+        'summary_en'  => "Discover Nature's Passion! October 2–4, 2026 at Old Ercan Airport — TRNC's most comprehensive outdoor fair. An unmissable gathering for outdoor enthusiasts and industry professionals.",
+        'next_date'   => '2026-10-02',
+        'end_date'    => '2026-10-04',
+        'location'    => 'Eski Ercan Havalimanı, KKTC',
+        'image_hero'  => '/uploads/fairs/av-fuari-2026-poster.jpg',
+    ];
+}
+$fName    = lang()==='en' ? ($featured['name_en'] ?? $featured['name_tr']) : $featured['name_tr'];
+$fSummary = lang()==='en' ? ($featured['summary_en'] ?? $featured['summary_tr']) : ($featured['summary_tr'] ?? '');
+$fStart   = !empty($featured['next_date']) ? strtotime($featured['next_date']) : null;
+$fEnd     = !empty($featured['end_date'])  ? strtotime($featured['end_date'])  : $fStart;
+$fEyebrow = null;
+if ($fStart) {
+    $months = lang()==='en'
+        ? ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC']
+        : ['OCAK','ŞUBAT','MART','NİSAN','MAYIS','HAZİRAN','TEMMUZ','AĞUSTOS','EYLÜL','EKİM','KASIM','ARALIK'];
+    $mo = $months[(int)date('n', $fStart) - 1];
+    if ($fEnd && date('Y-m', $fStart) === date('Y-m', $fEnd)) {
+        $fEyebrow = date('j', $fStart).'–'.date('j', $fEnd).' '.$mo.' '.date('Y', $fStart);
+    } else {
+        $fEyebrow = date('j', $fStart).' '.$mo.' '.date('Y', $fStart);
+    }
+}
+?>
+<section class="section section-featured-fair bg-light" id="fuarlarimiz">
     <div class="container">
         <div class="section-header">
-            <h2 class="section-title"><?= __('home.fairs_title') ?></h2>
-            <p class="section-subtitle"><?= __('home.fairs_subtitle') ?></p>
+            <h2 class="section-title"><?= lang()==='en' ? 'Our Featured Fair' : 'Öne Çıkan Fuarımız' ?></h2>
+            <p class="section-subtitle"><?= lang()==='en'
+                ? 'A sector-specific fair we organise — under one roof.'
+                : 'Kendi düzenlediğimiz sektörel fuar — tek çatı altında.' ?></p>
         </div>
-        <div class="fairs-grid">
-            <?php foreach ($fairs as $f):
-                $name = lang() === 'en' ? $f['name_en'] : $f['name_tr'];
-                $summary = lang() === 'en' ? $f['summary_en'] : $f['summary_tr'];
-            ?>
-            <article class="fair-card">
-                <div class="fair-card-img">
-                    <?php if ($f['image_hero']): ?>
-                        <img src="<?= e($f['image_hero']) ?>" alt="<?= e($name) ?>" loading="lazy">
-                    <?php else: ?>
-                        <div class="fair-card-img-placeholder"></div>
-                    <?php endif; ?>
-                    <div class="fair-card-overlay"></div>
-                </div>
-                <div class="fair-card-body">
-                    <h3 class="fair-card-title"><?= e($name) ?></h3>
-                    <p class="fair-card-summary"><?= e($summary) ?></p>
-                    <?php if ($f['next_date']): ?>
-                        <p class="fair-card-date">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                            <?= date('d.m.Y', strtotime($f['next_date'])) ?>
-                        </p>
-                    <?php endif; ?>
-                    <a href="<?= url('fuarlarimiz/' . $f['slug']) ?>" class="fair-card-link"><?= __('common.details') ?> →</a>
-                </div>
-            </article>
-            <?php endforeach; ?>
 
-            <?php if (empty($fairs)):
-                $fPlaceholders = [
-                    ['n'=>'Tüketici Fuarı','s'=>'Tüm Sektörler. Tek Çatı Altında.','slug'=>'tuketici-fuari'],
-                    ['n'=>'Av, Avcılık & Doğa Sporları Fuarı','s'=>'Kıbrıs\'ın Tek İhtisas Fuarı.','slug'=>'av-avcilik-atis-doga-sporlari-fuari'],
-                    ['n'=>'Tarım Hayvancılık Fuarı','s'=>'Kıbrıs Tarımının Buluşma Noktası.','slug'=>'tarim-hayvancilik-fuari'],
-                    ['n'=>'Evlilik & Düğün Hazırlıkları Fuarı','s'=>'Hayallerinizdeki Düğün için Tüm Sektör Burada.','slug'=>'dugun-hazirliklari-fuari'],
-                ];
-                foreach ($fPlaceholders as $fp):
-            ?>
-            <article class="fair-card">
-                <div class="fair-card-img"><div class="fair-card-img-placeholder"></div><div class="fair-card-overlay"></div></div>
-                <div class="fair-card-body">
-                    <h3 class="fair-card-title"><?= $fp['n'] ?></h3>
-                    <p class="fair-card-summary"><?= $fp['s'] ?></p>
-                    <a href="<?= url('fuarlarimiz/' . $fp['slug']) ?>" class="fair-card-link">Detaylar →</a>
+        <a href="<?= url('fuarlarimiz/' . $featured['slug']) ?>" class="featured-fair-card">
+            <div class="featured-fair-image">
+                <?php if (!empty($featured['image_hero'])): ?>
+                    <img src="<?= e($featured['image_hero']) ?>" alt="<?= e($fName) ?>" loading="lazy">
+                <?php endif; ?>
+                <div class="featured-fair-image-overlay"></div>
+                <?php if ($fEyebrow): ?>
+                <span class="featured-fair-badge"><?= e($fEyebrow) ?></span>
+                <?php endif; ?>
+            </div>
+            <div class="featured-fair-body">
+                <h3 class="featured-fair-title"><?= e($fName) ?></h3>
+                <?php if ($fSummary): ?>
+                <p class="featured-fair-summary"><?= e(mb_substr($fSummary, 0, 240)) ?></p>
+                <?php endif; ?>
+                <div class="featured-fair-meta">
+                    <?php if ($fStart): ?>
+                    <span class="featured-fair-meta-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        <?= date('d.m.Y', $fStart) ?><?php if ($fEnd && $fEnd !== $fStart): ?> – <?= date('d.m.Y', $fEnd) ?><?php endif; ?>
+                    </span>
+                    <?php endif; ?>
+                    <?php if (!empty($featured['location'])): ?>
+                    <span class="featured-fair-meta-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                        <?= e($featured['location']) ?>
+                    </span>
+                    <?php endif; ?>
                 </div>
-            </article>
-            <?php endforeach; endif; ?>
-        </div>
+                <span class="featured-fair-cta">
+                    <?= lang()==='en' ? 'Fair Details' : 'Fuar Detayları' ?>
+                    <span aria-hidden="true">→</span>
+                </span>
+            </div>
+        </a>
     </div>
 </section>
+
+<style>
+.section-featured-fair { padding: clamp(4rem, 8vw, 7rem) 0; }
+.featured-fair-card {
+    display: grid; grid-template-columns: 1.1fr 1fr;
+    gap: 0; max-width: 1180px; margin: 3rem auto 0;
+    background: var(--white, #fff);
+    border-radius: 28px; overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,.08);
+    text-decoration: none; color: inherit;
+    transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s;
+}
+.featured-fair-card:hover { transform: translateY(-6px); box-shadow: 0 40px 100px rgba(0,0,0,.12); color: inherit; }
+.featured-fair-image {
+    position: relative;
+    aspect-ratio: 3/4;
+    background: linear-gradient(135deg, #1d1d1f 0%, #0a0a0a 100%);
+    overflow: hidden;
+}
+.featured-fair-image img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform .8s cubic-bezier(.2,.7,.2,1);
+}
+.featured-fair-card:hover .featured-fair-image img { transform: scale(1.04); }
+.featured-fair-image-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,.15) 70%, rgba(0,0,0,.4) 100%);
+}
+.featured-fair-badge {
+    position: absolute; top: 1.5rem; left: 1.5rem;
+    background: rgba(227,6,19,.95); color: #fff;
+    padding: .5rem 1rem; border-radius: 100px;
+    font-size: .75rem; font-weight: 800;
+    letter-spacing: .12em;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(227,6,19,.35);
+}
+.featured-fair-body {
+    padding: clamp(2rem, 5vw, 3.5rem);
+    display: flex; flex-direction: column; justify-content: center;
+}
+.featured-fair-title {
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 800; letter-spacing: -.025em;
+    color: var(--text, #1d1d1f);
+    line-height: 1.15; margin: 0 0 1rem;
+}
+.featured-fair-summary {
+    font-size: 1.0625rem;
+    color: var(--text-muted, #6e6e73);
+    line-height: 1.65;
+    margin: 0 0 1.75rem;
+}
+.featured-fair-meta {
+    display: flex; flex-wrap: wrap; gap: 1.25rem;
+    padding: 1rem 0 1.5rem;
+    border-top: 1px solid var(--border, #e5e5e7);
+    border-bottom: 1px solid var(--border, #e5e5e7);
+    margin-bottom: 1.75rem;
+}
+.featured-fair-meta-item {
+    display: inline-flex; align-items: center; gap: .5rem;
+    font-size: .9rem; color: var(--text, #1d1d1f); font-weight: 500;
+}
+.featured-fair-meta-item svg { color: var(--red, #E30613); flex-shrink: 0; }
+.featured-fair-cta {
+    display: inline-flex; align-items: center; gap: .5rem;
+    align-self: flex-start;
+    background: var(--red, #E30613); color: #fff;
+    padding: 1rem 2rem; border-radius: 980px;
+    font-size: 1rem; font-weight: 600;
+    transition: transform .25s, box-shadow .25s;
+}
+.featured-fair-card:hover .featured-fair-cta {
+    transform: translateX(4px);
+    box-shadow: 0 12px 30px -8px rgba(227,6,19,.5);
+}
+@media (max-width: 900px) {
+    .featured-fair-card { grid-template-columns: 1fr; }
+    .featured-fair-image { aspect-ratio: 4/5; }
+}
+</style>
 
 <!-- ═══════════════════════════════════════════════════════════════
      SECTION 4 — NEDEN EXPO CYPRUS?
