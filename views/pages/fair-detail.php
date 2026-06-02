@@ -82,16 +82,16 @@ $heroBg          = !empty($fair['image_hero']) ? 'background-image:url(' . e($fa
                 </div>
                 <?php endif; ?>
 
-                <!-- Katılımcı Ol CTA -->
+                <!-- Bu Fuara Katıl CTA -->
                 <div class="fair-participate-cta">
                     <div>
-                        <h3><?= lang() === 'en' ? 'Become an Exhibitor' : 'Katılımcı Ol' ?></h3>
+                        <h3><?= lang() === 'en' ? 'Exhibit at This Fair' : 'Bu Fuara Katıl' ?></h3>
                         <p><?= lang() === 'en'
-                            ? 'Interested in participating in this fair? Request a stand quote or get in touch to learn about exhibitor packages.'
-                            : 'Bu fuara katılmak istiyor musunuz? Stand teklifi alın veya katılımcı paketlerini öğrenmek için bizimle iletişime geçin.' ?></p>
+                            ? 'Apply to participate in this specific fair. We will get back with stand options, packages and pricing tailored to this event.'
+                            : 'Bu fuara katılım talebinizi bize iletin. Bu etkinliğe özel stand seçenekleri, katılımcı paketleri ve fiyatlandırma ile size geri dönelim.' ?></p>
                     </div>
-                    <a href="<?= url('teklif-al') ?>" class="btn btn-primary btn-lg">
-                        <?= lang() === 'en' ? 'Request Stand Quote' : 'Stand Teklifi Al' ?> <span aria-hidden="true">→</span>
+                    <a href="#katilim-form" class="btn btn-primary btn-lg">
+                        <?= lang() === 'en' ? 'Fair Participation Request' : 'Fuara Katılım Talebi' ?> <span aria-hidden="true">→</span>
                     </a>
                 </div>
             </article>
@@ -133,10 +133,15 @@ $heroBg          = !empty($fair['image_hero']) ? 'background-image:url(' . e($fa
                 </div>
 
                 <!-- Hızlı Katılım Formu -->
-                <div class="sidebar-card" style="margin-top:var(--space-lg);">
+                <div id="katilim-form" class="sidebar-card" style="margin-top:var(--space-lg); scroll-margin-top: 90px;">
                     <h3 class="sidebar-card-title">
-                        <?= lang() === 'en' ? 'Quick Participation Request' : 'Hızlı Katılım Talebi' ?>
+                        <?= lang() === 'en' ? 'Fair Participation Request' : 'Fuara Katılım Talebi' ?>
                     </h3>
+                    <p style="font-size:var(--font-size-sm); color:var(--text-muted); margin-bottom:var(--space-md); line-height:1.5;">
+                        <?= lang() === 'en'
+                            ? 'Submit your application for this fair. We will respond within 24 hours.'
+                            : 'Bu fuara katılım talebinizi gönderin. 24 saat içinde dönüş yapıyoruz.' ?>
+                    </p>
                     <form action="<?= url('iletisim') ?>" method="POST" style="display:flex; flex-direction:column; gap:.75rem;">
                         <?= csrf_field() ?>
                         <input type="hidden" name="subject" value="<?= e($name) ?> - <?= lang() === 'en' ? 'Participation Request' : 'Katılım Talebi' ?>">
