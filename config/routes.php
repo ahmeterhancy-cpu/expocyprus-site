@@ -195,6 +195,8 @@ $r->group('/admin', [AuthMiddleware::class], function($r) {
     $r->get('/fairs/:id/edit',         [FairsController::class, 'edit']);
     $r->post('/fairs/:id/update',      [FairsController::class, 'update']);
     $r->post('/fairs/:id/delete',      [FairsController::class, 'destroy']);
+    // One-shot: KKTC Av/Atıcılık fuarını 2-4 Ekim 2026 etkinliği için günceller
+    $r->get('/fairs/seed-av-fair',     [FairsController::class, 'seedAvFair']);
 
     // Hotels
     $r->get('/hotels',                 [HotelsAdminController::class, 'index']);
