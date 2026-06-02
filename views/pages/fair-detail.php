@@ -139,37 +139,7 @@ if ($startDate && $endDate) {
 </div>
 
 <!-- ═══════════════════════════════════════════════════════════════
-     3. STATS — bir bakışta
-═══════════════════════════════════════════════════════════════ -->
-<section class="fd-stats-section">
-    <div class="fd-container">
-        <div class="fd-stats-grid">
-            <?php if ($dayCount): ?>
-            <div class="fd-stat">
-                <div class="fd-stat-num"><?= $dayCount ?></div>
-                <div class="fd-stat-label"><?= lang()==='en' ? 'Days' : 'Gün' ?></div>
-            </div>
-            <?php endif; ?>
-            <?php if ($totalHours > 0): ?>
-            <div class="fd-stat">
-                <div class="fd-stat-num"><?= $totalHours ?></div>
-                <div class="fd-stat-label"><?= lang()==='en' ? 'Total Hours' : 'Toplam Saat' ?></div>
-            </div>
-            <?php endif; ?>
-            <div class="fd-stat">
-                <div class="fd-stat-num">22+</div>
-                <div class="fd-stat-label"><?= lang()==='en' ? 'Years Experience' : 'Yıl Tecrübe' ?></div>
-            </div>
-            <div class="fd-stat">
-                <div class="fd-stat-num"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align:-6px"><polyline points="20 6 9 17 4 12"/></svg></div>
-                <div class="fd-stat-label"><?= lang()==='en' ? 'Free Entry' : 'Ücretsiz Giriş' ?></div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════════════
-     4. ANA İÇERİK + STICKY FORM
+     3. ANA İÇERİK + STICKY FORM
 ═══════════════════════════════════════════════════════════════ -->
 <section class="fd-main-section">
     <div class="fd-container">
@@ -502,41 +472,7 @@ if ($startDate && $endDate) {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   3. STATS
-═══════════════════════════════════════════════════════════════ */
-.fd-stats-section {
-    padding: clamp(3rem, 5vw, 4.5rem) 0;
-    background: var(--fd-bg-alt);
-    border-bottom: 1px solid var(--fd-border);
-}
-.fd-stats-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-}
-.fd-stat {
-    text-align: center;
-    padding: 1.5rem 1rem;
-}
-.fd-stat-num {
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 800; letter-spacing: -.04em;
-    background: linear-gradient(180deg, var(--fd-text) 0%, var(--fd-accent) 140%);
-    -webkit-background-clip: text; background-clip: text;
-    -webkit-text-fill-color: transparent;
-    line-height: 1; margin-bottom: .35rem;
-}
-.fd-stat-label {
-    font-size: .85rem; font-weight: 600;
-    letter-spacing: .08em; text-transform: uppercase;
-    color: var(--fd-text-mute);
-}
-@media (max-width: 700px) {
-    .fd-stats-grid { grid-template-columns: repeat(2, 1fr); gap: 0; }
-    .fd-stat { padding: 1rem .5rem; }
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   4. MAIN LAYOUT
+   3. MAIN LAYOUT
 ═══════════════════════════════════════════════════════════════ */
 .fd-main-section {
     padding: clamp(3rem, 7vw, 6rem) 0;
