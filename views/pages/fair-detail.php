@@ -63,39 +63,21 @@ $fairExtras = [
             'eyebrow_en' => "NATURE'S PASSION",
             'title_tr'   => 'Burada buluşuyor.',
             'title_en'   => 'Meets here.',
-            'body_tr'    => "Bu fuar yalnızca bir ticaret platformu değil; Kıbrıs'ta doğanın tüm tutkularını taşıyan binlerce insanı bir araya getiren kültürel bir buluşma. Av sezonu açılışının hemen öncesinde gerçekleşen bu üç gün, sektörün hem profesyonelleri hem son kullanıcıları için yılın en kritik takvim noktası.",
-            'body_en'    => "More than a trade platform — a cultural meeting that brings together thousands sharing nature's passions in Cyprus. Held just before hunting season opens, these three days are the year's most critical calendar moment for industry professionals and end consumers alike.",
+            'body_tr'    => "Kıbrıs Türk Avcılık Federasyonu'nun resmi destekçiliğinde, Unifex Fuarcılık'ın 22 yıllık tecrübesiyle düzenlenen KKTC Av, Atıcılık, Balıkçılık, Doğa Sporları ve Kamp Malzemeleri Fuarı; Cyprus Expo 26 markası altında, 2–4 Ekim 2026 tarihlerinde Eski Ercan Havalimanı Binası'nda kapılarını ardına kadar açıyor.\n\nBu fuar yalnızca bir ticaret platformu değil; aynı zamanda Kıbrıs'ta doğanın tüm tutkularını taşıyan binlerce insanı bir araya getiren kültürel bir buluşma. Av sezonu açılışının hemen öncesinde gerçekleşen bu üç gün, sektörün hem profesyonelleri hem son kullanıcıları için yılın en kritik takvim noktası olmaya hazırlanıyor.",
+            'body_en'    => "Officially supported by the TRNC Hunting Federation and organised with Unifex Fuarcılık's 22 years of experience, the TRNC Hunting, Shooting, Fishing, Outdoor Sports and Camping Equipment Fair opens its doors at the Old Ercan Airport Building under the Cyprus Expo 26 brand on October 2–4, 2026.\n\nMore than a trade platform — a cultural meeting that brings together thousands sharing nature's passions in Cyprus. Held just before hunting season opens, these three days are set to become the year's most critical calendar moment for both industry professionals and end consumers.",
         ],
         'sectors' => [
             [
                 'icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>',
-                'name_tr' => 'Av Tüfekleri & Tabancalar',  'name_en' => 'Rifles & Pistols',
-                'desc_tr' => 'Beretta, Benelli, Browning, Sako, CZ ve daha fazlası',
-                'desc_en' => 'Beretta, Benelli, Browning, Sako, CZ and more',
-            ],
-            [
-                'icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="6" y="3" width="12" height="18" rx="2"/><line x1="6" y1="9" x2="18" y2="9"/><line x1="6" y1="15" x2="18" y2="15"/></svg>',
-                'name_tr' => 'Mühimmat & Şarjör', 'name_en' => 'Ammunition & Magazines',
-                'desc_tr' => 'Saçma, kurşun, hassasiyet mühimmatı, reload ekipmanı',
-                'desc_en' => 'Shot, bullets, precision ammo, reloading gear',
+                'name_tr' => 'Av Ekipmanları',  'name_en' => 'Hunting Gear',
+                'desc_tr' => 'Tüfek, optik, kamuflaj, av aksesuarları',
+                'desc_en' => 'Rifles, optics, camouflage, hunting accessories',
             ],
             [
                 'icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><line x1="22" y1="12" x2="18" y2="12"/><line x1="6" y1="12" x2="2" y2="12"/><line x1="12" y1="6" x2="12" y2="2"/><line x1="12" y1="22" x2="12" y2="18"/></svg>',
-                'name_tr' => 'Optik',  'name_en' => 'Optics',
-                'desc_tr' => 'Dürbün, nişangah, termal kamera, lazer mesafe ölçer',
-                'desc_en' => 'Binoculars, scopes, thermal cameras, rangefinders',
-            ],
-            [
-                'icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg>',
-                'name_tr' => 'Av Giyim & Aksesuar',  'name_en' => 'Hunting Apparel',
-                'desc_tr' => 'Kamuflaj, su geçirmez, sıcak tutucu, çizme',
-                'desc_en' => 'Camouflage, waterproof, thermal wear, boots',
-            ],
-            [
-                'icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="11" cy="4" r="2"/><circle cx="18" cy="8" r="2"/><circle cx="20" cy="16" r="2"/><path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z"/></svg>',
-                'name_tr' => 'Av Köpekleri & Eğitim',  'name_en' => 'Hunting Dogs & Training',
-                'desc_tr' => 'Köpek aksesuarları, beslenme, GPS takip',
-                'desc_en' => 'Dog accessories, nutrition, GPS tracking',
+                'name_tr' => 'Atıcılık',  'name_en' => 'Shooting Sports',
+                'desc_tr' => 'Atış sporları malzemeleri, profesyonel ve amatör ekipman',
+                'desc_en' => 'Shooting sports equipment, pro & amateur gear',
             ],
             [
                 'icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M6.5 12c.94-3.46 4.94-6 8.5-6 3.56 0 6.06 2.54 7 6-.94 3.47-3.44 6-7 6s-7.56-2.53-8.5-6Z"/><path d="M2 12c1.5 1.5 5 1.5 7 0"/></svg>',
@@ -106,20 +88,8 @@ $fairExtras = [
             [
                 'icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg>',
                 'name_tr' => 'Doğa Sporları', 'name_en' => 'Outdoor Sports',
-                'desc_tr' => 'Trekking, kamp, tırmanış, oltacılık ekipmanı',
-                'desc_en' => 'Trekking, camping, climbing, angling gear',
-            ],
-            [
-                'icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>',
-                'name_tr' => 'Kasalar & Güvenlik', 'name_en' => 'Safes & Security',
-                'desc_tr' => 'Silah dolapları, taşıma çantaları, güvenlik kilitleri',
-                'desc_en' => 'Gun safes, carry cases, security locks',
-            ],
-            [
-                'icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M9.5 19h-5l3-7-3-7h5"/><path d="M14.5 5h5l-3 7 3 7h-5"/><path d="M12 2v20"/></svg>',
-                'name_tr' => 'Drone & Teknoloji', 'name_en' => 'Drone & Tech',
-                'desc_tr' => 'Av için drone, kamera tuzakları, GPS',
-                'desc_en' => 'Hunting drones, camera traps, GPS',
+                'desc_tr' => 'Dağcılık, trekking, outdoor giyim, navigasyon',
+                'desc_en' => 'Mountaineering, trekking, outdoor clothing, navigation',
             ],
             [
                 'icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3.5 21 14 3"/><path d="M20.5 21 10 3"/><path d="M15.5 21 12 15l-3.5 6"/><path d="M2 21h20"/></svg>',
@@ -128,133 +98,85 @@ $fairExtras = [
                 'desc_en' => 'Tents, sleeping bags, kitchen and portable tech',
             ],
         ],
+        'sectors_note_tr'      => 've birçok alanlarda.',
+        'sectors_note_en'      => 'and many more areas.',
+        'sectors_highlight_tr' => '3 gün boyunca 50.000\'i aşkın ziyaretçi, sahada profesyonel demo gösterileri ile fuarda doğanın tutkusunu yaşıyor.',
+        'sectors_highlight_en' => 'Over 50,000 visitors across 3 days experience nature\'s passion with professional on-site demos.',
         'venue' => [
             'image'    => '/assets/images/hero-hall.webp',
             'eyebrow_tr' => 'MEKAN',  'eyebrow_en' => 'VENUE',
             'title_tr' => 'Neden Eski Ercan Havalimanı?',
             'title_en' => 'Why Old Ercan Airport?',
-            'body_tr'  => "KKTC'nin en ikonik kamu yapılarından biri. Yüksek tavanlı geniş holü, doğal ışık alan iç mekanı ve dış alanıyla bu ölçekteki bir fuara ev sahipliği yapmak için ideal.",
-            'body_en'  => "One of the most iconic public buildings in TRNC. High-ceilinged hall, naturally lit interior and open outdoor space make it ideal for a fair of this scale.",
+            'body_tr'  => "KKTC'nin en ikonik kamu yapılarından biri olan Eski Ercan Havalimanı Binası; yüksek tavanlı geniş holü, doğal ışık alan iç mekanı ve dış alanıyla bu ölçekteki bir fuara ev sahipliği yapmak için ideal. Ziyaretçilerin deneyimi kusursuz tasarlandı.",
+            'body_en'  => "One of the most iconic public buildings in TRNC, the Old Ercan Airport Building — with its high-ceilinged hall, naturally lit interior and outdoor area — is ideal for hosting a fair of this scale. Visitor experience is meticulously designed.",
             'stats'    => [
-                ['value' => '1.300', 'unit' => 'm²', 'label_tr' => 'Kapalı Sergi Alanı',     'label_en' => 'Indoor Exhibition'],
-                ['value' => '1.000', 'unit' => 'araç', 'label_tr' => 'Ücretsiz Otopark',     'label_en' => 'Free Parking'],
-                ['value' => 'Açık+Kapalı', 'unit' => '', 'label_tr' => 'Demo Alanı',         'label_en' => 'Demo Area'],
+                ['value' => '1.300', 'unit' => 'm²',   'label_tr' => 'Kapalı Sergi & Demo Alanı', 'label_en' => 'Indoor Exhibition & Demo'],
+                ['value' => 'Açık',  'unit' => 'alan', 'label_tr' => 'Kamp Sahnelemesi',         'label_en' => 'Camping Showcase'],
+                ['value' => '1.000', 'unit' => 'araç', 'label_tr' => 'Ücretsiz Otopark',         'label_en' => 'Free Parking'],
             ],
         ],
-        'roi' => [
+        'federation_support' => [
+            'eyebrow_tr' => 'FEDERASYON DESTEĞİ',
+            'eyebrow_en' => 'FEDERATION SUPPORT',
+            'title_tr'   => 'Sektörün otoritesi onayında.',
+            'title_en'   => 'Approved by the industry authority.',
+            'body_tr'    => "Kıbrıs Türk Avcılık Federasyonu'nun resmi destekçiliği, fuara yalnızca prestij değil; kayıtlı federasyon üyelerine doğrudan davet, atıcılık kulüplerinin organize katılımı ve sektörün otoritesi tarafından onaylanmış güvenilirlik mührü kazandırıyor. Av sezonu açılış mevzuatına dair resmi platform da bu fuar oluyor.",
+            'body_en'    => "The official endorsement of the TRNC Hunting Federation brings more than prestige: direct invitations to registered federation members, organised participation by shooting clubs, and a seal of credibility approved by the industry authority. The fair also becomes the official platform for the hunting season opening regulations.",
+            'pillars'    => [
+                ['tr' => 'Kayıtlı üyelere doğrudan davet',      'en' => 'Direct invitation to registered members'],
+                ['tr' => 'Atıcılık kulüplerinin organize katılımı', 'en' => 'Organised club participation'],
+                ['tr' => 'Sektörel güvenilirlik mührü',         'en' => 'Industry credibility seal'],
+                ['tr' => 'Av sezonu açılışı resmi platformu',   'en' => 'Official platform for season opening'],
+            ],
+        ],
+        'brand_perspective' => [
             'eyebrow_tr' => 'KATILIMCI MARKALAR İÇİN',
             'eyebrow_en' => 'FOR EXHIBITING BRANDS',
-            'title_tr'   => 'Bu fuara katılmanın anlamı.',
-            'title_en'   => 'What exhibiting here means.',
-            'intro_tr'   => 'Sektörel ihtisas fuarı, B2C kalabalığından farklı çalışır. Doğrulanmış ziyaretçi, yüksek satın alma niyeti — yani gerçek ROI.',
-            'intro_en'   => 'Sector-specific trade fairs operate differently from B2C crowds. Verified visitors, high purchase intent — real ROI.',
-            'cards'      => [
+            'title_tr'   => 'Marka perspektifinden ne anlama geliyor?',
+            'title_en'   => 'What this means from a brand perspective.',
+            'blocks'     => [
                 [
-                    'value' => '50.000+',
-                    'label_tr' => 'Beklenen Ziyaretçi', 'label_en' => 'Expected Visitors',
-                    'desc_tr'  => 'Federasyon üyeleri, atıcılık kulüpleri, son kullanıcılar — 3 gün boyunca.',
-                    'desc_en'  => 'Federation members, shooting clubs, end users — over 3 days.',
+                    'kicker_tr' => '01',
+                    'kicker_en' => '01',
+                    'title_tr'  => 'Katılımcı için fuarın anlamı',
+                    'title_en'  => 'What the fair means for exhibitors',
+                    'body_tr'   => "KKTC pazarındaki sektör profesyonelleri için bu fuar; yıllık satış hacimlerinin önemli bir kısmını yaratacak, sezon trendlerini belirleyecek ve marka tanınırlığını sıçramayla artıracak kritik bir takvim noktası. Eski Ercan'ın geniş demo alanları ise sadece ürün satışı değil, canlı deneyim yaratma imkanı sağlıyor — bir kamp çadırının kurulu halde sergilenmesi, bir oltanın test havuzunda kullanıcının elinde tutulması.",
+                    'body_en'   => "For industry professionals in the TRNC market, this fair is a critical calendar point that will generate a significant portion of annual sales, set seasonal trends and dramatically boost brand recognition. Old Ercan's expansive demo areas allow not just product sales but live experience creation — a tent set up on display, a fishing rod held by the user at a test pool.",
                 ],
                 [
-                    'value' => '150–200',
-                    'label_tr' => 'Tahmini Lead / 1.000 Ziyaretçi', 'label_en' => 'Est. Leads per 1,000 Visitors',
-                    'desc_tr'  => 'Standart B2C fuarda 35–50. Burada 3–4× sektörel ROI üstünlüğü.',
-                    'desc_en'  => 'Standard B2C fair: 35–50. Here: 3–4× sector ROI advantage.',
+                    'kicker_tr' => '02',
+                    'kicker_en' => '02',
+                    'title_tr'  => 'Hedef marka kategorisi',
+                    'title_en'  => 'Target brand category',
+                    'body_tr'   => "Hem lokal KKTC markalarına kendi pazarlarındaki konumlarını güçlendirme, hem TR'den gelen markalar için KKTC pazarına ve TR'ye dönen turist avcılara doğrudan erişim sağlayan fuar; her seviyedeki katılımcı için lead maliyetini 9–10 TL bandına çeken istisnai bir ROI sunuyor.",
+                    'body_en'   => "The fair provides local TRNC brands with the chance to strengthen their market position, and brands from Turkey with direct access to the TRNC market and to hunters returning to Turkey as tourists — offering exceptional ROI by reducing lead cost to the 9–10 TRY range for exhibitors at every level.",
                 ],
                 [
-                    'value' => '9–10 ₺',
-                    'label_tr' => 'Lead Maliyeti', 'label_en' => 'Lead Cost',
-                    'desc_tr'  => 'Sektörel ihtisas + federasyon kanalı = istisnai birim ekonomi.',
-                    'desc_en'  => 'Sector focus + federation channel = exceptional unit economics.',
-                ],
-            ],
-        ],
-        'visitor' => [
-            'eyebrow_tr' => 'ZİYARETÇİ PROFİLİ', 'eyebrow_en' => 'VISITOR PROFILE',
-            'title_tr'   => '%85 aktif av lisansı sahibi.',
-            'title_en'   => '85% hold active hunting licenses.',
-            'body_tr'    => 'Hedef kitle son derece odaklı: satın alma niyeti yüksek, marka bağımlılığı düşük. Standınıza yaklaşan her ziyaretçi, sektörünüze gerçekten ilgili.',
-            'body_en'    => 'A highly focused audience: high purchase intent, low brand loyalty. Every visitor approaching your stand is genuinely interested in your sector.',
-            'audience'   => [
-                ['tr' => 'Av kulüpleri üyeleri',     'en' => 'Hunting club members'],
-                ['tr' => 'Doğa sporcuları',           'en' => 'Outdoor athletes'],
-                ['tr' => 'Koleksiyonerler',          'en' => 'Collectors'],
-                ['tr' => 'Sportif atıcılar',         'en' => 'Sport shooters'],
-                ['tr' => 'Askeri & güvenlik personeli','en' => 'Military & security personnel'],
-            ],
-        ],
-        'events' => [
-            'eyebrow_tr' => 'ETKİNLİKLER', 'eyebrow_en' => 'ACTIVITIES',
-            'title_tr'   => 'Sahada yaşanan deneyimler.',
-            'title_en'   => 'Experiences lived on the field.',
-            'items'      => [
-                [
-                    'icon'    => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>',
-                    'name_tr' => 'Canlı Atış Demoları', 'name_en' => 'Live Shooting Demos',
-                    'desc_tr' => 'Yeni ürünlerin uzman atıcılarla canlı gösterimi.',
-                    'desc_en' => 'New products demonstrated live by expert shooters.',
+                    'kicker_tr' => '03',
+                    'kicker_en' => '03',
+                    'title_tr'  => 'Federasyon çarpanı',
+                    'title_en'  => 'Federation multiplier',
+                    'body_tr'   => "Kıbrıs Türk Avcılık Federasyonu'nun resmi davet kanalı, kayıtlı üye veri tabanına doğrudan erişim sağlıyor. Rastgele bir ziyaretçinin değil; sektörel kimliği belli, satın alma niyeti yüksek, federasyon kanalıyla doğrulanmış bir ziyaretçinin fuara gelmesini garanti ediyor.",
+                    'body_en'   => "The TRNC Hunting Federation's official invitation channel provides direct access to the registered member database. Not a random visitor — a visitor with a clear sector identity, high purchase intent, verified through the federation channel is guaranteed to attend.",
                 ],
                 [
-                    'icon'    => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="11" cy="4" r="2"/><circle cx="18" cy="8" r="2"/><circle cx="20" cy="16" r="2"/><path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z"/></svg>',
-                    'name_tr' => 'Av Köpeği Yarışmaları', 'name_en' => 'Hunting Dog Contests',
-                    'desc_tr' => 'Pointer, retriever, spaniel kategorileri.',
-                    'desc_en' => 'Pointer, retriever, spaniel categories.',
-                ],
-                [
-                    'icon'    => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M22 17a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h3l2-2h6l2 2h3a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>',
-                    'name_tr' => 'Optik Test İstasyonları', 'name_en' => 'Optics Test Stations',
-                    'desc_tr' => 'Dürbün ve nişangah karşılaştırmaları.',
-                    'desc_en' => 'Binocular and scope comparison tests.',
-                ],
-                [
-                    'icon'    => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M17 6.1H3"/><path d="M21 12.1H3"/><path d="M15.1 18H3"/></svg>',
-                    'name_tr' => 'Atölyeler & Söyleşiler', 'name_en' => 'Workshops & Talks',
-                    'desc_tr' => 'Av güvenliği, ekosistem, etik avcılık konuları.',
-                    'desc_en' => 'Hunting safety, ecosystem, ethical hunting.',
-                ],
-                [
-                    'icon'    => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>',
-                    'name_tr' => 'Foto Yarışması', 'name_en' => 'Photo Contest',
-                    'desc_tr' => 'Doğa fotoğrafçılığı kategorilerinde ödüller.',
-                    'desc_en' => 'Awards in nature photography categories.',
+                    'kicker_tr' => '04',
+                    'kicker_en' => '04',
+                    'title_tr'  => 'Stand sahipleri için ne anlama geliyor?',
+                    'title_en'  => 'What it means for stand owners',
+                    'body_tr'   => "Yukarıdaki profil bir sayı değil; standınıza yaklaşan her ziyaretçinin sizin ürününüze gerçekten ilgi duyma olasılığının çarpıcı yüksek olduğu anlamına geliyor. Standart bir B2C fuarında 1000 ziyaretçi içinden 35–50 kişi lead olurken, bu fuarda aynı sayı 150–200 kişiye çıkıyor — yani sektörel ihtisas fuarlarının doğal ROI üstünlüğü.",
+                    'body_en'   => "The profile above isn't just a number — it means every visitor approaching your stand has a dramatically higher likelihood of being genuinely interested in your product. While a standard B2C fair converts 35–50 leads per 1,000 visitors, here that number jumps to 150–200 — the natural ROI advantage of sector-specific specialised fairs.",
                 ],
             ],
         ],
-        'services' => [
-            'eyebrow_tr' => 'KATILIMCILARA SUNULAN', 'eyebrow_en' => 'WHAT EXHIBITORS GET',
-            'title_tr'   => 'Stand kirası, hizmet değil; bir paket.',
-            'title_en'   => 'More than just a stand rental — a package.',
-            'intro_tr'   => "Stand kira, kurulum, teknik altyapı ve tanıtım hizmetlerini A'dan Z'ye yönetiyoruz. Katılımcılarımıza sunduklarımız:",
-            'intro_en'   => "We handle stand rental, build, technical infrastructure and promotion end-to-end. What we offer to exhibitors:",
-            'items'      => [
-                [
-                    'icon'    => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><polygon points="12 2 15 8 22 9 17 14 18 21 12 17 6 21 7 14 2 9 9 8 12 2"/></svg>',
-                    'name_tr' => 'Sektöre Özel Hedef Kitle Pazarlaması',
-                    'name_en' => 'Sector-Specific Audience Marketing',
-                    'desc_tr' => 'Av kulüpleri, lisanslı avcı veritabanı ile doğrudan iletişim.',
-                    'desc_en' => 'Direct outreach via hunting clubs and licensed hunter database.',
-                ],
-                [
-                    'icon'    => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>',
-                    'name_tr' => 'Profesyonel Atış Sahası',
-                    'name_en' => 'Professional Shooting Range',
-                    'desc_tr' => 'Atış demosu için güvenli ve profesyonel saha.',
-                    'desc_en' => 'Safe and professional range for product demos.',
-                ],
-                [
-                    'icon'    => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>',
-                    'name_tr' => 'Açık Alan Demo Sahası',
-                    'name_en' => 'Outdoor Demo Area',
-                    'desc_tr' => 'Av köpeği gösterileri ve kamp ekipmanı sahnelemeleri.',
-                    'desc_en' => 'Dog displays and camping equipment showcases.',
-                ],
-                [
-                    'icon'    => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3 12a9 9 0 1 0 9-9 9.74 9.74 0 0 0-6.74 2.74L3 8"/><polyline points="3 3 3 8 8 8"/></svg>',
-                    'name_tr' => 'Sektörel PR & Medya',
-                    'name_en' => 'Sector PR & Media',
-                    'desc_tr' => 'Basın ve medya partnerleri ile koordineli tanıtım.',
-                    'desc_en' => 'Coordinated promotion via press and media partners.',
-                ],
+        'sponsors' => [
+            'eyebrow_tr' => 'DESTEKLEYENLER',
+            'eyebrow_en' => 'OFFICIAL SUPPORTERS',
+            'items' => [
+                ['name' => 'KKTC Başbakanlık',         'sub' => '',     'badge' => 'B'],
+                ['name' => 'KKTC İç İşleri Bakanlığı', 'sub' => '',     'badge' => 'İ'],
+                ['name' => 'KKTC Avcılık Federasyonu', 'sub' => '1971', 'badge' => 'A'],
+                ['name' => 'Cyprus Expo 26',           'sub' => 'by UNIFEX Fuarcılık', 'badge' => 'C'],
             ],
         ],
     ],
@@ -375,13 +297,13 @@ $extras = $fairExtras[$fair['slug'] ?? ''] ?? null;
 
 <?php if ($extras && !empty($extras['sectors'])): ?>
 <!-- ═══════════════════════════════════════════════════════════════
-     4. SECTORS GRID — 5 ana kategori
+     4. SECTORS GRID — Üç Gün, Beş Sektör, Bir Tutku
 ═══════════════════════════════════════════════════════════════ -->
 <section class="fd-sectors">
     <div class="fd-container">
         <div class="fd-block-head fd-block-head-center">
-            <span class="fd-block-eyebrow"><?= lang()==='en' ? '5 SECTORS, ONE PASSION' : '5 SEKTÖR, BİR TUTKU' ?></span>
-            <h2 class="fd-block-title"><?= lang()==='en' ? 'Three days. Five categories.' : 'Üç gün, beş kategori.' ?></h2>
+            <span class="fd-block-eyebrow"><?= lang()==='en' ? 'THREE DAYS, FIVE SECTORS, ONE PASSION' : 'ÜÇ GÜN, BEŞ SEKTÖR, BİR TUTKU' ?></span>
+            <h2 class="fd-block-title"><?= lang()==='en' ? 'Five core categories.' : 'Beş ana sektör başlığı.' ?></h2>
         </div>
         <div class="fd-sectors-grid">
             <?php foreach ($extras['sectors'] as $i => $s): ?>
@@ -392,6 +314,15 @@ $extras = $fairExtras[$fair['slug'] ?? ''] ?? null;
             </div>
             <?php endforeach; ?>
         </div>
+        <?php if (!empty($extras['sectors_note_tr'])): ?>
+        <p class="fd-sectors-note"><?= e(lang()==='en' ? $extras['sectors_note_en'] : $extras['sectors_note_tr']) ?></p>
+        <?php endif; ?>
+        <?php if (!empty($extras['sectors_highlight_tr'])): ?>
+        <div class="fd-sectors-highlight">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <p><?= e(lang()==='en' ? $extras['sectors_highlight_en'] : $extras['sectors_highlight_tr']) ?></p>
+        </div>
+        <?php endif; ?>
     </div>
 </section>
 <?php endif; ?>
@@ -427,23 +358,23 @@ $extras = $fairExtras[$fair['slug'] ?? ''] ?? null;
 </section>
 <?php endif; ?>
 
-<?php if ($extras && !empty($extras['visitor'])): ?>
+<?php if ($extras && !empty($extras['federation_support'])): ?>
 <!-- ═══════════════════════════════════════════════════════════════
-     5B. VISITOR PROFILE — kim geliyor
+     6. FEDERASYON DESTEĞİ
 ═══════════════════════════════════════════════════════════════ -->
-<section class="fd-visitor">
+<section class="fd-fed">
     <div class="fd-container">
-        <div class="fd-visitor-grid">
-            <div class="fd-visitor-text">
-                <span class="fd-block-eyebrow"><?= e(lang()==='en' ? $extras['visitor']['eyebrow_en'] : $extras['visitor']['eyebrow_tr']) ?></span>
-                <h2 class="fd-block-title"><?= e(lang()==='en' ? $extras['visitor']['title_en'] : $extras['visitor']['title_tr']) ?></h2>
-                <p class="fd-visitor-body"><?= e(lang()==='en' ? $extras['visitor']['body_en'] : $extras['visitor']['body_tr']) ?></p>
+        <div class="fd-fed-grid">
+            <div class="fd-fed-text">
+                <span class="fd-block-eyebrow"><?= e(lang()==='en' ? $extras['federation_support']['eyebrow_en'] : $extras['federation_support']['eyebrow_tr']) ?></span>
+                <h2 class="fd-block-title"><?= e(lang()==='en' ? $extras['federation_support']['title_en'] : $extras['federation_support']['title_tr']) ?></h2>
+                <p class="fd-fed-body"><?= e(lang()==='en' ? $extras['federation_support']['body_en'] : $extras['federation_support']['body_tr']) ?></p>
             </div>
-            <div class="fd-visitor-list">
-                <?php foreach ($extras['visitor']['audience'] as $a): ?>
-                <div class="fd-visitor-item">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                    <span><?= e(lang()==='en' ? $a['en'] : $a['tr']) ?></span>
+            <div class="fd-fed-pillars">
+                <?php foreach ($extras['federation_support']['pillars'] as $p): ?>
+                <div class="fd-fed-pillar">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+                    <span><?= e(lang()==='en' ? $p['en'] : $p['tr']) ?></span>
                 </div>
                 <?php endforeach; ?>
             </div>
@@ -452,72 +383,46 @@ $extras = $fairExtras[$fair['slug'] ?? ''] ?? null;
 </section>
 <?php endif; ?>
 
-<?php if ($extras && !empty($extras['events'])): ?>
+<?php if ($extras && !empty($extras['brand_perspective'])): ?>
 <!-- ═══════════════════════════════════════════════════════════════
-     5C. EVENTS — sahada yaşanan deneyimler
-═══════════════════════════════════════════════════════════════ -->
-<section class="fd-events">
-    <div class="fd-container">
-        <div class="fd-block-head fd-block-head-center">
-            <span class="fd-block-eyebrow"><?= e(lang()==='en' ? $extras['events']['eyebrow_en'] : $extras['events']['eyebrow_tr']) ?></span>
-            <h2 class="fd-block-title"><?= e(lang()==='en' ? $extras['events']['title_en'] : $extras['events']['title_tr']) ?></h2>
-        </div>
-        <div class="fd-events-grid">
-            <?php foreach ($extras['events']['items'] as $ev): ?>
-            <div class="fd-event-card">
-                <div class="fd-event-icon"><?= $ev['icon'] ?></div>
-                <h3 class="fd-event-name"><?= e(lang()==='en' ? $ev['name_en'] : $ev['name_tr']) ?></h3>
-                <p class="fd-event-desc"><?= e(lang()==='en' ? $ev['desc_en'] : $ev['desc_tr']) ?></p>
-            </div>
-            <?php endforeach; ?>
-        </div>
-    </div>
-</section>
-<?php endif; ?>
-
-<?php if ($extras && !empty($extras['roi'])): ?>
-<!-- ═══════════════════════════════════════════════════════════════
-     6. EXHIBITOR ROI — neden katılmalısınız
+     7. BRAND PERSPECTIVE — Katılımcı Marka için 4 alt blok
 ═══════════════════════════════════════════════════════════════ -->
 <section class="fd-roi">
     <div class="fd-container">
         <div class="fd-block-head fd-block-head-center">
-            <span class="fd-block-eyebrow"><?= e(lang()==='en' ? $extras['roi']['eyebrow_en'] : $extras['roi']['eyebrow_tr']) ?></span>
-            <h2 class="fd-block-title fd-block-title-inverse"><?= e(lang()==='en' ? $extras['roi']['title_en'] : $extras['roi']['title_tr']) ?></h2>
-            <p class="fd-roi-intro"><?= e(lang()==='en' ? $extras['roi']['intro_en'] : $extras['roi']['intro_tr']) ?></p>
+            <span class="fd-block-eyebrow"><?= e(lang()==='en' ? $extras['brand_perspective']['eyebrow_en'] : $extras['brand_perspective']['eyebrow_tr']) ?></span>
+            <h2 class="fd-block-title fd-block-title-inverse"><?= e(lang()==='en' ? $extras['brand_perspective']['title_en'] : $extras['brand_perspective']['title_tr']) ?></h2>
         </div>
-        <div class="fd-roi-grid">
-            <?php foreach ($extras['roi']['cards'] as $i => $c): ?>
-            <div class="fd-roi-card">
-                <div class="fd-roi-num"><?= e($c['value']) ?></div>
-                <div class="fd-roi-label"><?= e(lang()==='en' ? $c['label_en'] : $c['label_tr']) ?></div>
-                <p class="fd-roi-desc"><?= e(lang()==='en' ? $c['desc_en'] : $c['desc_tr']) ?></p>
-            </div>
+        <div class="fd-bp-grid">
+            <?php foreach ($extras['brand_perspective']['blocks'] as $b): ?>
+            <article class="fd-bp-card">
+                <span class="fd-bp-kicker"><?= e(lang()==='en' ? $b['kicker_en'] : $b['kicker_tr']) ?></span>
+                <h3 class="fd-bp-title"><?= e(lang()==='en' ? $b['title_en'] : $b['title_tr']) ?></h3>
+                <p class="fd-bp-body"><?= e(lang()==='en' ? $b['body_en'] : $b['body_tr']) ?></p>
+            </article>
             <?php endforeach; ?>
         </div>
     </div>
 </section>
 <?php endif; ?>
 
-<?php if ($extras && !empty($extras['services'])): ?>
+<?php if ($extras && !empty($extras['sponsors'])): ?>
 <!-- ═══════════════════════════════════════════════════════════════
-     6B. EXHIBITOR SERVICES — katılımcılara sunulanlar
+     8. SPONSORS — destekleyenler
 ═══════════════════════════════════════════════════════════════ -->
-<section class="fd-services">
+<section class="fd-sponsors">
     <div class="fd-container">
         <div class="fd-block-head fd-block-head-center">
-            <span class="fd-block-eyebrow"><?= e(lang()==='en' ? $extras['services']['eyebrow_en'] : $extras['services']['eyebrow_tr']) ?></span>
-            <h2 class="fd-block-title"><?= e(lang()==='en' ? $extras['services']['title_en'] : $extras['services']['title_tr']) ?></h2>
-            <p class="fd-services-intro"><?= e(lang()==='en' ? $extras['services']['intro_en'] : $extras['services']['intro_tr']) ?></p>
+            <span class="fd-block-eyebrow"><?= e(lang()==='en' ? $extras['sponsors']['eyebrow_en'] : $extras['sponsors']['eyebrow_tr']) ?></span>
         </div>
-        <div class="fd-services-grid">
-            <?php foreach ($extras['services']['items'] as $sv): ?>
-            <div class="fd-service-card">
-                <div class="fd-service-icon"><?= $sv['icon'] ?></div>
-                <div class="fd-service-text">
-                    <h3 class="fd-service-name"><?= e(lang()==='en' ? $sv['name_en'] : $sv['name_tr']) ?></h3>
-                    <p class="fd-service-desc"><?= e(lang()==='en' ? $sv['desc_en'] : $sv['desc_tr']) ?></p>
-                </div>
+        <div class="fd-sponsors-grid">
+            <?php foreach ($extras['sponsors']['items'] as $sp): ?>
+            <div class="fd-sponsor">
+                <div class="fd-sponsor-badge"><?= e($sp['badge']) ?></div>
+                <div class="fd-sponsor-name"><?= e($sp['name']) ?></div>
+                <?php if (!empty($sp['sub'])): ?>
+                <div class="fd-sponsor-sub"><?= e($sp['sub']) ?></div>
+                <?php endif; ?>
             </div>
             <?php endforeach; ?>
         </div>
@@ -774,52 +679,43 @@ $extras = $fairExtras[$fair['slug'] ?? ''] ?? null;
 @media (max-width: 900px) { .fd-venue-grid { grid-template-columns: 1fr; } .fd-venue-image { aspect-ratio: 16/10; } }
 @media (max-width: 500px) { .fd-venue-stats { grid-template-columns: 1fr; } }
 
-/* ═══ 5B. VISITOR PROFILE ═══ */
-.fd-visitor { padding: clamp(4rem, 7vw, 6rem) 0; background: var(--fd-bg-alt); }
-.fd-visitor-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: clamp(2rem, 4vw, 3.5rem); align-items: center; }
-.fd-visitor-body { font-size: 1.0625rem; color: var(--fd-text-mute); line-height: 1.7; margin: 1.25rem 0 0; }
-.fd-visitor-list { display: grid; gap: .65rem; }
-.fd-visitor-item { display: flex; align-items: center; gap: .85rem; padding: 1rem 1.25rem; background: var(--fd-bg); border: 1px solid var(--fd-border); border-radius: 14px; font-size: .95rem; font-weight: 500; color: var(--fd-text); transition: transform .25s, border-color .25s, background .25s; }
-.fd-visitor-item:hover { transform: translateX(4px); border-color: var(--fd-accent); background: #fff; }
-.fd-visitor-item svg { color: var(--fd-accent); flex-shrink: 0; }
-@media (max-width: 900px) { .fd-visitor-grid { grid-template-columns: 1fr; } }
+/* ═══ Sectors note + highlight ═══ */
+.fd-sectors-note { text-align: center; font-style: italic; color: var(--fd-text-soft); margin: 1.5rem 0 0; font-size: .95rem; }
+.fd-sectors-highlight { margin: 2.5rem auto 0; max-width: 760px; display: flex; align-items: center; gap: 1rem; padding: 1.25rem 1.5rem; background: linear-gradient(135deg, rgba(227,6,19,.05), rgba(255,107,53,.03)); border: 1px solid var(--fd-border); border-left: 4px solid var(--fd-accent); border-radius: 14px; }
+.fd-sectors-highlight svg { color: var(--fd-accent); flex-shrink: 0; }
+.fd-sectors-highlight p { margin: 0; font-size: 1rem; line-height: 1.55; color: var(--fd-text); font-weight: 500; }
 
-/* ═══ 5C. EVENTS ═══ */
-.fd-events { padding: clamp(4rem, 8vw, 7rem) 0; background: var(--fd-bg); }
-.fd-events-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; }
-.fd-event-card { background: linear-gradient(180deg, var(--fd-bg) 0%, var(--fd-bg-alt) 100%); border: 1px solid var(--fd-border); border-radius: 20px; padding: 1.75rem 1.5rem; text-align: center; transition: transform .3s, box-shadow .3s, border-color .3s; }
-.fd-event-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,.06); border-color: var(--fd-accent); }
-.fd-event-icon { width: 64px; height: 64px; margin: 0 auto 1.25rem; border-radius: 18px; background: linear-gradient(135deg, var(--fd-accent), #ff6b35); color: #fff; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 24px -8px var(--fd-accent); }
-.fd-event-icon svg { width: 28px; height: 28px; }
-.fd-event-name { font-size: 1.0625rem; font-weight: 700; color: var(--fd-text); margin: 0 0 .5rem; letter-spacing: -.01em; }
-.fd-event-desc { font-size: .9rem; color: var(--fd-text-mute); line-height: 1.5; margin: 0; }
+/* ═══ 6. FEDERASYON DESTEĞİ ═══ */
+.fd-fed { padding: clamp(4rem, 8vw, 7rem) 0; background: var(--fd-bg-alt); }
+.fd-fed-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: clamp(2rem, 4vw, 3.5rem); align-items: start; }
+.fd-fed-body { font-size: 1.0625rem; color: var(--fd-text-mute); line-height: 1.75; margin: 1.25rem 0 0; }
+.fd-fed-pillars { display: grid; gap: .85rem; }
+.fd-fed-pillar { display: flex; align-items: center; gap: .85rem; padding: 1.1rem 1.35rem; background: var(--fd-bg); border: 1px solid var(--fd-border); border-radius: 14px; font-size: .9375rem; font-weight: 600; color: var(--fd-text); transition: transform .25s, border-color .25s, background .25s; }
+.fd-fed-pillar:hover { transform: translateX(4px); border-color: var(--fd-accent); background: #fff; }
+.fd-fed-pillar svg { color: var(--fd-accent); flex-shrink: 0; }
+@media (max-width: 900px) { .fd-fed-grid { grid-template-columns: 1fr; } }
 
-/* ═══ 6. ROI ═══ */
+/* ═══ 7. BRAND PERSPECTIVE ═══ */
 .fd-roi { padding: clamp(4rem, 8vw, 7rem) 0; background: var(--fd-bg-dark); color: #fff; position: relative; overflow: hidden; }
 .fd-roi::before { content: ''; position: absolute; top: -20%; left: -10%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(227,6,19,.18) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
 .fd-roi::after { content: ''; position: absolute; bottom: -20%; right: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(255,107,53,.12) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
 .fd-roi .fd-block-eyebrow { color: #ff6b35; }
-.fd-roi-intro { color: rgba(255,255,255,.7); font-size: 1.0625rem; line-height: 1.6; margin: 1rem auto 0; max-width: 640px; }
-.fd-roi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; position: relative; z-index: 1; }
-.fd-roi-card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); backdrop-filter: blur(20px); border-radius: 24px; padding: 2rem 1.75rem; transition: transform .3s, border-color .3s, background .3s; }
-.fd-roi-card:hover { transform: translateY(-6px); border-color: var(--fd-accent); background: rgba(255,255,255,.06); }
-.fd-roi-num { font-size: clamp(2.25rem, 4vw, 3.25rem); font-weight: 800; letter-spacing: -.04em; line-height: 1; margin-bottom: .75rem; background: linear-gradient(135deg, #fff 0%, var(--fd-accent) 120%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-.fd-roi-label { font-size: .85rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.85); margin-bottom: 1rem; }
-.fd-roi-desc { font-size: .9375rem; color: rgba(255,255,255,.7); line-height: 1.6; margin: 0; }
-@media (max-width: 900px) { .fd-roi-grid { grid-template-columns: 1fr; } }
+.fd-bp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; position: relative; z-index: 1; }
+.fd-bp-card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); backdrop-filter: blur(20px); border-radius: 24px; padding: 2.25rem 2rem; transition: transform .3s, border-color .3s, background .3s; position: relative; }
+.fd-bp-card:hover { transform: translateY(-4px); border-color: var(--fd-accent); background: rgba(255,255,255,.06); }
+.fd-bp-kicker { display: inline-block; font-size: 1rem; font-weight: 800; letter-spacing: .04em; color: var(--fd-accent); margin-bottom: 1rem; padding: .35rem .85rem; background: rgba(227,6,19,.12); border-radius: 100px; }
+.fd-bp-title { font-size: clamp(1.125rem, 1.8vw, 1.4rem); font-weight: 700; letter-spacing: -.015em; color: #fff; line-height: 1.25; margin: 0 0 1rem; }
+.fd-bp-body { font-size: .9375rem; color: rgba(255,255,255,.78); line-height: 1.7; margin: 0; }
+@media (max-width: 900px) { .fd-bp-grid { grid-template-columns: 1fr; } }
 
-/* ═══ 6B. EXHIBITOR SERVICES ═══ */
-.fd-services { padding: clamp(4rem, 8vw, 7rem) 0; background: var(--fd-bg); }
-.fd-services-intro { color: var(--fd-text-mute); font-size: 1.0625rem; line-height: 1.6; margin: 1rem auto 0; max-width: 640px; }
-.fd-services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.25rem; }
-.fd-service-card { display: flex; gap: 1.25rem; align-items: flex-start; background: var(--fd-bg-alt); border: 1px solid var(--fd-border); border-radius: 20px; padding: 1.75rem; transition: transform .25s, box-shadow .25s, border-color .25s; }
-.fd-service-card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(0,0,0,.06); border-color: var(--fd-accent); }
-.fd-service-icon { flex-shrink: 0; width: 52px; height: 52px; border-radius: 14px; background: rgba(227,6,19,.08); color: var(--fd-accent); display: flex; align-items: center; justify-content: center; transition: background .3s, color .3s; }
-.fd-service-icon svg { width: 26px; height: 26px; }
-.fd-service-card:hover .fd-service-icon { background: var(--fd-accent); color: #fff; }
-.fd-service-text { flex: 1; min-width: 0; }
-.fd-service-name { font-size: 1.0625rem; font-weight: 700; color: var(--fd-text); margin: 0 0 .35rem; letter-spacing: -.01em; line-height: 1.3; }
-.fd-service-desc { font-size: .9rem; color: var(--fd-text-mute); line-height: 1.55; margin: 0; }
+/* ═══ 8. SPONSORS ═══ */
+.fd-sponsors { padding: clamp(3rem, 6vw, 5rem) 0; background: var(--fd-bg); }
+.fd-sponsors-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; max-width: 1000px; margin: 0 auto; }
+.fd-sponsor { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1.5rem 1.25rem; background: var(--fd-bg-alt); border: 1px solid var(--fd-border); border-radius: 18px; transition: transform .25s, border-color .25s, background .25s; }
+.fd-sponsor:hover { transform: translateY(-3px); border-color: var(--fd-accent); background: #fff; }
+.fd-sponsor-badge { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, var(--fd-accent), #ff6b35); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 800; margin-bottom: 1rem; box-shadow: 0 8px 18px -6px var(--fd-accent); }
+.fd-sponsor-name { font-size: .9375rem; font-weight: 700; color: var(--fd-text); line-height: 1.3; }
+.fd-sponsor-sub { font-size: .75rem; font-weight: 600; color: var(--fd-text-soft); letter-spacing: .03em; margin-top: .25rem; }
 
 /* ═══ 7. PROGRAM ═══ */
 .fd-program { padding: clamp(4rem, 7vw, 6rem) 0; background: var(--fd-bg); }
