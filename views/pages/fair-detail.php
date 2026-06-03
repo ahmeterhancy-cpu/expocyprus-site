@@ -70,7 +70,6 @@ $fairExtras = [
                 [
                     'name_tr' => 'KKTC Avcılık Federasyonu',
                     'name_en' => 'TRNC Hunting Federation',
-                    'sub' => '1971',
                     'icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>',
                 ],
             ],
