@@ -248,7 +248,7 @@ $extras = $fairExtras[$fair['slug'] ?? ''] ?? null;
 
         <div class="fd-hero-actions">
             <a href="#katilim-form" class="fd-btn fd-btn-primary">
-                <?= lang() === 'en' ? 'Apply to Exhibit' : 'Fuara Katıl' ?>
+                <?= lang() === 'en' ? 'Apply to Participate' : 'Fuara Katılmak İçin Başvur' ?>
                 <span aria-hidden="true">→</span>
             </a>
             <a href="#program" class="fd-btn fd-btn-ghost">
@@ -278,7 +278,7 @@ $extras = $fairExtras[$fair['slug'] ?? ''] ?? null;
                 <?php endif; ?>
             </div>
             <a href="#katilim-form" class="fd-btn fd-btn-primary fd-btn-sm">
-                <?= lang() === 'en' ? 'Apply' : 'Katıl' ?> →
+                <?= lang() === 'en' ? 'Apply' : 'Başvur' ?> →
             </a>
         </div>
     </div>
