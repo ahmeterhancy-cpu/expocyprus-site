@@ -189,9 +189,9 @@ $fairExtras = [
             'eyebrow_tr' => 'DESTEKLEYENLER',
             'eyebrow_en' => 'OFFICIAL SUPPORTERS',
             'items' => [
-                ['name' => 'KKTC Başbakanlık',         'sub' => '',     'badge' => 'B'],
-                ['name' => 'KKTC İç İşleri Bakanlığı', 'sub' => '',     'badge' => 'İ'],
-                ['name' => 'KKTC Avcılık Federasyonu', 'sub' => '1971', 'badge' => 'A'],
+                ['name' => 'KKTC Başbakanlık',         'sub' => '', 'badge' => 'B'],
+                ['name' => 'KKTC İç İşleri Bakanlığı', 'sub' => '', 'badge' => 'İ'],
+                ['name' => 'KKTC Avcılık Federasyonu', 'sub' => '', 'badge' => 'A'],
                 ['name' => 'Cyprus Expo 26',           'sub' => 'by UNIFEX Fuarcılık', 'badge' => 'C'],
             ],
         ],
