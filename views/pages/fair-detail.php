@@ -52,11 +52,28 @@ if ($startDate && $endDate) {
 $fairExtras = [
     'av-avcilik-atis-doga-sporlari-fuari' => [
         'partner' => [
-            'label_tr' => 'Resmi Destekçi',
-            'label_en' => 'Official Supporter',
-            'name'     => 'KKTC Avcılık Federasyonu',
-            'tagline_tr' => "Kıbrıs Türk Avcılık Federasyonu'nun resmi destekçiliğiyle",
-            'tagline_en' => "Officially supported by the TRNC Hunting Federation",
+            'label_tr' => 'Resmi Destekçiler',
+            'label_en' => 'Official Supporters',
+            'tagline_tr' => "Kıbrıs Türk Avcılık Federasyonu'nun resmi destekçiliği, KKTC Başbakanlık ve İç İşleri Bakanlığı'nın katkılarıyla",
+            'tagline_en' => "Officially supported by the TRNC Hunting Federation, with contributions from the TRNC Prime Ministry and Ministry of Interior",
+            'items' => [
+                [
+                    'name_tr' => 'KKTC Başbakanlık',
+                    'name_en' => 'TRNC Prime Ministry',
+                    'icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/><path d="M9 11h.01"/><path d="M15 11h.01"/></svg>',
+                ],
+                [
+                    'name_tr' => 'KKTC İç İşleri Bakanlığı',
+                    'name_en' => 'TRNC Ministry of Interior',
+                    'icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>',
+                ],
+                [
+                    'name_tr' => 'KKTC Avcılık Federasyonu',
+                    'name_en' => 'TRNC Hunting Federation',
+                    'sub' => '1971',
+                    'icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>',
+                ],
+            ],
         ],
         'narrative' => [
             'eyebrow_tr' => 'DOĞANIN TUTKUSU',
@@ -280,13 +297,22 @@ $extras = $fairExtras[$fair['slug'] ?? ''] ?? null;
                 <h2 class="fd-narrative-title"><?= e(lang()==='en' ? $extras['narrative']['title_en'] : $extras['narrative']['title_tr']) ?></h2>
                 <p class="fd-narrative-body"><?= e(lang()==='en' ? $extras['narrative']['body_en'] : $extras['narrative']['body_tr']) ?></p>
             </div>
-            <?php if (!empty($extras['partner'])): ?>
+            <?php if (!empty($extras['partner']) && !empty($extras['partner']['items'])): ?>
             <aside class="fd-partner-card">
-                <div class="fd-partner-icon">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18"/><path d="M3 7v14"/><path d="M21 7v14"/><path d="M3 7l9-4 9 4"/><path d="M9 21V11"/><path d="M15 21V11"/></svg>
-                </div>
                 <span class="fd-partner-label"><?= e(lang()==='en' ? $extras['partner']['label_en'] : $extras['partner']['label_tr']) ?></span>
-                <h4 class="fd-partner-name"><?= e($extras['partner']['name']) ?></h4>
+                <div class="fd-partner-list">
+                    <?php foreach ($extras['partner']['items'] as $p): ?>
+                    <div class="fd-partner-item">
+                        <div class="fd-partner-icon"><?= $p['icon'] ?></div>
+                        <div class="fd-partner-info">
+                            <h4 class="fd-partner-name"><?= e(lang()==='en' ? $p['name_en'] : $p['name_tr']) ?></h4>
+                            <?php if (!empty($p['sub'])): ?>
+                            <span class="fd-partner-sub"><?= e($p['sub']) ?></span>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
                 <p class="fd-partner-tagline"><?= e(lang()==='en' ? $extras['partner']['tagline_en'] : $extras['partner']['tagline_tr']) ?></p>
             </aside>
             <?php endif; ?>
@@ -643,12 +669,19 @@ $extras = $fairExtras[$fair['slug'] ?? ''] ?? null;
 .fd-narrative-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
 .fd-narrative-title { font-size: clamp(2rem, 4.5vw, 3.5rem); font-weight: 800; letter-spacing: -.03em; color: var(--fd-text); line-height: 1.05; margin: 1rem 0 1.5rem; }
 .fd-narrative-body { font-size: clamp(1rem, 1.4vw, 1.1875rem); color: var(--fd-text-mute); line-height: 1.7; margin: 0; }
-.fd-partner-card { background: linear-gradient(180deg, var(--fd-bg-alt) 0%, var(--fd-bg) 100%); border: 1px solid var(--fd-border); border-radius: 24px; padding: 2rem; text-align: center; position: relative; }
+.fd-partner-card { background: linear-gradient(180deg, var(--fd-bg-alt) 0%, var(--fd-bg) 100%); border: 1px solid var(--fd-border); border-radius: 24px; padding: 1.75rem 1.5rem 1.5rem; position: relative; }
 .fd-partner-card::before { content: ''; position: absolute; top: 0; left: 24px; right: 24px; height: 3px; background: linear-gradient(90deg, var(--fd-accent), #ff6b35); border-radius: 0 0 100px 100px; }
-.fd-partner-icon { width: 56px; height: 56px; border-radius: 16px; background: rgba(227,6,19,.08); color: var(--fd-accent); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 1rem; }
-.fd-partner-label { display: block; font-size: .75rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--fd-accent); margin-bottom: .5rem; }
-.fd-partner-name { font-size: 1.25rem; font-weight: 700; color: var(--fd-text); margin: 0 0 .75rem; line-height: 1.2; }
-.fd-partner-tagline { font-size: .9rem; color: var(--fd-text-mute); line-height: 1.5; margin: 0; }
+.fd-partner-label { display: block; font-size: .7rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--fd-accent); margin-bottom: 1.25rem; text-align: center; }
+.fd-partner-list { display: flex; flex-direction: column; gap: .65rem; margin-bottom: 1.25rem; }
+.fd-partner-item { display: flex; align-items: center; gap: .85rem; padding: .85rem; background: var(--fd-bg); border: 1px solid var(--fd-border); border-radius: 14px; transition: border-color .25s, transform .25s, background .25s; }
+.fd-partner-item:hover { border-color: var(--fd-accent); transform: translateX(2px); background: #fff; }
+.fd-partner-icon { flex-shrink: 0; width: 42px; height: 42px; border-radius: 12px; background: rgba(227,6,19,.08); color: var(--fd-accent); display: flex; align-items: center; justify-content: center; transition: background .25s, color .25s; }
+.fd-partner-icon svg { width: 20px; height: 20px; }
+.fd-partner-item:hover .fd-partner-icon { background: var(--fd-accent); color: #fff; }
+.fd-partner-info { flex: 1; min-width: 0; }
+.fd-partner-name { font-size: .9375rem; font-weight: 700; color: var(--fd-text); margin: 0; line-height: 1.25; }
+.fd-partner-sub { font-size: .75rem; color: var(--fd-text-soft); font-weight: 600; letter-spacing: .05em; }
+.fd-partner-tagline { font-size: .85rem; color: var(--fd-text-mute); line-height: 1.55; margin: 0; padding-top: 1rem; border-top: 1px solid var(--fd-border); text-align: center; font-style: italic; }
 @media (max-width: 900px) { .fd-narrative-grid { grid-template-columns: 1fr; } }
 
 /* ═══ 4. SECTORS GRID ═══ */
