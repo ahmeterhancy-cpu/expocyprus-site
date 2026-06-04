@@ -136,7 +136,7 @@ $fairExtras = [
             'eyebrow_en' => 'FEDERATION SUPPORT',
             'title_tr'   => 'Sektörün otoritesi onayında.',
             'title_en'   => 'Approved by the industry authority.',
-            'body_tr'    => "Kıbrıs Türk Avcılık Federasyonu'nun resmi destekçiliği, fuara yalnızca prestij değil; kayıtlı federasyon üyelerine doğrudan davet, atıcılık kulüplerinin organize katılımı ve sektörün otoritesi tarafından onaylanmış güvenilirlik mührü kazandırıyor. Av sezonu açılış mevzuatına dair resmi platform da bu fuar oluyor.",
+            'body_tr'    => "Kıbrıs Türk Avcılık Federasyonu'nun resmi destekçiliği, fuara yalnızca prestij değil; kayıtlı federasyon üyelerine doğrudan davet, avcılık kulüplerinin organize katılımı ve sektörün otoritesi tarafından onaylanmış güvenilirlik mührü kazandırıyor. Av sezonu açılış mevzuatına dair resmi platform da bu fuar oluyor.",
             'body_en'    => "The official endorsement of the TRNC Hunting Federation brings more than prestige: direct invitations to registered federation members, organised participation by shooting clubs, and a seal of credibility approved by the industry authority. The fair also becomes the official platform for the hunting season opening regulations.",
             'pillars'    => [
                 ['tr' => 'Kayıtlı üyelere doğrudan davet',      'en' => 'Direct invitation to registered members'],

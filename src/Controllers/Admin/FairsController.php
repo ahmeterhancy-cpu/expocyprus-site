@@ -71,7 +71,7 @@ class FairsController
 
 <p><strong>KKTC'nin en kapsamlı doğa fuarı 2–4 Ekim 2026 tarihleri arasında Eski Ercan Havalimanı'nda!</strong></p>
 
-<p>Av, atıcılık, balıkçılık, doğa sporları ve kamp malzemeleri sektörünün önde gelen markaları, son ürünleri ve yenilikleriyle bir araya geliyor. Profesyoneller, hobiciler ve doğa tutkunları için kaçırılmayacak bir buluşma.</p>
+<p>Av, avcılık, balıkçılık, doğa sporları ve kamp malzemeleri sektörünün önde gelen markaları, son ürünleri ve yenilikleriyle bir araya geliyor. Profesyoneller, hobiciler ve doğa tutkunları için kaçırılmayacak bir buluşma.</p>
 
 <h3>📅 Fuar Tarihleri</h3>
 <ul>
