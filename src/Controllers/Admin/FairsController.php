@@ -48,7 +48,7 @@ class FairsController
     }
 
     /**
-     * One-shot: KKTC Av Atıcılık Balıkçılık Doğa Sporları Fuarı'nın
+     * One-shot: KKTC Av Avcılık Balıkçılık Doğa Sporları Fuarı'nın
      * tüm bilgilerini günceller (poster eklendiğinde 2-4 Ekim 2026 etkinliği için).
      * Idempotent — birden fazla çalıştırılabilir.
      */
@@ -144,7 +144,7 @@ HTML;
 HTML;
 
         $data = [
-            'name_tr'       => 'KKTC Av, Atıcılık, Balıkçılık, Doğa Sporları ve Kamp Malzemeleri Fuarı',
+            'name_tr'       => 'KKTC Av, Avcılık, Balıkçılık, Doğa Sporları ve Kamp Malzemeleri Fuarı',
             'name_en'       => 'TRNC Hunting, Shooting, Fishing, Outdoor Sports and Camping Equipment Fair',
             'summary_tr'    => "Doğanın Tutkusunu Keşfet! KKTC'nin en kapsamlı av, atıcılık, balıkçılık, doğa sporları ve kamp malzemeleri fuarı. 2-4 Ekim 2026 tarihleri arasında Eski Ercan Havalimanı Fuar Alanı'nda. Açık havada doğanın tutkusunu yaşamak isteyenler ve sektör profesyonelleri için kaçırılmayacak bir buluşma.",
             'summary_en'    => "Discover Nature's Passion! The most comprehensive hunting, shooting, fishing, outdoor sports and camping equipment fair in TRNC. October 2-4, 2026 at the Old Ercan Airport Fair Ground. A must-attend gathering for outdoor enthusiasts and industry professionals.",
@@ -155,7 +155,7 @@ HTML;
             'location'      => 'Eski Ercan Havalimanı, KKTC',
             'image_hero'    => '/uploads/fairs/av-fuari-2026-poster.jpg',
             'status'        => 'active',
-            'meta_title_tr' => 'KKTC Av Atıcılık Balıkçılık Doğa Fuarı 2026 | Cyprus Expo',
+            'meta_title_tr' => 'KKTC Av Avcılık Balıkçılık Doğa Fuarı 2026 | Cyprus Expo',
             'meta_title_en' => 'TRNC Hunting Fishing Outdoor Fair 2026 | Cyprus Expo',
             'meta_desc_tr'  => "2-4 Ekim 2026 Eski Ercan Havalimanı'nda KKTC'nin en kapsamlı av, atıcılık, balıkçılık ve doğa sporları fuarı. Ücretsiz giriş, 3 gün boyunca açık.",
             'meta_desc_en'  => "October 2-4, 2026 at Old Ercan Airport — TRNC's most comprehensive hunting, fishing and outdoor fair. Free entry, 3 days open.",

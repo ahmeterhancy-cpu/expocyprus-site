@@ -79,7 +79,7 @@ $fairExtras = [
             'eyebrow_en' => "NATURE'S PASSION",
             'title_tr'   => 'Burada buluşuyor.',
             'title_en'   => 'Meets here.',
-            'body_tr'    => "Kıbrıs Türk Avcılık Federasyonu'nun resmi destekçiliğinde, Unifex Fuarcılık'ın 22 yıllık tecrübesiyle düzenlenen KKTC Av, Atıcılık, Balıkçılık, Doğa Sporları ve Kamp Malzemeleri Fuarı; Cyprus Expo 26 markası altında, 2–4 Ekim 2026 tarihlerinde Eski Ercan Havalimanı Binası'nda kapılarını ardına kadar açıyor.\n\nBu fuar yalnızca bir ticaret platformu değil; aynı zamanda Kıbrıs'ta doğanın tüm tutkularını taşıyan binlerce insanı bir araya getiren kültürel bir buluşma. Av sezonu açılışının hemen öncesinde gerçekleşen bu üç gün, sektörün hem profesyonelleri hem son kullanıcıları için yılın en kritik takvim noktası olmaya hazırlanıyor.",
+            'body_tr'    => "Kıbrıs Türk Avcılık Federasyonu'nun resmi destekçiliğinde, Unifex Fuarcılık'ın 22 yıllık tecrübesiyle düzenlenen KKTC Av, Avcılık, Balıkçılık, Doğa Sporları ve Kamp Malzemeleri Fuarı; Cyprus Expo 26 markası altında, 2–4 Ekim 2026 tarihlerinde Eski Ercan Havalimanı Binası'nda kapılarını ardına kadar açıyor.\n\nBu fuar yalnızca bir ticaret platformu değil; aynı zamanda Kıbrıs'ta doğanın tüm tutkularını taşıyan binlerce insanı bir araya getiren kültürel bir buluşma. Av sezonu açılışının hemen öncesinde gerçekleşen bu üç gün, sektörün hem profesyonelleri hem son kullanıcıları için yılın en kritik takvim noktası olmaya hazırlanıyor.",
             'body_en'    => "Officially supported by the TRNC Hunting Federation and organised with Unifex Fuarcılık's 22 years of experience, the TRNC Hunting, Shooting, Fishing, Outdoor Sports and Camping Equipment Fair opens its doors at the Old Ercan Airport Building under the Cyprus Expo 26 brand on October 2–4, 2026.\n\nMore than a trade platform — a cultural meeting that brings together thousands sharing nature's passions in Cyprus. Held just before hunting season opens, these three days are set to become the year's most critical calendar moment for both industry professionals and end consumers.",
         ],
         'sectors' => [
@@ -91,7 +91,7 @@ $fairExtras = [
             ],
             [
                 'icon' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><line x1="22" y1="12" x2="18" y2="12"/><line x1="6" y1="12" x2="2" y2="12"/><line x1="12" y1="6" x2="12" y2="2"/><line x1="12" y1="22" x2="12" y2="18"/></svg>',
-                'name_tr' => 'Atıcılık',  'name_en' => 'Shooting Sports',
+                'name_tr' => 'Avcılık',  'name_en' => 'Shooting Sports',
                 'desc_tr' => 'Atış sporları malzemeleri, profesyonel ve amatör ekipman',
                 'desc_en' => 'Shooting sports equipment, pro & amateur gear',
             ],
@@ -140,7 +140,7 @@ $fairExtras = [
             'body_en'    => "The official endorsement of the TRNC Hunting Federation brings more than prestige: direct invitations to registered federation members, organised participation by shooting clubs, and a seal of credibility approved by the industry authority. The fair also becomes the official platform for the hunting season opening regulations.",
             'pillars'    => [
                 ['tr' => 'Kayıtlı üyelere doğrudan davet',      'en' => 'Direct invitation to registered members'],
-                ['tr' => 'Atıcılık kulüplerinin organize katılımı', 'en' => 'Organised club participation'],
+                ['tr' => 'Avcılık kulüplerinin organize katılımı', 'en' => 'Organised club participation'],
                 ['tr' => 'Sektörel güvenilirlik mührü',         'en' => 'Industry credibility seal'],
                 ['tr' => 'Av sezonu açılışı resmi platformu',   'en' => 'Official platform for season opening'],
             ],

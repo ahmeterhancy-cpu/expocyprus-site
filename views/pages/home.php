@@ -145,7 +145,7 @@ $structured = [
      SECTION 3 — FUARLARIMIZ (4 Kart)
 ═══════════════════════════════════════════════════════════════ -->
 <?php
-// Sadece Av/Atıcılık fuarını öne çıkar (homepage feature)
+// Sadece Av/Avcılık fuarını öne çıkar (homepage feature)
 $featured = null;
 foreach ($fairs as $f) {
     if (($f['slug'] ?? '') === 'av-avcilik-atis-doga-sporlari-fuari') {
@@ -157,7 +157,7 @@ foreach ($fairs as $f) {
 if (!$featured) {
     $featured = [
         'slug'        => 'av-avcilik-atis-doga-sporlari-fuari',
-        'name_tr'     => 'KKTC Av, Atıcılık, Balıkçılık, Doğa Sporları ve Kamp Malzemeleri Fuarı',
+        'name_tr'     => 'KKTC Av, Avcılık, Balıkçılık, Doğa Sporları ve Kamp Malzemeleri Fuarı',
         'name_en'     => 'TRNC Hunting, Shooting, Fishing, Outdoor Sports and Camping Equipment Fair',
         'summary_tr'  => 'Doğanın Tutkusunu Keşfet! 2–4 Ekim 2026 tarihleri arasında Eski Ercan Havalimanı\'nda Kıbrıs\'ın en kapsamlı doğa fuarı. Açık havada doğanın tutkusunu yaşamak isteyenler ve sektör profesyonelleri için kaçırılmayacak bir buluşma.',
         'summary_en'  => "Discover Nature's Passion! October 2–4, 2026 at Old Ercan Airport — TRNC's most comprehensive outdoor fair. An unmissable gathering for outdoor enthusiasts and industry professionals.",
