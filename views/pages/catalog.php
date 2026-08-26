@@ -57,12 +57,13 @@ foreach (($data ?? []) as $row) {
         <nav class="cat-quick-nav" aria-label="<?= lang() === 'en' ? 'Categories' : 'Kategoriler' ?>">
             <?php foreach ($cats as $key => $cat):
                 $count = count($itemsByCat[$key] ?? []);
+                if ($count === 0) continue;   // modeli olmayan kategori menüde de görünmesin
                 $label = lang() === 'en' ? $cat['en'] : $cat['tr'];
-                $dim   = lang() === 'en' ? $cat['dim_en'] : $cat['dim_tr'];
+                $dim   = catalog_dimensions(lang() === 'en' ? $cat['dim_en'] : $cat['dim_tr']);
             ?>
             <a href="#cat-<?= e($key) ?>" class="cat-quick">
                 <strong><?= e($label) ?></strong>
-                <small><?= e($dim) ?> <span class="cat-quick-count">· <?= $count ?> <?= lang() === 'en' ? 'model' : 'model' ?></span></small>
+                <small><?php if ($dim !== ''): ?><?= e($dim) ?> <?php endif; ?><span class="cat-quick-count"><?= $dim !== '' ? '· ' : '' ?><?= $count ?> <?= lang() === 'en' ? ($count === 1 ? 'model' : 'models') : 'model' ?></span></small>
             </a>
             <?php endforeach; ?>
         </nav>
@@ -71,32 +72,31 @@ foreach (($data ?? []) as $row) {
             $items = $itemsByCat[$catKey] ?? [];
             if (empty($items)) continue;
             $catLabel = lang() === 'en' ? $cat['en'] : $cat['tr'];
-            $catDim   = lang() === 'en' ? $cat['dim_en'] : $cat['dim_tr'];
-            $catDesc  = lang() === 'en' ? $cat['desc_en'] : $cat['desc_tr'];
+            $catDim   = catalog_dimensions(lang() === 'en' ? $cat['dim_en'] : $cat['dim_tr']);
+            $catDesc  = trim((string) (lang() === 'en' ? $cat['desc_en'] : $cat['desc_tr']));
         ?>
 
         <section class="cat-block" id="cat-<?= e($catKey) ?>">
             <header class="cat-header">
                 <div>
-                    <span class="cat-dim"><?= e($catDim) ?></span>
+                    <?php if ($catDim !== ''): ?><span class="cat-dim"><?= e($catDim) ?></span><?php endif; ?>
                     <h2 class="cat-title"><?= e($catLabel) ?></h2>
-                    <p class="cat-desc"><?= e($catDesc) ?></p>
+                    <?php if ($catDesc !== ''): ?><p class="cat-desc"><?= e($catDesc) ?></p><?php endif; ?>
                 </div>
-                <span class="cat-count"><?= count($items) ?> <?= lang() === 'en' ? 'Model' : 'Model' ?></span>
+                <span class="cat-count"><?= count($items) ?> <?= lang() === 'en' ? (count($items) === 1 ? 'Model' : 'Models') : 'Model' ?></span>
             </header>
 
             <div class="model-grid">
                 <?php foreach ($items as $m):
-                    $name = lang() === 'en' ? ($m['name_en'] ?? $m['name_tr']) : ($m['name_tr'] ?? $m['name_en']);
-                    $desc = lang() === 'en' ? ($m['description_en'] ?? $m['description']) : ($m['description'] ?? $m['description_en']);
-                    $features = [];
-                    if (!empty($m['features_json'])) {
-                        $decoded = json_decode((string)$m['features_json'], true);
-                        if (is_array($decoded)) $features = $decoded;
-                    }
-                    $price = !empty($m['price']) ? (float)$m['price'] : 0;
+                    $name     = lang() === 'en' ? ($m['name_en'] ?? $m['name_tr']) : ($m['name_tr'] ?? $m['name_en']);
+                    $features = catalog_features($m);
+                    $intro    = catalog_intro($m, $features);
+                    $dim      = catalog_dimensions($m['dimensions'] ?? '');
+                    $shown    = array_slice($features, 0, 5);
+                    $hidden   = array_slice($features, 5);
+                    $price    = !empty($m['price']) ? (float)$m['price'] : 0;
                     $currency = $m['currency'] ?? 'EUR';
-                    $symbol = ['EUR'=>'€','USD'=>'$','GBP'=>'£','TRY'=>'₺'][$currency] ?? $currency;
+                    $symbol   = ['EUR'=>'€','USD'=>'$','GBP'=>'£','TRY'=>'₺'][$currency] ?? $currency;
                 ?>
                 <article class="model-card">
                     <div class="model-card-img">
@@ -108,17 +108,34 @@ foreach (($data ?? []) as $row) {
                         <span class="model-card-badge"><?= e($m['model_no']) ?></span>
                     </div>
                     <div class="model-card-body">
+                        <?php if ($dim !== ''): ?>
                         <div class="model-card-meta">
-                            <span class="model-card-dim">📐 <?= e($m['dimensions']) ?></span>
+                            <span class="model-card-dim"><?= e($dim) ?></span>
                         </div>
+                        <?php endif; ?>
                         <h3 class="model-card-name"><?= e($name) ?></h3>
-                        <p class="model-card-desc"><?= e(strip_tags((string)$desc)) ?></p>
-                        <?php if (!empty($features)): ?>
+                        <?php if ($intro !== ''): ?>
+                        <p class="model-card-desc"><?= e($intro) ?></p>
+                        <?php endif; ?>
+                        <?php if ($shown): ?>
                         <ul class="model-card-features">
-                            <?php foreach ($features as $f): ?>
-                            <li>✓ <?= e($f) ?></li>
+                            <?php foreach ($shown as $f): ?>
+                            <li><span class="model-card-tick" aria-hidden="true">✓</span><span><?= e($f) ?></span></li>
                             <?php endforeach; ?>
                         </ul>
+                            <?php if ($hidden): ?>
+                            <details class="model-card-more">
+                                <summary>
+                                    <span class="model-card-more-open"><?= count($hidden) ?> <?= lang() === 'en' ? 'more items' : 'kalem daha' ?></span>
+                                    <span class="model-card-more-close"><?= lang() === 'en' ? 'Show less' : 'Daha az göster' ?></span>
+                                </summary>
+                                <ul class="model-card-features">
+                                    <?php foreach ($hidden as $f): ?>
+                                    <li><span class="model-card-tick" aria-hidden="true">✓</span><span><?= e($f) ?></span></li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </details>
+                            <?php endif; ?>
                         <?php endif; ?>
                         <div class="model-card-footer">
                             <?php if ($price > 0): ?>
@@ -275,6 +292,7 @@ foreach (($data ?? []) as $row) {
 /* ─── MODEL GRID ─────────────────────────────────────── */
 .model-grid {
     display: grid;
+    align-items: stretch;
     grid-template-columns: repeat(3, 1fr);
     gap: var(--space-xl);
 }
@@ -337,21 +355,85 @@ foreach (($data ?? []) as $row) {
     flex: 1;
 }
 .model-card-meta { display: flex; gap: .5rem; align-items: center; }
-.model-card-dim { font-size: .75rem; color: var(--text-muted); font-weight: 600; }
+.model-card-dim {
+    display: inline-block;
+    padding: .1875rem .5rem;
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: .6875rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: .03em;
+}
 .model-card-name { font-size: 1.0625rem; font-weight: 700; margin: 0; color: var(--text); line-height: 1.3; }
-.model-card-desc { font-size: .8125rem; color: var(--text-muted); line-height: 1.55; margin: 0; flex: 1; }
+.model-card-desc {
+    font-size: .8125rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
 
 .model-card-features {
     list-style: none;
     padding: 0;
-    margin: .5rem 0 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: .25rem .75rem;
+    margin: .625rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: .3125rem;
 }
-.model-card-features li { font-size: .75rem; color: var(--text); line-height: 1.4; }
+.model-card-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: .4375rem;
+    font-size: .78125rem;
+    color: var(--text);
+    line-height: 1.45;
+}
+.model-card-tick {
+    flex: 0 0 auto;
+    color: var(--red);
+    font-weight: 800;
+    line-height: 1.45;
+}
+
+/* "+N kalem daha" — JS'siz aç/kapa */
+.model-card-more { margin-top: .375rem; }
+.model-card-more > summary {
+    cursor: pointer;
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+    gap: .3125rem;
+    font-size: .75rem;
+    font-weight: 700;
+    color: var(--red);
+    padding: .1875rem 0;
+    user-select: none;
+}
+.model-card-more > summary::-webkit-details-marker { display: none; }
+.model-card-more > summary::after {
+    content: '';
+    width: .4375rem; height: .4375rem;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg) translateY(-1px);
+    transition: transform .2s;
+}
+.model-card-more[open] > summary::after { transform: rotate(-135deg) translateY(-1px); }
+.model-card-more > summary:hover { text-decoration: underline; }
+.model-card-more .model-card-more-close,
+.model-card-more[open] .model-card-more-open { display: none; }
+.model-card-more[open] .model-card-more-close { display: inline; }
+.model-card-more .model-card-features { margin-top: .3125rem; }
 
 .model-card-footer {
+    margin-top: auto;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;

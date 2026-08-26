@@ -76,7 +76,7 @@ foreach ($models as $class => $desc) {
 }
 
 // 3. Service ensureExtended (Apple-style columns)
-foreach (['Service', 'Fair'] as $extra) {
+foreach (['Service', 'Fair', 'CatalogItem'] as $extra) {
     $fqcn = "App\\Models\\$extra";
     if (class_exists($fqcn) && method_exists($fqcn, 'ensureExtended')) {
         try { $fqcn::ensureExtended(); echo "✓ $extra extended\n"; } catch (\Throwable $e) {}

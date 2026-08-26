@@ -52,15 +52,20 @@ class CatalogController
 
     private function formData(Request $req): array
     {
-        // Features: each line = one feature
-        $featuresRaw = trim((string)$req->post('features', ''));
-        $features = [];
-        if ($featuresRaw !== '') {
-            foreach (preg_split('/\r\n|\r|\n/', $featuresRaw) as $line) {
-                $line = trim($line);
-                if ($line !== '') $features[] = $line;
+        // features_en_json sütunu eski kurulumlarda olmayabilir — yoksa ekle.
+        CatalogItem::ensureExtended();
+        // Features: her satır bir özellik. Baştaki madde işaretleri temizlenir —
+        // kart zaten ✓ ekliyor, "• " ile çift madde işareti oluşmasın.
+        $parseFeatures = static function (string $raw): array {
+            $out = [];
+            foreach (preg_split('/\r\n|\r|\n/', $raw) as $line) {
+                $line = catalog_clean_feature($line);
+                if ($line !== '') $out[] = $line;
             }
-        }
+            return array_values(array_unique($out));
+        };
+        $features   = $parseFeatures(trim((string)$req->post('features', '')));
+        $featuresEn = $parseFeatures(trim((string)$req->post('features_en', '')));
 
         // Gallery: existing URLs from textarea
         $galleryRaw = trim((string)$req->post('gallery', ''));
@@ -109,7 +114,8 @@ class CatalogController
             'dimensions'     => trim($req->post('dimensions', '')),
             'price'          => $price,
             'currency'       => $req->post('currency', 'EUR'),
-            'features_json'  => json_encode($features, JSON_UNESCAPED_UNICODE),
+            'features_json'    => json_encode($features, JSON_UNESCAPED_UNICODE),
+            'features_en_json' => json_encode($featuresEn, JSON_UNESCAPED_UNICODE),
             'description'    => trim($req->post('description', '')),
             'description_en' => trim($req->post('description_en', '')),
             'image_main'     => $imageMain,

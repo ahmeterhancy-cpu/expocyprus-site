@@ -11,6 +11,11 @@ if (!empty($it['features_json'])) {
     $arr = json_decode((string)$it['features_json'], true);
     if (is_array($arr)) $featuresText = implode("\n", $arr);
 }
+$featuresEnText = '';
+if (!empty($it['features_en_json'])) {
+    $arr = json_decode((string)$it['features_en_json'], true);
+    if (is_array($arr)) $featuresEnText = implode("\n", $arr);
+}
 $galleryText = '';
 if (!empty($it['gallery_json'])) {
     $arr = json_decode((string)$it['gallery_json'], true);
@@ -201,15 +206,30 @@ $dimDefaults = \App\Models\CatalogCategory::keyDimMap();
             <div class="card">
                 <div class="card-header"><h3 class="card-title">Özellikler (Karttaki ✓ liste)</h3></div>
                 <div class="card-body">
-                    <div class="mb-3">
-                        <label class="form-label">Özellikler</label>
-                        <textarea name="features" class="form-control" rows="10" placeholder="Tek cephe açık
-Beyaz minimal
-LED aydınlatma
-Karşılama desk
-Logo paneli
-Halı zemin"><?= e($featuresText) ?></textarea>
-                        <div class="form-hint">Her satıra bir özellik. Tümü karta yansıtılır (✓ ile).</div>
+                    <div class="alert alert-info mb-3">
+                        <strong>Not:</strong> Bu liste kartta ✓ ile gösterilir. Aynı bilgiyi ayrıca
+                        <em>Açıklama</em> alanına yazmayın — kart aynı içeriği iki kez göstermez,
+                        açıklama alanı yok sayılır. Açıklamayı kısa bir <em>tanıtım cümlesi</em> için kullanın.
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Özellikler <span class="badge bg-secondary">TR</span></label>
+                            <textarea name="features" class="form-control" rows="10" placeholder="3x2m zemin döşemesi
+1 adet danışma masası (90x90)
+1 adet masa
+3 adet sandalye
+0.50x3.00m kapaklı dolap"><?= e($featuresText) ?></textarea>
+                            <div class="form-hint">Her satıra bir özellik. Satır başına <code>•</code> koymayın, kart zaten ✓ ekliyor.</div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Features <span class="badge bg-secondary">EN</span></label>
+                            <textarea name="features_en" class="form-control" rows="10" placeholder="3x2m floor covering
+1 information desk (90x90)
+1 table
+3 chairs
+0.50x3.00m cabinet with door"><?= e($featuresEnText) ?></textarea>
+                            <div class="form-hint">Boş bırakılırsa İngilizce sayfada TR listesi gösterilir.</div>
+                        </div>
                     </div>
                 </div>
             </div>

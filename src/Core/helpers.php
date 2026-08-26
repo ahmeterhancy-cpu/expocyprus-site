@@ -152,3 +152,111 @@ function setting(string $key, string $default = ''): string
     }
     return !empty($cache[$key]) ? (string)$cache[$key] : $default;
 }
+
+/**
+ * ═══════════════════════════════════════════════════════════════
+ * KATALOG İÇERİK NORMALİZASYONU
+ * Admin panelinden girilen içerik dağınık olabilir:
+ *  - özellik satırları başında "• ", "- " gibi işaretler
+ *  - açıklama alanına özellik listesinin aynısının yapıştırılması
+ *  - boş satırlar
+ * Bu yardımcılar kartın her zaman derli toplu görünmesini sağlar.
+ * ═══════════════════════════════════════════════════════════════
+ */
+
+/** Tek bir özellik satırını temizler: baştaki madde işareti, fazla boşluk. */
+function catalog_clean_feature(string $line): string
+{
+    $line = str_replace("\u{00A0}", ' ', $line);
+    $line = preg_replace('/^[\s\x{2022}\x{00B7}\x{25AA}\x{25CF}\x{2013}\x{2014}\-\*\+]+/u', '', $line) ?? $line;
+    $line = preg_replace('/\s+/u', ' ', $line) ?? $line;
+    return trim($line, " \t\n\r\0\x0B.;,");
+}
+
+/** Serbest metni ("• A • B • C" veya satır satır) özellik dizisine çevirir. */
+function catalog_split_features(?string $text): array
+{
+    if ($text === null || trim($text) === '') return [];
+    $text = strip_tags($text);
+    $parts = preg_split('/\R+|(?<!^)\s*[\x{2022}\x{00B7}\x{25AA}\x{25CF}]\s*/u', $text) ?: [];
+    $out = [];
+    foreach ($parts as $p) {
+        $p = catalog_clean_feature($p);
+        if ($p !== '') $out[] = $p;
+    }
+    return $out;
+}
+
+/** Karşılaştırma için metni sadeleştirir (büyük/küçük, noktalama, boşluk farkını yok sayar). */
+function catalog_fingerprint(string $text): string
+{
+    $t = mb_strtolower(strip_tags($text), 'UTF-8');
+    $t = preg_replace('/[^\p{L}\p{N}]+/u', '', $t) ?? $t;
+    return $t;
+}
+
+/**
+ * Bir katalog kaydının özellik listesini dile göre, temizlenmiş olarak döndürür.
+ * features_en_json yoksa features_json'a düşer.
+ */
+function catalog_features(array $item): array
+{
+    $primary   = lang() === 'en' ? ($item['features_en_json'] ?? null) : ($item['features_json'] ?? null);
+    $fallback  = lang() === 'en' ? ($item['features_json'] ?? null)    : ($item['features_en_json'] ?? null);
+
+    foreach ([$primary, $fallback] as $raw) {
+        if (empty($raw)) continue;
+        $list = is_array($raw) ? $raw : json_decode((string) $raw, true);
+        if (!is_array($list)) continue;
+        $clean = [];
+        foreach ($list as $f) {
+            if (is_array($f)) $f = implode(' ', $f);
+            $f = catalog_clean_feature((string) $f);
+            if ($f !== '') $clean[] = $f;
+        }
+        $clean = array_values(array_unique($clean));
+        if ($clean !== []) return $clean;
+    }
+    return [];
+}
+
+/**
+ * Kartta paragraf olarak gösterilecek tanıtım metni.
+ * Metin zaten özellik listesinin tekrarıysa (madde madde aynı içerik) boş döner —
+ * böylece aynı bilgi kartta iki kez görünmez.
+ */
+function catalog_intro(array $item, array $features = []): string
+{
+    $desc = lang() === 'en'
+        ? (string) ($item['description_en'] ?? $item['description'] ?? '')
+        : (string) ($item['description'] ?? $item['description_en'] ?? '');
+    $desc = trim(strip_tags($desc));
+    if ($desc === '') return '';
+
+    $descParts = catalog_split_features($desc);
+
+    // Madde işaretiyle yazılmış / çok parçalı metin = özellik listesi, tanıtım değil.
+    if (count($descParts) > 1) return '';
+
+    if ($features === []) return $desc;
+
+    // Tek parça olsa bile özelliklerden biriyle birebir aynıysa tekrar sayılır.
+    $descFp = catalog_fingerprint($desc);
+    foreach ($features as $f) {
+        if (catalog_fingerprint($f) === $descFp) return '';
+    }
+
+    return $desc;
+}
+
+/** "3m x 3m", "10 x 3m" gibi ölçüleri tek biçime getirir: "3m × 3m". */
+function catalog_dimensions(?string $dim): string
+{
+    $dim = trim((string) $dim);
+    if ($dim === '') return '';
+    $dim = preg_replace('/\s*[x×X\*]\s*/u', ' × ', $dim) ?? $dim;
+    // Birimi olmayan sayılara "m" ekle: "10 × 3m" → "10m × 3m"
+    $dim = preg_replace('/(\d+(?:[.,]\d+)?)(?=\s*×)/u', '$1m', $dim) ?? $dim;
+    $dim = preg_replace('/(\d)m+m/u', '$1m', $dim) ?? $dim;
+    return preg_replace('/\s+/u', ' ', $dim) ?? $dim;
+}

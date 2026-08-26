@@ -85,8 +85,22 @@ CREATE TABLE IF NOT EXISTS `fairs` (
 
 -- ── Catalog Items ────────────────────────────────────────────────
 CREATE TABLE IF NOT EXISTS `catalog_items` (
-    `id`            INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    `slug`          VARCHAR(200) NOT NULL UNIQUE,
+    `id`               INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    `slug`             VARCHAR(200) NOT NULL UNIQUE,
+    -- ── Stand kataloğu alanları ──────────────────────────────────
+    -- (Bu kolonlar bir dönem yalnızca geçici bir setup betiğiyle ekleniyordu.
+    --  sıfırdan kurulumda tablo eksik kalıyordu — şemaya alındı.)
+    `model_no`         VARCHAR(20),
+    `name_tr`          VARCHAR(200),
+    `name_en`          VARCHAR(200),
+    `size_category`    VARCHAR(30),
+    `dimensions`       VARCHAR(30),
+    `price`            DECIMAL(10,2),
+    `currency`         VARCHAR(5) DEFAULT 'EUR',
+    `features_json`    JSON,
+    `features_en_json` JSON,
+    `description_en`   TEXT,
+    -- ─────────────────────────────────────────────────────────────
     `client`        VARCHAR(200),
     `fair_name`     VARCHAR(200),
     `year`          SMALLINT UNSIGNED,
@@ -99,9 +113,11 @@ CREATE TABLE IF NOT EXISTS `catalog_items` (
     `status`        ENUM('active','inactive') NOT NULL DEFAULT 'active',
     `created_at`    DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at`    DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    INDEX `idx_category`   (`category`),
-    INDEX `idx_stand_type` (`stand_type`),
-    INDEX `idx_sqm`        (`sqm`)
+    INDEX `idx_category`      (`category`),
+    INDEX `idx_stand_type`    (`stand_type`),
+    INDEX `idx_sqm`           (`sqm`),
+    INDEX `idx_size_category` (`size_category`),
+    INDEX `idx_model_no`      (`model_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ── Blog Posts ───────────────────────────────────────────────────
