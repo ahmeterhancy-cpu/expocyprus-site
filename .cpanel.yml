@@ -2,38 +2,38 @@
 # cPanel Git Version Control — Otomatik Deployment
 # https://docs.cpanel.net/cpanel/files/git-version-control/
 # ═══════════════════════════════════════════════════════════════
-# Repository Path = /home/<kullanici>/expocyprus.com
-# Yani depo klasörünün KENDİSİ uygulama klasörü. Deploy adımlarının tek
-# işi, public/ içeriğini web root'a (public_html) taşımak ve yazılabilir
-# dizinleri hazırlamak.
+# GERÇEK KURULUM (single-dir):
+#   Repository Path = /home/<kullanıcı>/public_html
+# Yani depo klasörünün KENDİSİ hem uygulama hem web root. Root .htaccess
+# kaynak dosyaları gizleyip istekleri public/ altına yönlendiriyor.
+# Bu yüzden "public/ dosyalarını web root'a kopyalama" adımı GEREKMEZ —
+# git pull zaten dosyaları yerinde günceller.
 #
-# DİKKAT — burada çalışma ağacını (working tree) DEĞİŞTİREN komut olmamalı.
-# cPanel, deponun commit'lenmemiş değişikliği varsa "Deploy HEAD Commit"
-# butonunu pasif yapar. Eski sürümde adımlar depo klasörünü kendi üstüne
-# kopyalıyor ve depo içinde "composer install --no-dev" çalıştırıyordu;
-# vendor/ bu depoda takipli olduğu için her deploy ağacı kirletiyor ve
-# buton bir daha aktif olmuyordu. vendor/ zaten commit'li, composer'a
-# gerek yok.
+# DİKKAT — burada çalışma ağacını (working tree) kirleten komut OLMAMALI:
+#   • cPanel, depoda commit'lenmemiş değişiklik varsa "Deploy HEAD Commit"
+#     butonunu pasif yapar.
+#   • Eski sürüm `cp -R public/. $HOME/public_html/` yapıyordu; depo zaten
+#     public_html olduğu için bu, public/ içeriğini depo köküne kopyalayıp
+#     takipsiz dosya yığını üretiyor ve butonu kalıcı olarak kilitliyordu.
+#   • Eski sürüm ayrıca depo içinde `composer install --no-dev` çalıştırıyordu;
+#     vendor/ bu depoda takipli olduğu için o da ağacı kirletiyordu.
+#     vendor/ commit'li, composer'a gerek yok.
+#
+# Görevler deponun kendi dizininde çalışır — bu yüzden yollar GÖRELİ,
+# böylece kurulum yolu değişse de bozulmaz.
 # ═══════════════════════════════════════════════════════════════
 
 ---
 deployment:
   tasks:
-    # $HOME kullanıyoruz — $USER cPanel deploy ortamında her zaman dolu olmayabilir.
-    - export DEPLOY_PATH=$HOME/expocyprus.com
-    - export PUBLIC_PATH=$HOME/public_html
+    # Yazılabilir dizinler (git boş klasör tutmaz, her deploy'da garantiye alalım)
+    - /bin/mkdir -p storage/sessions storage/cache storage/logs
+    - /bin/chmod -R 775 storage
+    - /bin/mkdir -p public/uploads
+    - /bin/chmod -R 775 public/uploads
 
-    # 1. public/ içeriğini web root'a kopyala (merge — mevcut uploads silinmez)
-    - /bin/cp -R $DEPLOY_PATH/public/. $PUBLIC_PATH/
+    # .env yoksa example'dan oluştur (yalnızca ilk deploy)
+    - test -f .env || /bin/cp .env.example .env
 
-    # 2. Yazılabilir dizinler
-    - /bin/mkdir -p $DEPLOY_PATH/storage/sessions $DEPLOY_PATH/storage/cache $DEPLOY_PATH/storage/logs
-    - /bin/chmod -R 775 $DEPLOY_PATH/storage
-    - /bin/mkdir -p $PUBLIC_PATH/uploads
-    - /bin/chmod -R 775 $PUBLIC_PATH/uploads
-
-    # 3. .env yoksa example'dan oluştur (yalnızca ilk deploy)
-    - test -f $DEPLOY_PATH/.env || /bin/cp $DEPLOY_PATH/.env.example $DEPLOY_PATH/.env
-
-    # 4. Deploy kaydı (storage/logs .gitignore'da — ağacı kirletmez)
-    - echo "Deployment $(date) — completed" >> $DEPLOY_PATH/storage/logs/deploy.log
+    # Deploy kaydı (storage/logs .gitignore'da — ağacı kirletmez)
+    - /bin/echo "Deployment $(date) — completed" >> storage/logs/deploy.log
