@@ -663,7 +663,21 @@ class PublicController
     public function history(Request $req, array $params = []): void   { View::render('history', [], 'main'); }
     public function team(Request $req, array $params = []): void      { View::render('team', [], 'main'); }
     public function mission(Request $req, array $params = []): void   { View::render('mission', [], 'main'); }
-    public function references(Request $req, array $params = []): void{ View::render('references', [], 'main'); }
+    public function references(Request $req, array $params = []): void
+    {
+        $service  = trim((string) $req->get('hizmet', ''));
+        $projects = \App\Models\ReferenceProject::allActive($service);
+        $counts   = \App\Models\ReferenceProject::countByService();
+        View::render('references', compact('projects', 'counts', 'service'), 'main');
+    }
+
+    public function referenceDetail(Request $req, array $params = []): void
+    {
+        $project = \App\Models\ReferenceProject::findBySlug((string) ($params['slug'] ?? ''));
+        if (!$project) { http_response_code(404); View::render('404', [], 'main'); return; }
+        $related = \App\Models\ReferenceProject::related($project);
+        View::render('reference-detail', compact('project', 'related'), 'main');
+    }
     public function faq(Request $req, array $params = []): void       { View::render('faq', [], 'main'); }
     public function kvkk(Request $req, array $params = []): void      { View::render('legal-kvkk', [], 'main'); }
     public function privacy(Request $req, array $params = []): void   { View::render('legal-privacy', [], 'main'); }

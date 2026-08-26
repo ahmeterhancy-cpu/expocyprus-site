@@ -10,7 +10,8 @@ use App\Controllers\Admin\{
     SubmissionsController, MediaController, SettingsController,
     LeadsController, CrewController,
     MembersController, ProductionOrdersController,
-    CmsPagesController, CmsBuilderController
+    CmsPagesController, CmsBuilderController,
+    ReferenceProjectsController
 };
 use App\Middleware\{AuthMiddleware, MemberAuthMiddleware};
 
@@ -72,6 +73,9 @@ $r->get('/en/mission-vision',      [PublicController::class, 'mission']);
 $r->get('/referanslar',            [PublicController::class, 'references']);
 $r->get('/en/referanslar',         [PublicController::class, 'references']);
 $r->get('/en/references',          [PublicController::class, 'references']);
+$r->get('/referanslar/:slug',      [PublicController::class, 'referenceDetail']);
+$r->get('/en/referanslar/:slug',   [PublicController::class, 'referenceDetail']);
+$r->get('/en/references/:slug',    [PublicController::class, 'referenceDetail']);
 $r->get('/sss',                    [PublicController::class, 'faq']);
 $r->get('/en/sss',                 [PublicController::class, 'faq']);
 $r->get('/en/faq',                 [PublicController::class, 'faq']);
@@ -221,6 +225,14 @@ $r->group('/admin', [AuthMiddleware::class], function($r) {
     $r->get('/catalog/:id/edit',       [CatalogController::class, 'edit']);
     $r->post('/catalog/:id/update',    [CatalogController::class, 'update']);
     $r->post('/catalog/:id/delete',    [CatalogController::class, 'destroy']);
+
+    // Referans Projeler (yapılmış işler)
+    $r->get('/references',             [ReferenceProjectsController::class, 'index']);
+    $r->get('/references/create',      [ReferenceProjectsController::class, 'create']);
+    $r->post('/references/store',      [ReferenceProjectsController::class, 'store']);
+    $r->get('/references/:id/edit',    [ReferenceProjectsController::class, 'edit']);
+    $r->post('/references/:id/update', [ReferenceProjectsController::class, 'update']);
+    $r->post('/references/:id/delete', [ReferenceProjectsController::class, 'destroy']);
 
     // Catalog Categories (kategorileri yönet)
     $r->get('/catalog/categories',                  [CatalogCategoriesController::class, 'index']);

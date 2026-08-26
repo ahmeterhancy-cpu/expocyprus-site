@@ -102,6 +102,20 @@ class SeoController
             }
         } catch (\Throwable $e) {}
 
+        // Dynamic — Referans Projeler
+        try {
+            $refs = DB::query("SELECT slug, updated_at FROM reference_projects WHERE status = 'active'");
+            foreach ($refs as $rp) {
+                $urls[] = [
+                    'loc' => $base . '/referanslar/' . $rp['slug'],
+                    'changefreq' => 'monthly', 'priority' => 0.7,
+                    'lastmod' => date('Y-m-d', strtotime($rp['updated_at'])),
+                    'tr_url' => $base . '/referanslar/' . $rp['slug'],
+                    'en_url' => $base . '/en/referanslar/' . $rp['slug'],
+                ];
+            }
+        } catch (\Throwable $e) {}
+
         // Dynamic — Blog
         try {
             $posts = DB::query("SELECT slug, updated_at FROM blog_posts WHERE status = 'published' ORDER BY published_at DESC");

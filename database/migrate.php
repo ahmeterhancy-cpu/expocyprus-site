@@ -60,6 +60,7 @@ $models = [
     'CrewApplication'   => 'Crew applications',
     'Member'            => 'Member accounts',
     'ProductionOrder'   => 'Production orders + stages + files + items + messages',
+    'ReferenceProject'  => 'Referans projeler',
 ];
 
 foreach ($models as $class => $desc) {

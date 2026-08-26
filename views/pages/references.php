@@ -1,11 +1,18 @@
 <?php
 $pageTitle       = lang() === 'en'
-    ? 'References | Expo Cyprus'
-    : 'Referanslarımız | Expo Cyprus';
+    ? 'Reference Projects | Expo Cyprus'
+    : 'Referans Projelerimiz | Expo Cyprus';
 $metaDescription = lang() === 'en'
-    ? 'Public institutions, universities, hotels and corporations that have trusted Expo Cyprus over 22 years.'
-    : 'Expo Cyprus\'a 22 yıl boyunca güvenen kamu kurumları, üniversiteler, oteller ve kurumsal markalar.';
+    ? 'Completed fair, congress and stand projects delivered by Expo Cyprus across Cyprus over 22 years.'
+    : 'Expo Cyprus\'ın 22 yılda Kıbrıs\'ta hayata geçirdiği fuar, kongre ve stand projeleri.';
 $bodyClass = 'page-references';
+
+$projects = $projects ?? [];
+$counts   = $counts   ?? [];
+$service  = $service  ?? '';
+
+$serviceTypes = \App\Models\ReferenceProject::serviceTypes();
+$total        = array_sum($counts) ?: count($projects);
 ?>
 
 <section class="page-hero" style="background: linear-gradient(135deg, #1a1a1a 0%, #E30613 100%);">
@@ -14,13 +21,13 @@ $bodyClass = 'page-references';
       <nav class="breadcrumb" aria-label="Breadcrumb">
         <a href="<?= url() ?>"><?= lang() === 'en' ? 'Home' : 'Anasayfa' ?></a>
         <span aria-hidden="true">›</span>
-        <span><?= lang() === 'en' ? 'References' : 'Referanslarımız' ?></span>
+        <span><?= lang() === 'en' ? 'Reference Projects' : 'Referans Projelerimiz' ?></span>
       </nav>
-      <h1 class="page-hero-title"><?= lang() === 'en' ? 'References' : 'Referanslarımız' ?></h1>
+      <h1 class="page-hero-title"><?= lang() === 'en' ? 'Reference Projects' : 'Referans Projelerimiz' ?></h1>
       <p class="page-hero-subtitle">
         <?= lang() === 'en'
-            ? '100+ stand installations, 22 years of trust.'
-            : '100+ kurulum, 22 yıl güven.' ?>
+            ? 'Completed work, not promises. 22 years, 100+ installations across Cyprus.'
+            : 'Söz değil, yapılmış işler. 22 yıl, Kıbrıs genelinde 100+ kurulum.' ?>
       </p>
     </div>
   </div>
@@ -28,69 +35,84 @@ $bodyClass = 'page-references';
 
 <section class="section">
   <div class="container">
-    <div class="section-header">
-      <h2 class="section-title"><?= lang() === 'en' ? 'Trusted By' : 'Bize Güvenenler' ?></h2>
-      <p class="section-subtitle">
-        <?= lang() === 'en'
-            ? 'A small selection from our long-term clients.'
-            : 'Uzun vadeli müşterilerimizden küçük bir seçki.' ?>
-      </p>
-    </div>
 
-    <?php
-    $logos = [
-      'TC Lefkoşa Büyükelçiliği',
-      'KKTC Ticaret Odası',
-      'KKTC Sanayi Odası',
-      'Near East University',
-      'Eastern Mediterranean University',
-      'Cyprus Turkish Chamber of Commerce',
-      'Lefkoşa Belediyesi',
-      'KKTC Tarım Bakanlığı',
-      'KKTC Sağlık Bakanlığı',
-      'Saray Hotel',
-      'Salamis Bay Conti',
-      'Acapulco Resort',
-    ];
-    ?>
-    <div class="logos-grid">
-      <?php foreach ($logos as $l): ?>
-        <div class="logo-box"><?= htmlspecialchars($l) ?></div>
-      <?php endforeach; ?>
-    </div>
-  </div>
-</section>
+    <?php if ($projects || $counts): ?>
 
-<section class="section bg-light">
-  <div class="container">
-    <div class="section-header">
-      <h2 class="section-title"><?= lang() === 'en' ? 'What They Say' : 'Ne Diyorlar?' ?></h2>
-      <p class="section-subtitle">
-        <?= lang() === 'en'
-            ? 'Real stories from real partners.'
-            : 'Gerçek ortaklarımızdan gerçek hikayeler.' ?>
-      </p>
-    </div>
+      <?php if (count($counts) > 1): ?>
+      <nav class="ref-filter" aria-label="<?= lang() === 'en' ? 'Filter by service' : 'Hizmete göre filtrele' ?>">
+        <a href="<?= url('referanslar') ?>" class="ref-filter-btn <?= $service === '' ? 'is-active' : '' ?>">
+          <?= lang() === 'en' ? 'All' : 'Tümü' ?>
+          <span><?= $total ?></span>
+        </a>
+        <?php foreach ($serviceTypes as $key => $label): ?>
+          <?php if (empty($counts[$key])) continue; ?>
+          <a href="<?= url('referanslar') ?>?hizmet=<?= e($key) ?>" class="ref-filter-btn <?= $service === $key ? 'is-active' : '' ?>">
+            <?= e(lang() === 'en' ? $label['en'] : $label['tr']) ?>
+            <span><?= (int) $counts[$key] ?></span>
+          </a>
+        <?php endforeach; ?>
+      </nav>
+      <?php endif; ?>
 
-    <?php
-    $testimonials = (lang() === 'en') ? [
-      ['The Expo Cyprus team is fully professional. From stand design to installation, every detail was on time and complete.', 'Ahmet K., Marketing Director, XYZ A.Ş.'],
-      ['Their 22 years of experience shows at every stage. Our congress organisation was flawless.', 'Prof. Dr. Selin G., NEU'],
-      ['It was our first time exhibiting in Cyprus, and Expo Cyprus made it an unforgettable experience.', 'Mert B., Istanbul Exporters\' Association'],
-    ] : [
-      ['Expo Cyprus ekibi tam profesyonel. Stand tasarımından kuruluma her detay zamanında ve eksiksiz.', 'Ahmet K., XYZ A.Ş. Pazarlama Direktörü'],
-      ['22 yıllık deneyimleri her aşamada hissediliyor. Kongre organizasyonumuz kusursuzdu.', 'Prof. Dr. Selin G., NEU'],
-      ['Kıbrıs\'ta fuara ilk kez katıldık, Expo Cyprus sayesinde unutulmaz bir deneyim oldu.', 'Mert B., İstanbul İhracatçılar Birliği'],
-    ];
-    ?>
-    <div class="testimonials">
-      <?php foreach ($testimonials as $t): ?>
-        <article class="testimonial">
-          <p class="testimonial-quote"><?= htmlspecialchars($t[0]) ?></p>
-          <p class="testimonial-author"><?= htmlspecialchars($t[1]) ?></p>
+      <?php if ($projects): ?>
+      <div class="ref-grid">
+        <?php foreach ($projects as $p):
+          $title   = lang() === 'en' ? ($p['title_en'] ?: $p['title_tr']) : ($p['title_tr'] ?: $p['title_en']);
+          $summary = trim((string) (lang() === 'en' ? ($p['summary_en'] ?: $p['summary_tr']) : ($p['summary_tr'] ?: $p['summary_en'])));
+          $svc     = $p['service_type'] ?? '';
+          $svcLbl  = ($svc !== '' && isset($serviceTypes[$svc]))
+                      ? (lang() === 'en' ? $serviceTypes[$svc]['en'] : $serviceTypes[$svc]['tr']) : '';
+          $meta    = array_values(array_filter([
+                       trim((string) ($p['fair_name'] ?? '')),
+                       $p['year'] ? (string) (int) $p['year'] : '',
+                       $p['sqm']  ? (int) $p['sqm'] . ' m²' : '',
+                     ], fn($v) => $v !== ''));
+          $href    = url('referanslar/' . $p['slug']);
+        ?>
+        <article class="ref-card">
+          <a class="ref-card-media" href="<?= e($href) ?>" aria-label="<?= e($title) ?>">
+            <?php if (!empty($p['image_main'])): ?>
+              <img src="<?= e($p['image_main']) ?>" alt="<?= e($title) ?>" loading="lazy">
+            <?php else: ?>
+              <div class="ref-card-noimg"><?= e(mb_substr($title, 0, 1)) ?></div>
+            <?php endif; ?>
+            <?php if ($svcLbl !== ''): ?><span class="ref-card-tag"><?= e($svcLbl) ?></span><?php endif; ?>
+          </a>
+          <div class="ref-card-body">
+            <?php if (!empty($p['client'])): ?>
+              <p class="ref-card-client"><?= e($p['client']) ?></p>
+            <?php endif; ?>
+            <h2 class="ref-card-title"><a href="<?= e($href) ?>"><?= e($title) ?></a></h2>
+            <?php if ($meta): ?>
+              <p class="ref-card-meta"><?= e(implode(' · ', $meta)) ?></p>
+            <?php endif; ?>
+            <?php if ($summary !== ''): ?>
+              <p class="ref-card-summary"><?= e($summary) ?></p>
+            <?php endif; ?>
+            <a class="ref-card-link" href="<?= e($href) ?>">
+              <?= lang() === 'en' ? 'View project' : 'Projeyi incele' ?> →
+            </a>
+          </div>
         </article>
-      <?php endforeach; ?>
-    </div>
+        <?php endforeach; ?>
+      </div>
+      <?php else: ?>
+      <div class="ref-empty">
+        <p><?= lang() === 'en' ? 'No projects in this category yet.' : 'Bu kategoride henüz proje yok.' ?></p>
+        <a href="<?= url('referanslar') ?>" class="btn btn-outline"><?= lang() === 'en' ? 'Show all' : 'Tümünü göster' ?></a>
+      </div>
+      <?php endif; ?>
+
+    <?php else: ?>
+      <!-- Hiç proje eklenmemiş — uydurma içerik yerine dürüst bir boş durum -->
+      <div class="ref-empty">
+        <p><?= lang() === 'en'
+              ? 'Our project archive is being prepared. Get in touch and we will share references relevant to your sector.'
+              : 'Proje arşivimiz hazırlanıyor. Bize ulaşın, sektörünüze uygun referanslarımızı paylaşalım.' ?></p>
+        <a href="<?= url('iletisim') ?>" class="btn btn-primary"><?= lang() === 'en' ? 'Contact us' : 'İletişime geçin' ?></a>
+      </div>
+    <?php endif; ?>
+
   </div>
 </section>
 
@@ -120,17 +142,69 @@ $bodyClass = 'page-references';
 .breadcrumb a { color: rgba(255,255,255,.75); }
 .breadcrumb a:hover { color: var(--white); }
 
-.logos-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin: 2rem 0; }
-@media (max-width: 900px) { .logos-grid { grid-template-columns: repeat(3, 1fr); } }
-@media (max-width: 600px) { .logos-grid { grid-template-columns: repeat(2, 1fr); } }
-.logo-box { aspect-ratio: 16/9; background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; padding: 1rem; text-align: center; font-size: .75rem; font-weight: 600; color: var(--text-muted); transition: all .3s; }
-.logo-box:hover { box-shadow: var(--shadow-md); border-color: var(--red); color: var(--red); }
+/* ─── Filtre ─────────────────────────────────────────── */
+.ref-filter { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: var(--space-2xl); }
+.ref-filter-btn {
+    display: inline-flex; align-items: center; gap: .4375rem;
+    padding: .5rem .875rem;
+    border: 1px solid var(--border); border-radius: 100px;
+    background: var(--white); color: var(--text);
+    font-size: .8125rem; font-weight: 600; text-decoration: none;
+    transition: all .2s;
+}
+.ref-filter-btn span {
+    font-size: .6875rem; font-weight: 700;
+    background: var(--bg-alt); color: var(--text-muted);
+    padding: .0625rem .375rem; border-radius: 100px;
+}
+.ref-filter-btn:hover { border-color: var(--red); color: var(--red); }
+.ref-filter-btn.is-active { background: var(--red); border-color: var(--red); color: #ffffff; }
+.ref-filter-btn.is-active span { background: rgba(255,255,255,.22); color: #ffffff; }
 
-.testimonials { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-xl); }
-@media (max-width: 900px) { .testimonials { grid-template-columns: 1fr; } }
-.testimonial { background: var(--white); border-radius: var(--radius-xl); padding: var(--space-xl); border: 1px solid var(--border); position: relative; }
-.testimonial::before { content: '"'; position: absolute; top: 1rem; left: 1.5rem; font-size: 4rem; color: var(--red); opacity: .2; line-height: 1; font-family: Georgia, serif; }
-.testimonial-quote { font-size: 1rem; line-height: 1.7; color: var(--text); margin: 0 0 1rem; padding-top: 1rem; }
-.testimonial-author { font-size: .875rem; color: var(--text-muted); font-style: italic; }
+/* ─── Proje kartları ─────────────────────────────────── */
+.ref-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-xl); align-items: stretch; }
+@media (max-width: 1024px) { .ref-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px)  { .ref-grid { grid-template-columns: 1fr; } }
+
+.ref-card {
+    display: flex; flex-direction: column;
+    background: var(--white);
+    border: 1px solid var(--border); border-radius: var(--radius-xl);
+    overflow: hidden; transition: all .25s;
+}
+.ref-card:hover { border-color: transparent; box-shadow: var(--shadow-xl); transform: translateY(-4px); }
+
+.ref-card-media { position: relative; display: block; aspect-ratio: 4/3; overflow: hidden; background: var(--bg-alt); }
+.ref-card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+.ref-card:hover .ref-card-media img { transform: scale(1.04); }
+.ref-card-noimg {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3rem; font-weight: 800; color: var(--border);
+    background: var(--bg-alt);
+}
+.ref-card-tag {
+    position: absolute; top: .75rem; left: .75rem;
+    padding: .25rem .625rem; border-radius: 100px;
+    background: rgba(0,0,0,.72); color: #ffffff;
+    font-size: .6875rem; font-weight: 700; letter-spacing: .02em;
+}
+
+.ref-card-body { display: flex; flex-direction: column; gap: .4375rem; padding: 1.125rem 1.25rem 1.25rem; flex: 1; }
+.ref-card-client { margin: 0; font-size: .6875rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--red); }
+.ref-card-title { margin: 0; font-size: 1.0625rem; font-weight: 700; line-height: 1.35; }
+.ref-card-title a { color: var(--text); text-decoration: none; }
+.ref-card-title a:hover { color: var(--red); }
+.ref-card-meta { margin: 0; font-size: .75rem; color: var(--text-muted); font-weight: 600; }
+.ref-card-summary {
+    margin: .1875rem 0 0; font-size: .8125rem; line-height: 1.55; color: var(--text-muted);
+    display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+.ref-card-link { margin-top: auto; padding-top: .625rem; font-size: .8125rem; font-weight: 700; color: var(--red); text-decoration: none; }
+.ref-card-link:hover { text-decoration: underline; }
+
+.ref-empty { text-align: center; padding: var(--space-3xl) 1rem; color: var(--text-muted); }
+.ref-empty p { margin: 0 0 1.25rem; font-size: 1rem; }
+
 @media (max-width: 768px) { .page-hero-title { font-size: var(--font-size-4xl); } }
 </style>

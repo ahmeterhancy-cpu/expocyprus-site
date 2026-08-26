@@ -116,6 +116,12 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link <?= str_contains($_SERVER['REQUEST_URI'] ?? '', '/admin/references') ? 'active' : '' ?>" href="/admin/references">
+                            <span class="nav-link-icon"><i class="ti ti-building-arch"></i></span>
+                            <span class="nav-link-title">Referans Projeler</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link <?= str_contains($_SERVER['REQUEST_URI'] ?? '', '/admin/blog') ? 'active' : '' ?>" href="/admin/blog">
                             <span class="nav-link-icon"><i class="ti ti-news"></i></span>
                             <span class="nav-link-title">Blog</span>
