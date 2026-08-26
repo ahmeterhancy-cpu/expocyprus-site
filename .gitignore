@@ -15,6 +15,7 @@ composer.phar
 !/storage/cache/.gitkeep
 /storage/logs/*
 !/storage/logs/.gitkeep
+/storage/backups/
 
 # ─── DEPLOY KEY — ASLA repo'ya girmemeli ────────────
 /.deploy/

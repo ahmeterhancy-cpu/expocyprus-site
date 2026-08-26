@@ -49,10 +49,77 @@ use App\Models\CatalogItem;
 DB::connect();
 CatalogItem::ensureExtended();
 
+// ─── Geri alma ────────────────────────────────────────────────
+// Uygulamadan önce catalog_items + catalog_categories'in tam kopyası
+// storage/backups altına yazılır. Bir şey ters giderse:
+//   fix-catalog.php?key=expo2026&restore=1   → en son yedeği geri yükler
+$backupDir = $basePath . '/storage/backups';
+
+function snapshot(string $dir): string
+{
+    if (!is_dir($dir)) @mkdir($dir, 0775, true);
+    $data = [
+        'taken_at'            => date('c'),
+        'catalog_items'       => DB::query("SELECT * FROM catalog_items"),
+        'catalog_categories'  => DB::query("SELECT * FROM catalog_categories"),
+    ];
+    $file = $dir . '/catalog-' . date('Ymd-His') . '.json';
+    file_put_contents($file, json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+    return $file;
+}
+
+function restoreLatest(string $dir): string
+{
+    $files = glob($dir . '/catalog-*.json') ?: [];
+    if ($files === []) return 'Yedek bulunamadı — geri yüklenecek bir şey yok.';
+    sort($files);
+    $file = end($files);
+    $data = json_decode((string) file_get_contents($file), true);
+    if (!is_array($data) || !isset($data['catalog_items'])) return "Yedek okunamadı: $file";
+
+    $n = 0;
+    foreach ($data['catalog_items'] as $row) {
+        $id = $row['id'] ?? null;
+        if (!$id) continue;
+        unset($row['id'], $row['created_at'], $row['updated_at']);
+        $set    = implode(', ', array_map(static fn($k) => "`$k` = ?", array_keys($row)));
+        $params = array_values($row);
+        $params[] = $id;
+        try { DB::execute("UPDATE catalog_items SET $set WHERE id = ?", $params); $n++; } catch (\Throwable $e) {}
+    }
+
+    // Silinen kategorileri geri koy + sort_order'ları eski haline getir
+    $c = 0;
+    foreach ($data['catalog_categories'] as $row) {
+        unset($row['id'], $row['created_at'], $row['updated_at']);
+        $cols  = implode(', ', array_map(static fn($k) => "`$k`", array_keys($row)));
+        $marks = implode(', ', array_fill(0, count($row), '?'));
+        $upd   = implode(', ', array_map(static fn($k) => "`$k` = VALUES(`$k`)", array_keys($row)));
+        try {
+            DB::execute("INSERT INTO catalog_categories ($cols) VALUES ($marks)
+                         ON DUPLICATE KEY UPDATE $upd", array_values($row));
+            $c++;
+        } catch (\Throwable $e) {}
+    }
+    return "Geri yüklendi: $n ürün, $c kategori\nKaynak: $file";
+}
+
+if (($_GET['restore'] ?? '') === '1') {
+    header('Content-Type: text/plain; charset=utf-8');
+    echo "═══ Katalog Geri Yükleme ═══\n\n" . restoreLatest($backupDir) . "\n";
+    exit;
+}
+
 echo "═══ Katalog Tertipleme ═══\n";
 echo $apply
     ? "MOD: UYGULA (veritabanına yazılacak)\n\n"
     : "MOD: ÖNİZLEME (hiçbir şey yazılmaz — uygulamak için &apply=1 ekleyin)\n\n";
+
+if ($apply) {
+    $file = snapshot($backupDir);
+    echo "Yedek alındı: $file\n";
+    echo "Geri almak için: fix-catalog.php?key=expo2026&restore=1\n\n";
+}
 
 /** Satırın Türkçe mi İngilizce mi olduğunu tahmin eder. */
 function guessLang(string $text): string
