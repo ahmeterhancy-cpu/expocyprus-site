@@ -12,6 +12,7 @@
  *  3. Sadece listenin tekrarı olan açıklamaları boşaltır (kartta aynı bilgi iki kez görünmesin).
  *  4. Ölçüleri tek biçime getirir: "3m x 3m" → "3m × 3m", "10 x 3m" → "10m × 3m".
  *  5. Tek modelli "back-2 … back-8" kategorilerini tek "Backdrop" kategorisinde birleştirir.
+ *  6. Kategori sırasını sabitler: Bir Birim → İki Birim → Üç Birim → Ada Stand → Backdrop.
  *
  * İŞİ BİTİNCE BU DOSYAYI SİL.
  */
@@ -196,10 +197,16 @@ foreach ($cats as $c) {
     if (preg_match('/^back(drop)?(-?\d+)?$/i', (string) $c['cat_key'])) $backKeys[] = $c['cat_key'];
 }
 
-if (count($backKeys) > 1) {
+$target = null;
+if ($backKeys !== []) {
     $target = in_array('backdrop', $backKeys, true) ? 'backdrop' : $backKeys[0];
     $others = array_values(array_diff($backKeys, [$target]));
-    echo "Birleştirilecek: " . implode(', ', $others) . "  →  $target\n";
+
+    if ($others !== []) {
+        echo "Birleştirilecek: " . implode(', ', $others) . "  →  $target\n";
+    } else {
+        echo "Tek backdrop kategorisi var ($target) — birleştirmeye gerek yok.\n";
+    }
 
     if ($apply) {
         $in = implode(',', array_fill(0, count($backKeys), '?'));
@@ -207,12 +214,13 @@ if (count($backKeys) > 1) {
             "UPDATE catalog_items SET size_category = ?, category = ? WHERE size_category IN ($in)",
             array_merge([$target, $target], $backKeys)
         );
+        // Backdrop en sona: asıl ürün stand kategorileri (10–40) önce gelsin.
         DB::execute(
             "UPDATE catalog_categories SET label_tr = 'Backdrop', label_en = 'Backdrop',
                     dimensions_tr = '', dimensions_en = '',
                     description_tr = 'Baskılı vinil germe backdrop modelleri — 3 metre yüksekliğinde, farklı genişliklerde',
                     description_en = 'Printed vinyl stretch backdrops — 3 m high, available in various widths',
-                    sort_order = 5
+                    sort_order = 90
              WHERE cat_key = ?",
             [$target]
         );
@@ -222,7 +230,16 @@ if (count($backKeys) > 1) {
         }
     }
 } else {
-    echo "Birleştirilecek kategori yok.\n";
+    echo "Backdrop kategorisi yok.\n";
+}
+
+// Stand kategorilerinin sırası sabitlensin — Backdrop her zaman en sonda kalsın.
+$standOrder = ['bir-birim' => 10, 'iki-birim' => 20, 'uc-birim' => 30, 'ada' => 40];
+foreach ($standOrder as $key => $order) {
+    $row = DB::first("SELECT cat_key, sort_order FROM catalog_categories WHERE cat_key = ?", [$key]);
+    if (!$row || (int) $row['sort_order'] === $order) continue;
+    echo "Sıra: $key  {$row['sort_order']} → $order\n";
+    if ($apply) DB::execute("UPDATE catalog_categories SET sort_order = ? WHERE cat_key = ?", [$order, $key]);
 }
 
 // Modeli kalmayan kategoriler

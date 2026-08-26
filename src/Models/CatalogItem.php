@@ -45,11 +45,14 @@ class CatalogItem extends BaseModel
 
     public static function filtered(array $filters = [], int $page = 1, int $perPage = 100): array
     {
-        // Stand catalog: tek sayfada tüm modeller (kategori bazında gruplanır), pagination kullanılmaz
+        // Stand catalog: tek sayfada tüm modeller (kategori bazında gruplanır), pagination kullanılmaz.
+        // Sıra kategorinin sort_order'ından gelir — böylece admin'den değiştirilebilir ve
+        // listede olmayan yeni bir kategori en başa düşmez (eski FIELD() listesinde düşüyordu).
         self::ensureExtended();
-        $rows  = DB::query("SELECT * FROM catalog_items WHERE status = 'active' ORDER BY
-                            FIELD(size_category, 'bir-birim', 'iki-birim', 'uc-birim', 'ada'),
-                            model_no ASC");
+        $rows  = DB::query("SELECT i.* FROM catalog_items i
+                            LEFT JOIN catalog_categories c ON c.cat_key = i.size_category
+                            WHERE i.status = 'active'
+                            ORDER BY COALESCE(c.sort_order, 999) ASC, i.model_no ASC");
         return ['data' => $rows, 'total' => count($rows), 'page' => 1, 'last_page' => 1];
     }
 
