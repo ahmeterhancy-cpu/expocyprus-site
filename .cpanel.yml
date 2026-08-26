@@ -2,44 +2,38 @@
 # cPanel Git Version Control — Otomatik Deployment
 # https://docs.cpanel.net/cpanel/files/git-version-control/
 # ═══════════════════════════════════════════════════════════════
-# cPanel Git'te "Manage" → "Pull or Deploy" → "Update from Remote"
-# tıklandığında bu deploy adımları çalışır.
+# Repository Path = /home/<kullanici>/expocyprus.com
+# Yani depo klasörünün KENDİSİ uygulama klasörü. Deploy adımlarının tek
+# işi, public/ içeriğini web root'a (public_html) taşımak ve yazılabilir
+# dizinleri hazırlamak.
+#
+# DİKKAT — burada çalışma ağacını (working tree) DEĞİŞTİREN komut olmamalı.
+# cPanel, deponun commit'lenmemiş değişikliği varsa "Deploy HEAD Commit"
+# butonunu pasif yapar. Eski sürümde adımlar depo klasörünü kendi üstüne
+# kopyalıyor ve depo içinde "composer install --no-dev" çalıştırıyordu;
+# vendor/ bu depoda takipli olduğu için her deploy ağacı kirletiyor ve
+# buton bir daha aktif olmuyordu. vendor/ zaten commit'li, composer'a
+# gerek yok.
 # ═══════════════════════════════════════════════════════════════
 
 ---
 deployment:
   tasks:
-    # 1. Hedef dizini ayarla — cPanel hesabınızın yapısına göre değiştirin
-    - export DEPLOY_PATH=/home/$USER/expocyprus.com
-    - export PUBLIC_PATH=/home/$USER/public_html
+    # $HOME kullanıyoruz — $USER cPanel deploy ortamında her zaman dolu olmayabilir.
+    - export DEPLOY_PATH=$HOME/expocyprus.com
+    - export PUBLIC_PATH=$HOME/public_html
 
-    # 2. Source code'u public_html DIŞINA kopyala (vendor + .env korunsun)
-    - /bin/mkdir -p $DEPLOY_PATH
-    - /bin/cp -R config $DEPLOY_PATH/
-    - /bin/cp -R src $DEPLOY_PATH/
-    - /bin/cp -R views $DEPLOY_PATH/
-    - /bin/cp -R lang $DEPLOY_PATH/
-    - /bin/cp -R database $DEPLOY_PATH/
-    - /bin/cp composer.json composer.lock $DEPLOY_PATH/
-    - /bin/cp .env.example $DEPLOY_PATH/
+    # 1. public/ içeriğini web root'a kopyala (merge — mevcut uploads silinmez)
+    - /bin/cp -R $DEPLOY_PATH/public/. $PUBLIC_PATH/
 
-    # 3. public/ içeriğini public_html'e kopyala (web root)
-    - /bin/cp -R public/. $PUBLIC_PATH/
-
-    # 4. Composer install (varsa) — cPanel'de PHP 8.1+ ve composer mevcut olmalı
-    - cd $DEPLOY_PATH && /usr/local/bin/composer install --no-dev --optimize-autoloader 2>&1 || echo "Composer install failed — manuel çalıştırın"
-
-    # 5. Storage / uploads dizinleri için izinler
+    # 2. Yazılabilir dizinler
     - /bin/mkdir -p $DEPLOY_PATH/storage/sessions $DEPLOY_PATH/storage/cache $DEPLOY_PATH/storage/logs
     - /bin/chmod -R 775 $DEPLOY_PATH/storage
     - /bin/mkdir -p $PUBLIC_PATH/uploads
     - /bin/chmod -R 775 $PUBLIC_PATH/uploads
 
-    # 6. .env yoksa example'dan oluştur (sadece ilk deploy)
+    # 3. .env yoksa example'dan oluştur (yalnızca ilk deploy)
     - test -f $DEPLOY_PATH/.env || /bin/cp $DEPLOY_PATH/.env.example $DEPLOY_PATH/.env
 
-    # 7. public/index.php — kaynak kodu DEPLOY_PATH'tan bulması için path düzelt
-    # (index.php zaten ../vendor ve ../config arar; cp sonrası yapı doğru)
-
-    # 8. Deploy başarılı mesajı
+    # 4. Deploy kaydı (storage/logs .gitignore'da — ağacı kirletmez)
     - echo "Deployment $(date) — completed" >> $DEPLOY_PATH/storage/logs/deploy.log
