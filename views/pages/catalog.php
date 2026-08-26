@@ -92,8 +92,6 @@ foreach (($data ?? []) as $row) {
                     $features = catalog_features($m);
                     $intro    = catalog_intro($m, $features);
                     $dim      = catalog_dimensions($m['dimensions'] ?? '');
-                    $shown    = array_slice($features, 0, 5);
-                    $hidden   = array_slice($features, 5);
                     $price    = !empty($m['price']) ? (float)$m['price'] : 0;
                     $currency = $m['currency'] ?? 'EUR';
                     $symbol   = ['EUR'=>'€','USD'=>'$','GBP'=>'£','TRY'=>'₺'][$currency] ?? $currency;
@@ -117,25 +115,12 @@ foreach (($data ?? []) as $row) {
                         <?php if ($intro !== ''): ?>
                         <p class="model-card-desc"><?= e($intro) ?></p>
                         <?php endif; ?>
-                        <?php if ($shown): ?>
+                        <?php if ($features): ?>
                         <ul class="model-card-features">
-                            <?php foreach ($shown as $f): ?>
+                            <?php foreach ($features as $f): ?>
                             <li><span class="model-card-tick" aria-hidden="true">✓</span><span><?= e($f) ?></span></li>
                             <?php endforeach; ?>
                         </ul>
-                            <?php if ($hidden): ?>
-                            <details class="model-card-more">
-                                <summary>
-                                    <span class="model-card-more-open"><?= count($hidden) ?> <?= lang() === 'en' ? 'more items' : 'kalem daha' ?></span>
-                                    <span class="model-card-more-close"><?= lang() === 'en' ? 'Show less' : 'Daha az göster' ?></span>
-                                </summary>
-                                <ul class="model-card-features">
-                                    <?php foreach ($hidden as $f): ?>
-                                    <li><span class="model-card-tick" aria-hidden="true">✓</span><span><?= e($f) ?></span></li>
-                                    <?php endforeach; ?>
-                                </ul>
-                            </details>
-                            <?php endif; ?>
                         <?php endif; ?>
                         <div class="model-card-footer">
                             <?php if ($price > 0): ?>
@@ -402,35 +387,6 @@ foreach (($data ?? []) as $row) {
     line-height: 1.45;
 }
 
-/* "+N kalem daha" — JS'siz aç/kapa */
-.model-card-more { margin-top: .375rem; }
-.model-card-more > summary {
-    cursor: pointer;
-    list-style: none;
-    display: inline-flex;
-    align-items: center;
-    gap: .3125rem;
-    font-size: .75rem;
-    font-weight: 700;
-    color: var(--red);
-    padding: .1875rem 0;
-    user-select: none;
-}
-.model-card-more > summary::-webkit-details-marker { display: none; }
-.model-card-more > summary::after {
-    content: '';
-    width: .4375rem; height: .4375rem;
-    border-right: 2px solid currentColor;
-    border-bottom: 2px solid currentColor;
-    transform: rotate(45deg) translateY(-1px);
-    transition: transform .2s;
-}
-.model-card-more[open] > summary::after { transform: rotate(-135deg) translateY(-1px); }
-.model-card-more > summary:hover { text-decoration: underline; }
-.model-card-more .model-card-more-close,
-.model-card-more[open] .model-card-more-open { display: none; }
-.model-card-more[open] .model-card-more-close { display: inline; }
-.model-card-more .model-card-features { margin-top: .3125rem; }
 
 .model-card-footer {
     margin-top: auto;
